@@ -1,0 +1,146 @@
+.aboutContainer{
+    display: grid;
+    justify-content: center;
+}
+
+.gridTemplateArea {
+	grid-template-areas:
+		"titleContainer"
+		"imageContainer"
+		"textContainer"
+		"skillsContainer"
+		"iconsContainer"
+		;
+}
+
+.aboutContainer p{
+    font-size: 1.125rem;
+}
+
+.titleContainer{
+    grid-area: titleContainer;
+    padding-bottom: 1.25rem;
+    text-align: center;
+    width: 80%;
+    margin: 0 auto;
+    border-style: solid;
+    border-image: linear-gradient(
+        to right,
+        var(--orange) 25%, var(--light-gray) 50%,  var(--orange) 100%);
+    border-image-slice: 1;
+    border-image-width: 0px 0px 2px 0px;
+}
+
+.imageContainer{
+    grid-area: imageContainer;
+    margin: 5rem auto 0;
+    width: 20rem;
+    border-radius: 50%;
+    padding: 1rem;
+    border: 4px solid var(--light-gray);
+}
+
+.imageContainer img{
+    max-height: 100%;
+    max-width: 100%;
+    border-radius: 50%;
+}
+
+.textContainer{
+    grid-area: textContainer;
+    max-width: 15.5rem;
+    margin: 3.37rem auto 0;
+}
+
+.skillsContainer{
+    grid-area: skillsContainer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5rem;
+}
+
+.iconsContainer{
+    grid-area: iconsContainer;
+    margin-top: 1.81rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 2.87rem;
+}
+
+.iconsContainer span{
+    display: inline-block;
+    width: 2.18rem;
+    height: 2.18rem;
+    background-size: cover;
+    transition: all 0.4s; 
+    margin-right: 0.75rem;
+    margin-top: 0.5rem;  
+    position: relative;  
+}
+
+.iconReact{
+    background-image: url("/icons/technologies/react.svg");
+}
+.iconNode{
+    background-image: url("/icons/technologies/nodejs.svg");
+}
+.iconJavascript{
+    background-image: url("/icons/technologies/javascript.svg");
+}
+.iconTypescript{
+    background-image: url("/icons/technologies/typescript.svg");
+}
+.iconCss{
+    background-image: url("/icons/technologies/css3.svg");
+}
+.iconHtml{
+    background-image: url("/icons/technologies/html5.svg");
+}
+.iconNext{
+    background-image: url("/icons/technologies/next.svg");
+}
+.iconSql{
+    background-image: url("/icons/technologies/sql.svg");
+}
+
+@media(min-width: 1080px){
+    .gridTemplateArea {
+        grid-template-columns: 60% 20%;
+
+        grid-template-areas:
+            "titleContainer imageContainer"
+            "textContainer imageContainer"
+            "skillsContainer imageContainer"
+            "iconsContainer imageContainer"
+            ;
+    }
+    .imageContainer{
+        margin: 0;
+        height: 20rem;
+    }
+    .titleContainer{
+        text-align: end;
+        width: 100%;
+    }
+    .textContainer{
+        max-width: 100%;
+        margin: 3.37rem 1rem 0 21.06rem;
+    }
+    .skillsContainer{
+        align-items: flex-end;
+        margin-top: 4.93rem;
+    }
+    .iconsContainer{
+        margin-top: 1.125rem;
+        margin-bottom: 6.25rem;
+    }
+    .iconsContainer span{
+        margin-right: 1.875rem
+    }
+    .iconsContainer span:last-child{
+        margin-right: 0
+    }
+}

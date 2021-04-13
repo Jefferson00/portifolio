@@ -1,0 +1,142 @@
+.projectsContainer{
+    min-height: 100vh;
+}
+.projectsList{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 4.62rem;
+    margin-bottom: 4.62rem;
+}
+
+.projectItem{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 3.25rem 3.25rem 0 3.25rem;
+}
+
+.projectItem p{
+    font-size: 1.12rem;
+    margin-top: 1.15rem;
+}
+
+.imageContainer{
+    height: 19rem;
+    padding: 0.9rem;
+    border-image-source: url('/border-img.svg');
+    border-image-slice: 2;
+    border-style: solid;
+    transition:  padding 0.5s;
+    position: relative;
+}
+
+/*.imageContainer:hover{
+    padding: 1.5rem;
+}*/
+
+
+.imageContainer img{
+    max-height: 100%;
+    max-width: 100%;
+}
+
+.imageContainer img:hover{
+    cursor: pointer;
+}
+
+.imageContainer span{
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: var(--background);
+    position: absolute;
+    opacity: 0;
+    transition: opacity 0.4s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.imageContainer span:hover,
+.imageContainer span:focus
+{
+    opacity: 0.5;
+}
+.iconsContainer {
+    margin-top: 0.75rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: fit-content;
+}
+
+.iconsContainer span{
+    display: inline-block;
+    width: 2.18rem;
+    height: 2.18rem;
+    background-size: cover;
+    transition: all 0.4s; 
+    margin-right: 0.75rem;
+    margin-top: 0.5rem; 
+    opacity: 0.5;
+    transition: opacity 0.4s;  
+    position: relative;  
+}
+
+.iconsContainer span:hover{
+    opacity: 1;
+}
+
+.iconsLegend{
+    position: absolute;
+    height: 2.35rem;
+    border: 1px solid var(--light-gray);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 1.75rem;
+    top: 2.75rem;
+    right: calc(100% - 4.36rem);
+    background-color: var(--background);
+    z-index: 5;
+    visibility: hidden;
+}
+
+.iconsContainer span:hover .iconsLegend{
+    visibility: visible;
+}
+
+.iconReact{
+    background-image: url("/icons/technologies/react.svg");
+}
+.iconNode{
+    background-image: url("/icons/technologies/nodejs.svg");
+}
+.iconJavascript{
+    background-image: url("/icons/technologies/javascript.svg");
+}
+.iconTypescript{
+    background-image: url("/icons/technologies/typescript.svg");
+}
+.iconCss{
+    background-image: url("/icons/technologies/css3.svg");
+}
+.iconHtml{
+    background-image: url("/icons/technologies/html5.svg");
+}
+.iconNext{
+    background-image: url("/icons/technologies/next.svg");
+}
+.iconSql{
+    background-image: url("/icons/technologies/sql.svg");
+}
+
+@media(min-width: 1080px){
+    .projectsList{
+        margin: 4.62rem auto;
+        width: 80%;
+    }
+}

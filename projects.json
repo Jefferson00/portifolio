@@ -1,0 +1,123 @@
+[
+    {
+      "title": "Finanças App",
+      "description": "Aplicativo para controle de finaças pessoais possui features como controlar ganhos e despesas mensais, notificações, dark mode, controle de saldos.",
+      "technologies":[
+          {
+            "title":"React Native",
+            "class":"iconReact"
+          },
+          {
+            "title":"Typescript",
+            "class":"iconTypescript"
+          },
+          {
+            "title":"Sqlite",
+            "class":"iconSql"
+          }
+      ],
+      "repository": "https://github.com/Jefferson00/Financa",
+      "link":"https://github.com/Jefferson00/Financa",
+      "thumbnail":"/projects/financas/thumbnail/financa-thumb.svg",
+      "gallery":[
+          {"image":"/projects/financas/Capa.png"},
+          {"image":"/projects/financas/financa.png"},
+          {"image":"/projects/financas/Group 3.png"}
+      ]
+    },
+    {
+        "title": "Move it",
+        "description": "Move it é um projeto que tem como ideia principal combinar a técnica pomodoro com gamificação criando uma aplicação onde o usuário ganha experiência e sobe de nível ao realizar os exercícios propostos..",
+        "technologies":[
+            {
+              "title":"ReactJS",
+              "class":"iconReact"
+            },
+            {
+              "title":"Typescript",
+              "class":"iconTypescript"
+            },
+            {
+              "title":"NextJs",
+              "class":"iconNext"
+            },
+            {
+                "title":"CCS3",
+                "class":"iconCss"
+            }
+        ],
+        "repository": "https://github.com/Jefferson00/moveit",
+        "link":"https://moveit-chi-two.vercel.app/",
+        "thumbnail":"/projects/moveit/thumbnail/moveit-thumb.svg",
+        "gallery":[
+            {"image":"/projects/moveit/moveit-1.png"},
+            {"image":"/projects/moveit/moveit-2.png"},
+            {"image":"/projects/moveit/moveit-3.png"},
+            {"image":"/projects/moveit/moveit-4.png"}
+        ]
+    },
+    {
+        "title": "Northware",
+        "description": "Site Institucional da empresa Northware",
+        "technologies":[
+            {
+              "title":"ReactJS",
+              "class":"iconReact"
+            },
+            {
+              "title":"Javascript",
+              "class":"iconJavascript"
+            },
+            {
+              "title":"HTML5",
+              "class":"iconHtml"
+            },
+            {
+                "title":"CCS3",
+                "class":"iconCss"
+            },
+            {
+                "title":"NodeJs",
+                "class":"iconNode"
+            }
+        ],
+        "repository": "https://github.com/Jefferson00/NTWFrontEnd",
+        "link":"https://northware-frontend.herokuapp.com/",
+        "thumbnail":"/projects/ntw/thumbnail/northware-thumb.svg",
+        "gallery":[
+            {"image":"/projects/ntw/ntw-1.png"}
+        ]
+      },
+      {
+        "title": "Ecoleta",
+        "description": "Ecoleta é um projeto de um marketplace idealiazado pela rocktseat, tem como objetivo conectar pessoas com empresas que realizam coletas de materiais específicos para reciclagem.",
+        "technologies":[
+            {
+              "title":"Javascript",
+              "class":"iconJavascript"
+            },
+            {
+              "title":"HTML5",
+              "class":"iconHtml"
+            },
+            {
+                "title":"CCS3",
+                "class":"iconCss"
+            },
+            {
+                "title":"NodeJs",
+                "class":"iconNode"
+            },
+            {
+                "title":"Sqlite",
+                "class":"iconSql"
+            }
+        ],
+        "repository": "https://github.com/Jefferson00/ecoleta",
+        "link":"https://github.com/Jefferson00/ecoleta",
+        "thumbnail":"/projects/ecoleta/thumbnail/ecoleta-thumb.svg",
+        "gallery":[
+            {"image":"/projects/ecoleta/ecoleta-1.png"}
+        ]
+      }
+  ]

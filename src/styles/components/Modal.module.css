@@ -1,0 +1,259 @@
+.modalContainer{
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    background-color: #273036;
+    display: none;
+    transition: opacity 0.4s;
+}
+
+span.close{
+    position: absolute;
+    top: -2.25rem;
+    right: 0;
+    padding: 0.75rem;
+    cursor: pointer;
+
+    background-size: cover;
+    transition: all 0.4s;
+    display: inline-block;
+    background-image: url("/icons/close.svg");
+}
+
+.modalOpen{
+    display: flex;
+    animation-name: openUp;
+    animation-duration: 0.5s;
+    animation-timing-function: ease-in;
+    animation-fill-mode: forwards ;
+    transform:scale(0);
+    border-radius: 0;
+    opacity: 0;
+}
+
+@keyframes openUp {
+    0% {
+        transform:scale(0);
+        border-radius: 0;
+        opacity: 0;
+    }
+    80%{
+        border-radius: 50%;
+    }
+    100% {
+        transform:scale(1);
+        opacity: 1;
+        border-radius: 0;
+    }
+}
+
+.modalClose{
+    animation-name: close;
+    animation-duration: 0.5s;
+    animation-timing-function: ease-in;
+    animation-fill-mode: forwards ;
+    transform:scale(1);
+    border-radius: 0;
+    opacity: 1;
+}
+
+@keyframes close {
+    0% {
+        border-radius: 0;
+        transform:scale(1);
+        opacity: 1;
+    }
+    80%{
+        border-radius: 50%;
+    }
+    100% {
+        transform:scale(0);
+        border-radius: 100%;
+        opacity: 0;
+    }
+}
+
+.modalContent{
+   margin: 2.875rem 0; 
+   width: 100%;
+   border-style: solid;
+   border-image: linear-gradient(
+    to right,
+    var(--orange) 25%, var(--light-gray) 50%,  var(--orange) 100%);
+    border-image-slice: 1;
+    border-image-width: 2px 2px 2px 2px;
+    position: relative;
+}
+
+.imagemContainer{
+    height: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.imagemContainer img{
+    max-height: 100%;
+    max-width: 100%;
+}
+
+.imagemContainer .hiddenImage{
+    display: none;
+    opacity: 0;
+    transform: translateX(1000px);
+}
+
+.imagemContainer .showNextImage{
+    display: inline-flex;
+    opacity: 0;
+    transform: translateX(1000px);
+    animation-name: showNextImage;
+    animation-duration: 0.5s;
+    animation-timing-function: ease-in;
+    animation-fill-mode: forwards ;
+}
+
+@keyframes showNextImage {
+    0% {
+        transform: translateX(1000px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.imagemContainer .showPrevImage{
+    display: inline-flex;
+    opacity: 0;
+    transform: translateX(-1000px);
+    animation-name: showPrevImage;
+    animation-duration: 0.5s;
+    animation-timing-function: ease-in;
+    animation-fill-mode: forwards ;
+}
+
+@keyframes showPrevImage {
+    0% {
+        transform: translateX(-1000px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.informationsContainer{
+    height: 13rem;
+    background-color: var(--background);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border-top: 1px solid var(--light-gray);
+    padding: 1rem 1.063rem;
+    transition: all 0.4s;
+}
+
+.expandButton{
+    position: absolute;
+    top: -1rem;
+    z-index: 5;
+    left: 50%;
+    cursor: pointer;
+    width: 2.375rem;
+    height: 2.375rem;
+    background-image: url("/icons/expand-white.svg");
+    background-size: cover;
+    transition: background-image 0.4s;
+    transform: rotate(180deg);
+}
+
+.expandButton:hover,
+.expandButton:focus{
+    background-image: url("/icons/expand-orange.svg");
+}
+
+.hide{
+    height: 4.75rem;
+    box-shadow: inset 0px -10px 7px 3px #0c0c0c;
+}
+
+.hide p{
+    opacity: 0;
+}
+
+.informationsContainer.hide .expandButton{
+    transform: rotate(0);
+}
+
+.informationsContainer p,
+.informationsContainer strong{
+    font-size: 0.875rem;
+    transition: opacity 0.4s;
+}
+
+.informationsContainer p a{
+    margin-left: 0.75rem;
+    color: var(--dark-gray);
+    transition: color 0.4s;
+}
+
+.informationsContainer p a:hover{
+    color: var(--orange);
+}
+
+p.title{
+    margin-top: 1rem;
+}
+
+.navButton{
+    position: absolute;
+    cursor: pointer;
+    top: 50%;
+    z-index: 5;
+    transition: all 0.4s;
+    background-image: url("/icons/prev.svg");
+    width: 4.125rem;
+    height: 3.125rem;
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: 2rem 1.18rem;
+    border: 1px solid var(--light-gray);
+    margin: 0 0 0 1.5rem;
+    background-color: var(--background);
+    opacity: 0.3;
+}
+
+.navButton:hover,
+.navButton:focus{
+    filter: sepia(0.5);
+    opacity: 1;
+}
+
+
+@media(min-width: 1080px){
+    .modalContent{ 
+        margin: 2.875rem 2rem;
+    }
+    .informationsContainer{
+        height: 10.75rem;
+    }
+    .informationsContainer.hide{
+        height: 4.75rem;
+        box-shadow: inset 0px -10px 7px 3px #0c0c0c;
+    }
+    .navButton{
+        background-color: transparent;
+        padding: 0.651rem 0;
+        opacity: 1;
+        width: 3.125rem;
+    }
+    .navButton:hover{
+        background-color: var(--background);
+    }
+}
