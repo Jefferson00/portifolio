@@ -1,6 +1,7 @@
 .aboutContainer{
     display: grid;
     justify-content: center;
+    margin-top: 14rem;
 }
 
 .gridTemplateArea {
