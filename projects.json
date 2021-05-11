@@ -1,7 +1,9 @@
-[
+{
+  "projects":[
     {
+      "id":"financa-app",
       "title": "Finanças App",
-      "description": "Aplicativo para controle de finaças pessoais possui features como controlar ganhos e despesas mensais, notificações, dark mode, controle de saldos.",
+      "description": "Aplicativo para controle de finanças pessoais. Desenvolvido com o objetivo de gerenciar os ganhos e despesas mensais de uma pessoa. Possui uma interface simples e intuitiva.",
       "technologies":[
           {
             "title":"React Native",
@@ -18,16 +20,24 @@
       ],
       "repository": "https://github.com/Jefferson00/Financa",
       "link":"https://github.com/Jefferson00/Financa",
-      "thumbnail":"/projects/financas/thumbnail/financa-thumb.svg",
+      "thumbnail":"/projects/financas/thumbnail/thumbnail.png",
       "gallery":[
-          {"image":"/projects/financas/Capa.png"},
-          {"image":"/projects/financas/financa.png"},
-          {"image":"/projects/financas/Group 3.png"}
-      ]
+          {"image":"/projects/financas/preview-1.svg"},
+          {"image":"/projects/financas/preview-2.svg"},
+          {"image":"/projects/financas/preview-3.svg"},
+          {"image":"/projects/financas/preview-4.svg"},
+          {"image":"/projects/financas/preview-5.svg"},
+          {"image":"/projects/financas/preview-6.svg"},
+          {"image":"/projects/financas/preview-7.svg"},
+          {"image":"/projects/financas/preview-8.svg"},
+          {"image":"/projects/financas/preview-9.svg"}
+      ],
+      "useCase": "<p>Desenvolvido com <a href='https://reactnative.dev/' target='_blank'>React Native</a> e <a href='https://expo.io/' target='_blank'>Expo</a>, o aplicativo permite que o usuário cadastre seus gastos e recebimentos no mês, mostrando seu saldo atual e estimado.</p> <p>Possui opção de segurança para acesso por senha ou digital.</p> <p>Notificações de ganhos ou despesas próximas da sua respectiva data. </p>"
     },
     {
+        "id":"move-it",
         "title": "Move it",
-        "description": "Move it é um projeto que tem como ideia principal combinar a técnica pomodoro com gamificação criando uma aplicação onde o usuário ganha experiência e sobe de nível ao realizar os exercícios propostos..",
+        "description": "Move it é um projeto que tem como ideia principal combinar a técnica pomodoro com gamificação criando uma aplicação onde o usuário ganha experiência e sobe de nível ao realizar os exercícios propostos.",
         "technologies":[
             {
               "title":"ReactJS",
@@ -48,27 +58,26 @@
         ],
         "repository": "https://github.com/Jefferson00/moveit",
         "link":"https://moveit-chi-two.vercel.app/",
-        "thumbnail":"/projects/moveit/thumbnail/moveit-thumb.svg",
+        "thumbnail":"/projects/moveit/thumbnail/thumbnail.png",
         "gallery":[
-            {"image":"/projects/moveit/moveit-1.png"},
-            {"image":"/projects/moveit/moveit-2.png"},
-            {"image":"/projects/moveit/moveit-3.png"},
-            {"image":"/projects/moveit/moveit-4.png"}
-        ]
+            {"image":"/projects/moveit/preview-1.png"},
+            {"image":"/projects/moveit/preview-2.png"},
+            {"image":"/projects/moveit/preview-3.png"},
+            {"image":"/projects/moveit/preview-4.png"},
+            {"image":"/projects/moveit/preview-5.png"}
+        ],
+        "useCase":"<p>A aplicação foi desenvolvida com <a href='https://nextjs.org/' target='_blank'>Next.js</a> e tem como principal objetivo incentivar pessoas que trabalham na frente do computador durante horas a darem pequenas pausas e fazer exercícios simples, tendo como base a técnica pomodoro.</p> <p>O aplicativo também utiliza de gameficação onde o usuário ganha experiência fazendo os exercícios e sobe de nível conforme ganha experiência.</p>"
     },
-    {
-        "title": "Northware",
-        "description": "Site Institucional da empresa Northware",
+      {
+        "id":"rock-paper-scissors",
+        "title": "Rock Paper Scissors",
+        "description": "<p>Esse é uma solução desenvolvida com base no desafio do site <a href='https://www.frontendmentor.io/challenges/rock-paper-scissors-game-pTgwgvgH' target='_blank'>frontendmentor</a>. Consiste no jogo de pedra, papel e tesoura, onde o layout e as interações deverão ser o mais próximo possível ao desafio proposto.</p>",
         "technologies":[
             {
               "title":"ReactJS",
               "class":"iconReact"
             },
             {
-              "title":"Javascript",
-              "class":"iconJavascript"
-            },
-            {
               "title":"HTML5",
               "class":"iconHtml"
             },
@@ -77,24 +86,56 @@
                 "class":"iconCss"
             },
             {
-                "title":"NodeJs",
-                "class":"iconNode"
+              "title":"NextJs",
+              "class":"iconNext"
             }
         ],
-        "repository": "https://github.com/Jefferson00/NTWFrontEnd",
-        "link":"https://northware-frontend.herokuapp.com/",
-        "thumbnail":"/projects/ntw/thumbnail/northware-thumb.svg",
+        "repository": "https://github.com/Jefferson00/RockPaperScissors",
+        "link":"https://rock-paper-scissors-seven-tau.vercel.app/",
+        "thumbnail":"/projects/rockPaperScissors/thumbnail.png",
         "gallery":[
-            {"image":"/projects/ntw/ntw-1.png"}
-        ]
+            {"image":"/projects/rockPaperScissors/preview-1.png"},
+            {"image":"/projects/rockPaperScissors/preview-2.png"},
+            {"image":"/projects/rockPaperScissors/preview-3.png"}
+        ],
+        "useCase":"<p>Solução desenvolvida com <a href='https://nextjs.org/' target='_blank'>Next.js</a> e <a href='https://sass-lang.com/' target='_blank'>Sass</a>. O usuário deverá ser capaz:</p> <p>Ver o layout otimizado dependendo do dispositivo do usuário.</p><p> Jogar pedra, papel e tesoura contra o computador.</p> <p>Manter o estado da pontuação mesmo depois de recarregar a página.</p>"
       },
       {
-        "title": "Ecoleta",
-        "description": "Ecoleta é um projeto de um marketplace idealiazado pela rocktseat, tem como objetivo conectar pessoas com empresas que realizam coletas de materiais específicos para reciclagem.",
+        "id":"plant-manager",
+        "title": "Plant Manager",
+        "description": "<p>Aplicativo desenvolvido durante o <a href='https://nextlevelweek.com/' target='_blank'>NLW 5</a> da <a href='https://github.com/Rocketseat' target='_blank'>rocketseat</a>.</p> <p>Consiste em um app que lembra o usuário de regar suas plantas.</p>",
         "technologies":[
             {
-              "title":"Javascript",
-              "class":"iconJavascript"
+              "title":"React Native",
+              "class":"iconReact"
+            },
+            {
+              "title":"Typescript",
+              "class":"iconTypescript"
+            }
+        ],
+        "repository": "https://github.com/Jefferson00/PlantManager",
+        "link":"https://github.com/Jefferson00/PlantManager",
+        "thumbnail":"/projects/plantManager/thumbnail.svg",
+        "gallery":[
+            {"image":"/projects/plantManager/preview-1.svg"},
+            {"image":"/projects/plantManager/preview-2.svg"},
+            {"image":"/projects/plantManager/preview-3.svg"},
+            {"image":"/projects/plantManager/preview-4.svg"},
+            {"image":"/projects/plantManager/preview-5.svg"},
+            {"image":"/projects/plantManager/preview-6.svg"},
+            {"image":"/projects/plantManager/preview-7.svg"}
+        ],
+        "useCase":"<p>O aplicativo foi desenvolvido com <a href='https://reactnative.dev/' target='_blank'>React Native</a> e <a href='https://expo.io/' target='_blank'>Expo</a>, com as seguintes funcionalidades:</p><p>Listagem de plantas de uma API.</p><p>Armazenamento de plantas que deseja ser lembrado de regar.</p><p>Notificações para lembrar de regar as plantas salvas.</p><p>Deletar ou alterar as plantas salvas.</p>"
+      },
+      {
+        "id":"ip-tracker",
+        "title": "IP Address Tracker",
+        "description": "<p>Esse é uma solução desenvolvida com base no desafio do site <a href='https://www.frontendmentor.io/challenges/rock-paper-scissors-game-pTgwgvgH' target='_blank'>frontendmentor</a>, utilizando <a href='https://nextjs.org/' target='_blank'>Next.js</a> e <a href='https://sass-lang.com/' target='_blank'>Sass</a>.</p><p>Consiste em uma página que se conecta a uma API externa para busca e localização com base no IP ou dominio informado, onde o layout e as interações deverão ser o mais próximo possível ao desafio proposto.</p>",
+        "technologies":[
+            {
+              "title":"ReactJS",
+              "class":"iconReact"
             },
             {
               "title":"HTML5",
@@ -105,19 +146,91 @@
                 "class":"iconCss"
             },
             {
-                "title":"NodeJs",
-                "class":"iconNode"
+              "title":"NextJs",
+              "class":"iconNext"
             },
             {
-                "title":"Sqlite",
-                "class":"iconSql"
+              "title":"Typescript",
+              "class":"iconTypescript"
             }
         ],
-        "repository": "https://github.com/Jefferson00/ecoleta",
-        "link":"https://github.com/Jefferson00/ecoleta",
-        "thumbnail":"/projects/ecoleta/thumbnail/ecoleta-thumb.svg",
+        "repository": "https://github.com/Jefferson00/IPAddressTracker",
+        "link":"https://iptracker-lime.vercel.app/",
+        "thumbnail":"/projects/ipTracker/thumbnail.png",
         "gallery":[
-            {"image":"/projects/ecoleta/ecoleta-1.png"}
-        ]
+            {"image":"/projects/ipTracker/preview-1.png"},
+            {"image":"/projects/ipTracker/preview-2.png"}
+        ],
+        "useCase":"<p>O usuário deve ser capaz de visualizar o layout, dependendo do tamanho da tela do dispositivo,</p><p>ver os estados de foco para todos elementos interativos,</p><p>ver seu próprio ip no mapa no carregamento inicial da página,</p><p>pesquisar qualquer Ip ou domínio e ver principais informações e localização.</p>"
       }
+  ],
+
+  "offProjects": [
+    {
+      "id":"northware-site",
+      "title": "Northware",
+      "description": "Site Institucional da empresa Northware",
+      "technologies":[
+          {
+            "title":"ReactJS",
+            "class":"iconReact"
+          },
+          {
+            "title":"Javascript",
+            "class":"iconJavascript"
+          },
+          {
+            "title":"HTML5",
+            "class":"iconHtml"
+          },
+          {
+              "title":"CCS3",
+              "class":"iconCss"
+          },
+          {
+              "title":"NodeJs",
+              "class":"iconNode"
+          }
+      ],
+      "repository": "https://github.com/Jefferson00/NTWFrontEnd",
+      "link":"https://northware-frontend.herokuapp.com/",
+      "thumbnail":"/projects/ntw/thumbnail/northware-thumb.svg",
+      "gallery":[
+          {"image":"/projects/ntw/ntw-1.png"}
+      ]
+    },
+    {
+      "id":"ecoleta-site",
+      "title": "Ecoleta",
+      "description": "Ecoleta é um projeto de um marketplace idealiazado pela rocktseat, tem como objetivo conectar pessoas com empresas que realizam coletas de materiais específicos para reciclagem.",
+      "technologies":[
+          {
+            "title":"Javascript",
+            "class":"iconJavascript"
+          },
+          {
+            "title":"HTML5",
+            "class":"iconHtml"
+          },
+          {
+              "title":"CCS3",
+              "class":"iconCss"
+          },
+          {
+              "title":"NodeJs",
+              "class":"iconNode"
+          },
+          {
+              "title":"Sqlite",
+              "class":"iconSql"
+          }
+      ],
+      "repository": "https://github.com/Jefferson00/ecoleta",
+      "link":"https://github.com/Jefferson00/ecoleta",
+      "thumbnail":"/projects/ecoleta/thumbnail/ecoleta-thumb.svg",
+      "gallery":[
+          {"image":"/projects/ecoleta/ecoleta-1.png"}
+      ]
+    }
   ]
+}

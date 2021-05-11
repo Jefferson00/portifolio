@@ -16,6 +16,12 @@
 
 .aboutContainer p{
     font-size: 1.125rem;
+    line-height: 1.75rem;
+    font-weight: 300;
+}
+
+.titleContainer p{
+    font-weight: 500;
 }
 
 .titleContainer{
@@ -62,6 +68,10 @@
     margin-top: 5rem;
 }
 
+.skillsContainer p{
+    font-weight: 500;
+}
+
 .iconsContainer{
     grid-area: iconsContainer;
     margin-top: 1.81rem;
@@ -72,39 +82,81 @@
 }
 
 .iconsContainer span{
-    display: inline-block;
+    display: flex;
+    justify-content: center;
     width: 2.18rem;
     height: 2.18rem;
     background-size: cover;
     transition: all 0.4s; 
-    margin-right: 0.75rem;
-    margin-top: 0.5rem;  
+     
     position: relative;  
+    text-align: center;
+
+    margin-right: 1.75rem;
+    margin-top: 2rem;
+}
+
+.iconsContainer span::after{
+    font-size: 0.75rem;
+    position: relative;
+    bottom: -2.45rem;
+    font-weight: 300;
 }
 
 .iconReact{
     background-image: url("/icons/technologies/react.svg");
 }
+.iconReact::after{
+    content: 'React';
+}
+
 .iconNode{
     background-image: url("/icons/technologies/nodejs.svg");
 }
+.iconNode::after{
+    content: 'Node.js';
+}
+
 .iconJavascript{
     background-image: url("/icons/technologies/javascript.svg");
 }
+.iconJavascript::after{
+    content: 'Javascript';
+}
+
 .iconTypescript{
     background-image: url("/icons/technologies/typescript.svg");
 }
+.iconTypescript::after{
+    content: 'Typescript';
+}
+
 .iconCss{
     background-image: url("/icons/technologies/css3.svg");
 }
+.iconCss::after{
+    content: 'CSS 3';
+}
+
 .iconHtml{
     background-image: url("/icons/technologies/html5.svg");
 }
+.iconHtml::after{
+    content: 'HTML5';
+}
+
 .iconNext{
     background-image: url("/icons/technologies/next.svg");
 }
+.iconNext::after{
+    content: 'NEXT.js';
+}
+
 .iconSql{
     background-image: url("/icons/technologies/sql.svg");
+}
+.iconSql::after{
+    content: 'Database';
 }
 
 @media(min-width: 1080px){
@@ -128,7 +180,7 @@
     }
     .textContainer{
         max-width: 100%;
-        margin: 3.37rem 1rem 0 21.06rem;
+        margin: 3.37rem 1rem 0 13.06rem;
     }
     .skillsContainer{
         align-items: flex-end;
@@ -139,7 +191,8 @@
         margin-bottom: 6.25rem;
     }
     .iconsContainer span{
-        margin-right: 1.875rem
+        margin-right: 1.875rem;
+        margin-top: 0.5rem; 
     }
     .iconsContainer span:last-child{
         margin-right: 0

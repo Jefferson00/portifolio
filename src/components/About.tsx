@@ -3,7 +3,7 @@ import styles from '../styles/components/About.module.css'
 export function About(){
 
     return(
-        <div className={`${styles.aboutContainer} ${styles.gridTemplateArea}`}>
+        <div className={`${styles.aboutContainer} ${styles.gridTemplateArea}`} id="about">
             <div className={styles.titleContainer}>
                 <p>SOBRE MIM</p>
             </div>
@@ -12,9 +12,15 @@ export function About(){
             </div>
             <div className={styles.textContainer}>
                 <p>
-                 Oi, me chamo Jefferson Clemente. Sou
-                 desenvolvedor full-stack, em busca de novas oportunidades e desafios. 
-                 Em constante aprendizado, sempre evoluindo...
+                 Oi, meu nome é Jefferson. Sou uma pessoa de mente inquieta e criativa.
+                 Busco estar sempre atualizado e em constante aprendizado. 
+                </p>
+                 <p>Sou desenvolvedor
+                 FullStack em inicio de carreira, em busca de novos desafios e oportunidades.
+                </p>
+                <br />
+                <p>
+                    Sou formado em Análise e Desenvolvimento de Sistemas pelo Instituto de Educação Superior de Brasília em 2018.
                 </p>
             </div>
             <div className={styles.skillsContainer}>

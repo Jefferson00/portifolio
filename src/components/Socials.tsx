@@ -1,4 +1,5 @@
 import styles from '../styles/components/Socials.module.css'
+import Link from 'next/link';
 
 export function Socials(){
 
@@ -21,6 +22,16 @@ export function Socials(){
                 <a href="https://www.linkedin.com/in/jefferson-c-silva-aa1b7b1a9/"  target="_blank" rel="noopener noreferrer">
                     <span className={styles.iconLinkedin}></span>
                 </a>
+            </div>
+            <div className={styles.resumeContainer}>
+                <a href="/curriculo.pdf" target="_blank">
+                    <p>Currículo</p>
+                </a>
+                <Link href="/#projects">
+                    <a>
+                        <p>Projetos</p>
+                    </a>
+                </Link>
             </div>
         </div>
     )

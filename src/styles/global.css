@@ -10,11 +10,32 @@
     --light-gray: #F2F2F2;
     --dark-gray: #626262;
     --orange: #F59D19;
+    --box-background: #273036;
 }
 
 body{
     background: var(--background);
     color:var(--light-gray);
+}
+
+body::-moz-scrollbar{
+    width: 5px;
+    background: transparent;
+}
+
+body::-webkit-scrollbar{
+    width: 5px;
+    background: transparent;
+}
+
+body::-moz-scrollbar-thumb{
+    background: var(--orange);
+    border-radius: 5px;
+}
+
+body::-webkit-scrollbar-thumb{
+    background: var(--orange);
+    border-radius: 5px;
 }
 
 body, input, textarea, button{
@@ -30,6 +51,10 @@ a{
     text-decoration: none;
 }
 
+.headerWrapper{
+    height: 100vh;
+}
+
 @media(max-width: 1080px){
     html{
         font-size: 93.75%;
@@ -42,20 +67,7 @@ a{
     }
 }
 
-@media(max-width: 520px){
-    html{
-        font-size: 58.5%;
-    }
-}
 
-@media(max-height: 630px){
-    html{
-        font-size: 85.5%;
-    }
-}
 
-@media(max-height: 530px){
-    html{
-        font-size: 77.5%;
-    }
-}
+
+

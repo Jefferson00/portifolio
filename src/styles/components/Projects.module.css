@@ -1,6 +1,33 @@
 .projectsContainer{
     min-height: 100vh;
 }
+
+.sectionTitleContainer{
+    display: flex;
+    justify-content: center;
+}
+
+.sectionTitleContainer > button{
+    width: 90%;
+    background-color: transparent;
+    margin-top: 6.5rem;
+    text-align: center;
+    padding-bottom: 1.25rem;
+    cursor: initial;
+    border-image: linear-gradient(
+        to right,
+        var(--orange) 25%, var(--light-gray) 50%,  var(--orange) 100%);
+    border-image-slice: 1;
+    border-image-width: 0px 0px 2px 0px;
+    outline: none;
+}
+
+.sectionTitleContainer > button strong{
+    color: var(--light-gray);
+    font-size: 1.12rem;
+    transition: color 0.4s;
+}
+
 .projectsList{
     display: flex;
     flex-wrap: wrap;
@@ -10,18 +37,63 @@
 }
 
 .projectItem{
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-areas: 
+        "title"
+        "image"
+        "description"
+        ;
     align-items: center;
-    margin: 3.25rem 3.25rem 0 3.25rem;
+    gap: 2rem;
+    margin-top: 3.25rem;
+ 
 }
 
-.projectItem p{
+.titleContainer{
+    grid-area: title;
+    justify-self: center;
+}
+
+.titleContainer p{
     font-size: 1.12rem;
     margin-top: 1.15rem;
 }
 
+.descriptionContainer{
+    grid-area: description;
+    background-color: var(--box-background);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 2rem;
+    border-radius: 0 10px 10px 0;
+    margin: 0 2.25rem 0 0;
+    line-height: 1.75rem;
+    font-weight: 300;
+}
+
+.descriptionContainer a{
+    color: var(--orange);
+    transition: opacity 0.2s;
+}
+
+.descriptionContainer a:hover,
+.descriptionContainer a:focus{
+    opacity: 0.8;
+}
+
+.projectItem:nth-child(2n) .descriptionContainer{
+    border-radius: 10px 0 0 10px;
+    margin: 0 0 0 2.25rem;
+}
+
+.descriptionContainer p{
+    text-align: center;
+}
+
 .imageContainer{
+    grid-area: image;
     height: 19rem;
     padding: 0.9rem;
     border-image-source: url('/border-img.svg');
@@ -29,6 +101,10 @@
     border-style: solid;
     transition:  padding 0.5s;
     position: relative;
+    justify-self: center;
+    display: flex;
+    align-items: center;
+    margin: 0 2.25rem;
 }
 
 /*.imageContainer:hover{
@@ -37,7 +113,6 @@
 
 
 .imageContainer img{
-    max-height: 100%;
     max-width: 100%;
 }
 
@@ -65,78 +140,79 @@
 {
     opacity: 0.5;
 }
-.iconsContainer {
-    margin-top: 0.75rem;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    max-width: fit-content;
-}
 
-.iconsContainer span{
-    display: inline-block;
-    width: 2.18rem;
-    height: 2.18rem;
-    background-size: cover;
-    transition: all 0.4s; 
-    margin-right: 0.75rem;
-    margin-top: 0.5rem; 
-    opacity: 0.5;
-    transition: opacity 0.4s;  
-    position: relative;  
-}
-
-.iconsContainer span:hover{
-    opacity: 1;
-}
-
-.iconsLegend{
-    position: absolute;
-    height: 2.35rem;
-    border: 1px solid var(--light-gray);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0 1.75rem;
-    top: 2.75rem;
-    right: calc(100% - 4.36rem);
-    background-color: var(--background);
-    z-index: 5;
-    visibility: hidden;
-}
-
-.iconsContainer span:hover .iconsLegend{
-    visibility: visible;
-}
-
-.iconReact{
-    background-image: url("/icons/technologies/react.svg");
-}
-.iconNode{
-    background-image: url("/icons/technologies/nodejs.svg");
-}
-.iconJavascript{
-    background-image: url("/icons/technologies/javascript.svg");
-}
-.iconTypescript{
-    background-image: url("/icons/technologies/typescript.svg");
-}
-.iconCss{
-    background-image: url("/icons/technologies/css3.svg");
-}
-.iconHtml{
-    background-image: url("/icons/technologies/html5.svg");
-}
-.iconNext{
-    background-image: url("/icons/technologies/next.svg");
-}
-.iconSql{
-    background-image: url("/icons/technologies/sql.svg");
-}
 
 @media(min-width: 1080px){
     .projectsList{
-        margin: 4.62rem auto;
-        width: 80%;
+        margin: 3.75rem auto;
+        width: 90%;
     }
+
+    .sectionTitleContainer > button{
+        padding-left: 4.35rem;
+        text-align: start;
+    }
+
+    .projectItem{
+        grid-template-areas: 
+        "image title"
+        "image description"
+        ;  
+        gap: 0;
+        align-items: center;
+    }
+
+    .projectItem:nth-child(2n){
+        grid-template-areas: 
+        "title image "
+        "description image "
+        ;
+    }
+
+    .titleContainer{
+        width: 100%;
+        text-align: end;
+        position: relative;
+        left: -20%;
+        margin-bottom: 1rem;
+        align-self: flex-end;
+    }
+
+    .projectItem:nth-child(2n) .titleContainer{
+        left: 30%;
+        text-align: start;
+    }
+
+    .descriptionContainer{
+        position: relative;
+        left: -20%;
+        width: 100%;
+        padding-left: 20%;
+        align-self: flex-start;
+        border-radius: 10px;
+    }
+
+    .projectItem:nth-child(2n) .descriptionContainer{
+        left: 20%;
+        padding-right: 30%;
+        padding-left: 2rem;
+        text-align: left;
+    }
+
+    .descriptionContainer,
+    .descriptionContainer p{
+        text-align: right;
+    }
+
+    .projectItem:nth-child(2n) .descriptionContainer p{
+        text-align: left;
+    }
+
+    .imageContainer{
+        z-index: 5;
+        width: 35rem;
+        padding: 1.9rem;
+    }
+
+
 }

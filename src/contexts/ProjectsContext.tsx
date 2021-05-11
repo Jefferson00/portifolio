@@ -3,7 +3,10 @@ import {createContext, ReactNode, useContext, useEffect, useState } from 'react'
 interface ProjectsContextData{
     isButtonClicked:boolean;
     isModalOpen:boolean;
+    clickInProject:boolean;
     selectedProject:ProjectData;
+    clickedInProject: () => void;
+    loadedProject: () => void;
     updateButtonClicked: () => void;
     closeModal: () => void;
     openModal: (project:ProjectData) => void;
@@ -38,9 +41,18 @@ export function ProjectsProvider({children}:ProjectsProviderProps){
     const [isButtonClicked, setIsButtonClicked] = useState(false)
     const [isModalOpen, setIsModalOpen] = useState(false)
     const [selectedProject, setSelectedProject] = useState<ProjectData>()
+    const [clickInProject, setClickInProject] = useState(false)
+
+    function clickedInProject(){
+        setClickInProject(true)
+    }
+
+    function loadedProject(){
+        setClickInProject(false)
+    }
 
     function updateButtonClicked(){
-        setIsButtonClicked(true)
+        setIsButtonClicked(!isButtonClicked)
     }
 
     function openModal(project:ProjectData){
@@ -61,8 +73,11 @@ export function ProjectsProvider({children}:ProjectsProviderProps){
         <ProjectsContext.Provider value={{
             isButtonClicked,
             isModalOpen,
+            clickInProject,
             selectedProject,
             updateButtonClicked,
+            loadedProject,
+            clickedInProject,
             openModal,
             closeModal,
         }}>

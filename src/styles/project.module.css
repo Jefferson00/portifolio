@@ -1,0 +1,246 @@
+.projectContainer{
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    gap: 3.25rem;
+    margin-top: 3.25rem;
+}
+
+.detailsContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.detailsContainer a{
+    margin-top: 3rem;
+}
+
+.linksContainer{
+    display: flex;
+    gap: 2rem;
+}
+
+.linksContainer a span{
+    display: inline-block;
+    width: 38px;
+    height: 38px;
+    background-size: cover;
+    transition: all 0.4s;
+}
+
+.iconGithub{
+    background-image: url("/icons/github_white.svg");
+}
+
+.iconGithub:hover,
+.iconGithub:focus{
+    background-image: url("/icons/github_orange.svg");
+}
+
+.iconExternal{
+    background-image: url("/icons/external.svg");
+}
+
+.iconExternal:hover,
+.iconExternal:focus{
+    background-image: url("/icons/external-orange.svg");
+}
+
+.descriptionContainer{
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+    text-align: center;
+}
+
+.descriptionContainer > p{
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+.descriptionBox{
+    background-color: var(--box-background);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 2rem;
+    border-radius: 5px;
+    text-align: center;
+    line-height: 1.75rem;
+    font-weight: 300;
+}
+
+.descriptionBox a{
+    color: var(--orange);
+    transition: opacity 0.2s;
+}
+
+.descriptionBox a:hover,
+.descriptionBox a:focus{
+    opacity: 0.8;
+}
+
+.descriptionBox p{
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+}
+
+.thumbContainer img{
+    max-width: 100%;
+}
+
+.iconsContainer {
+    margin-top: 0.75rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.iconsContainer span{
+    display: inline-block;
+    width: 2.18rem;
+    height: 2.18rem;
+    background-size: cover;
+    transition: all 0.4s; 
+    margin-right: 0.75rem;
+    margin-top: 0.5rem; 
+    transition: opacity 0.4s;  
+    position: relative;  
+}
+
+.iconsContainer span:hover{
+    opacity: 1;
+}
+
+.iconsLegend{
+    position: absolute;
+    height: 2.35rem;
+    border: 1px solid var(--light-gray);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 1.75rem;
+    top: 2.75rem;
+    right: calc(100% - 4.36rem);
+    background-color: var(--background);
+    z-index: 5;
+    visibility: hidden;
+}
+
+.iconsContainer span:hover .iconsLegend{
+    visibility: visible;
+}
+
+.iconsLegendMobile{
+    position: relative;
+    visibility: hidden;
+}
+
+.iconReact{
+    background-image: url("/icons/technologies/react.svg");
+}
+.iconNode{
+    background-image: url("/icons/technologies/nodejs.svg");
+}
+.iconJavascript{
+    background-image: url("/icons/technologies/javascript.svg");
+}
+.iconTypescript{
+    background-image: url("/icons/technologies/typescript.svg");
+}
+.iconCss{
+    background-image: url("/icons/technologies/css3.svg");
+}
+.iconHtml{
+    background-image: url("/icons/technologies/html5.svg");
+}
+.iconNext{
+    background-image: url("/icons/technologies/next.svg");
+}
+.iconSql{
+    background-image: url("/icons/technologies/sql.svg");
+}
+
+
+
+.galleryContainer{
+    display: flex;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+    margin: 5rem 0;
+    -webkit-overflow-scrolling: touch;
+}
+
+.galleryContainer::-webkit-scrollbar{
+    width: 0;
+    height: 10px;
+    background: transparent;
+}
+.galleryContainer::-webkit-scrollbar-thumb{
+    background: var(--orange);
+    border-radius: 10px;
+    
+}
+
+.galleryItem{
+    height: 32rem;
+    margin-right: 3rem;
+}
+
+.galleryItem img{
+    height: 100%;
+}
+
+
+
+
+@media(min-width: 1080px){
+    .projectContainer{
+        padding: 2rem 4rem;
+    }
+
+    .detailsContainer{
+        flex-direction: row;
+        gap: 2rem;
+        align-items: flex-end;
+    }
+
+    .detailsContainer a {
+        margin-top: 1rem;
+    }
+
+    .descriptionContainer{
+        width: 50%;
+        align-items: flex-start;
+    }
+    
+    .descriptionBox{
+        text-align: left;
+    }
+
+    .linksContainer{
+        gap: 0;
+        flex: 1;
+        flex-direction: column;
+    }
+
+
+    .thumbContainer{
+        margin-top: 8rem;
+        display: flex;
+        justify-content: center;
+    }
+
+    .thumbContainer img{
+        height: 38.125rem;
+    }
+
+    .projectContainer .descriptionContainer:last-child{
+        align-items: flex-end;
+        margin-left: 50%;
+    }
+}
