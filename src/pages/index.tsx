@@ -50,6 +50,7 @@ export const getStaticProps : GetStaticProps = async () => {
   const projects = await db
     .collection('projects')
     .find({})
+    .sort({order:1})
     .toArray();
 
   return{

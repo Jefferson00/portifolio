@@ -53,6 +53,9 @@ a{
 
 .headerWrapper{
     height: 100vh;
+    max-width: 1366px;
+    position: relative;
+    margin: 0 auto;
 }
 
 @media(max-width: 1080px){

@@ -1,21 +1,28 @@
-import { useEffect, useState } from 'react';
+import { useEffect} from 'react';
 import styles from '../styles/components/Contact.module.css';
 
 
 export function Contact(){
     
 
-    /*useEffect(()=>{
+    useEffect(()=>{
+        if(typeof window !== undefined){
+            
         const contactBox = document.getElementById("contact")
-        const windowTop = window.pageYOffset + ((window.innerHeight * 3) / 4);
         window.addEventListener('scroll', ()=>{
-            if ((windowTop) > window.innerHeight+(window.innerHeight/4)){
+            let currentScrollPos = window.pageYOffset;
+
+            if (currentScrollPos > (window.innerHeight/2)){
                 contactBox.style.opacity = '1'
+
             }else{
+  
                 contactBox.style.opacity = '0'
             }
+
         })
-    })*/
+        }
+    })
 
 
     return(
