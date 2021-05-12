@@ -20,7 +20,7 @@ export function About(){
                 </p>
                 <br />
                 <p>
-                    Sou formado em Análise e Desenvolvimento de Sistemas pelo Instituto de Educação Superior de Brasília em 2018.
+                    Sou formado em Análise e Desenvolvimento de Sistemas pelo Instituto de Educação Superior de Brasília (IESB), 2018.
                 </p>
             </div>
             <div className={styles.skillsContainer}>
