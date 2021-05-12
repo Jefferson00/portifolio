@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect} from 'react'
 import { About } from '../components/About'
 import { Header } from '../components/Header'
 import { Socials } from '../components/Socials'

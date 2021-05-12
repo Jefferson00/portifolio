@@ -1,4 +1,4 @@
-import {createContext, ReactNode, useContext, useEffect, useState } from 'react'
+import {createContext, ReactNode, useEffect, useState } from 'react'
 
 interface ProjectsContextData{
     isButtonClicked:boolean;

@@ -1,8 +1,8 @@
 import { GetStaticProps } from 'next'
 import { useContext } from 'react'
 import { Projects } from '../components/Projects'
-import { ProjectsContext } from '../contexts/ProjectsContext'
-import api from '../services/api'
+import { ProjectsContext } from '../contexts/ProjectsContext';
+import { connectToDatabase } from '../utils/mongodb';
 
 interface TechnologiesData{
   title:string,
@@ -26,8 +26,6 @@ interface HomeProps{
 export default function Home({projects} :HomeProps) {
   const {clickInProject} = useContext(ProjectsContext);
 
-  console.log('result: '+projects)
-
   return (
       <>
         {clickInProject ? (
@@ -44,23 +42,19 @@ export default function Home({projects} :HomeProps) {
 }
 
 export const getStaticProps : GetStaticProps = async () => {
-  const {data} = await api.get('/api/projects')
+  
 
-  const projects = data.map(project =>{
-      return{
-          id: project.id,
-          title:project.title,
-          description:project.description,
-          technologies:project.technologies,
-          repository:project.repository,
-          link:project.link,
-          thumbnail:project.thumbnail,
-      }
-  })
+  const db = await connectToDatabase(process.env.MONGODB_URI);
+
+
+  const projects = await db
+    .collection('projects')
+    .find({})
+    .toArray();
 
   return{
       props:{
-          projects
+          projects: JSON.parse(JSON.stringify(projects))
       },
       revalidate:60*60*8,
   }

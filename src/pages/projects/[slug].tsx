@@ -1,8 +1,8 @@
 import { GetStaticPaths, GetStaticProps } from "next"
 import { useContext, useEffect } from "react";
 import { ProjectsContext } from "../../contexts/ProjectsContext";
-import api from "../../services/api"
 import styles from '../../styles/project.module.css'
+import { connectToDatabase } from "../../utils/mongodb";
 
 
 interface TechnologiesData{
@@ -140,13 +140,15 @@ export default function Project({project}: ProjectProps){
 }
 
 export const getStaticPaths: GetStaticPaths = async () =>{
-    const {data} = await api.get('/api/projects', {
-        params:{
-            _limit:2
-        }
-    })
+    const db = await connectToDatabase(process.env.MONGODB_URI);
 
-    const paths = data.map(project => {
+    const projects = await db
+        .collection('projects')
+        .find({})
+        .limit(2)
+        .toArray();
+
+    const paths = projects.map(project => {
         return{
             params:{
                 slug:project.id
@@ -161,15 +163,18 @@ export const getStaticPaths: GetStaticPaths = async () =>{
 }
 
 export const getStaticProps : GetStaticProps = async (ctx) => {
+    const db = await connectToDatabase(process.env.MONGODB_URI);
     const {slug} = ctx.params;
 
-    const {data} = await api.get(`/api/projects?slug=${slug}`)
 
+    const projects = await db
+    .collection('projects')
+    .findOne({id:slug});
     
 
     return{
         props:{
-            project: data
+            project: JSON.parse(JSON.stringify(projects))
         },
         revalidate: 60*60*8, 
     }
