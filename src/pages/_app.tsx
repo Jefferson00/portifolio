@@ -33,7 +33,7 @@ function MyApp({ Component, pageProps }) {
         <Head>
           <title>Jefferson | Desenvolvedor Web/FullStack</title>
           <meta name="description" content="Desenvolvendo soluções FullStack eficientes com Javascript/Typescript/React" />
-          <meta name="robots" content="follow"/>
+          <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"/>
           <meta name="author" content="Jefferson C. Silva"/>
           <meta name="image" content="thumb.png" />
           <meta name="referrer" content="no-referrer-when-downgrade" />
