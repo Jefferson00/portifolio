@@ -54,7 +54,7 @@ function MyApp({ Component, pageProps }) {
           <meta property="og:image:alt" content="Thumbnail" />
           <meta property="og:image:type" content="image/png" />
           <meta property="og:image:width" content="300" />
-          <meta property="og:image:height" content="300" />
+          <meta property="og:image:height" content="200" />
 
           <meta name="twitter:title" content="Jefferson | Desenvolvedor Web/FullStack" />
           <meta name="twitter:card" content="summary_large_image" />
@@ -62,9 +62,12 @@ function MyApp({ Component, pageProps }) {
           <meta name="twitter:image:src" content="thumb.png" />
           <meta name="twitter:image:alt" content="Thumbnail" />
           <meta name="twitter:image:width" content="300" />
-          <meta name="twitter:image:height" content="300" />
+          <meta name="twitter:image:height" content="200" />
 
         </Head>
+        <span itemProp="image" itemScope itemType="image/png"> 
+          <link itemProp="url" href="thumb.png" />
+        </span>
         <div className="headerWrapper">
           <Header/>
           <Socials/>
