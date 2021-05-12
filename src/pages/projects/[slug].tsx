@@ -140,7 +140,7 @@ export default function Project({project}: ProjectProps){
 }
 
 export const getStaticPaths: GetStaticPaths = async () =>{
-    const {data} = await api.get('projects', {
+    const {data} = await api.get('/api/projects', {
         params:{
             _limit:2
         }
@@ -163,7 +163,7 @@ export const getStaticPaths: GetStaticPaths = async () =>{
 export const getStaticProps : GetStaticProps = async (ctx) => {
     const {slug} = ctx.params;
 
-    const {data} = await api.get(`projects/${slug}`)
+    const {data} = await api.get(`/api/projects?slug=${slug}`)
 
     
 

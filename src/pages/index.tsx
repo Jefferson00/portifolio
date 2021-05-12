@@ -26,6 +26,8 @@ interface HomeProps{
 export default function Home({projects} :HomeProps) {
   const {clickInProject} = useContext(ProjectsContext);
 
+  console.log('result: '+projects)
+
   return (
       <>
         {clickInProject ? (
@@ -42,7 +44,7 @@ export default function Home({projects} :HomeProps) {
 }
 
 export const getStaticProps : GetStaticProps = async () => {
-  const {data} = await api.get('projects')
+  const {data} = await api.get('/api/projects')
 
   const projects = data.map(project =>{
       return{
