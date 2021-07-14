@@ -49,7 +49,7 @@ export const getStaticProps: GetStaticProps = async () => {
 
   const projects = await db
     .collection('projects')
-    .find({})
+    .find({ "arquived": false })
     .sort({ order: 1 })
     .toArray();
 
@@ -57,6 +57,6 @@ export const getStaticProps: GetStaticProps = async () => {
     props: {
       projects: JSON.parse(JSON.stringify(projects))
     },
-    revalidate: 60,
+    revalidate: 60 * 60 * 8,
   }
 }
