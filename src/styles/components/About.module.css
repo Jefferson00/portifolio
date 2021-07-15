@@ -107,14 +107,21 @@
     background-image: url("/icons/technologies/react.svg");
 }
 .iconReact::after{
-    content: 'React';
+    content: 'ReactJS';
+}
+
+.iconReactNative{
+    background-image: url("/icons/technologies/react.svg");
+}
+.iconReactNative::after{
+    content: 'React Native';
 }
 
 .iconNode{
     background-image: url("/icons/technologies/nodejs.svg");
 }
 .iconNode::after{
-    content: 'Node.js';
+    content: 'NodeJS';
 }
 
 .iconJavascript{
@@ -149,7 +156,7 @@
     background-image: url("/icons/technologies/next.svg");
 }
 .iconNext::after{
-    content: 'NEXT.js';
+    content: 'NEXTJS';
 }
 
 .iconSql{
@@ -157,6 +164,27 @@
 }
 .iconSql::after{
     content: 'Database';
+}
+
+.iconMySql{
+    background-image: url("/icons/technologies/mysql.svg");
+}
+.iconMySql::after{
+    content: 'MySql';
+}
+
+.iconPostgres{
+    background-image: url("/icons/technologies/postgresql.svg");
+}
+.iconPostgres::after{
+    content: 'PostgreSQL';
+}
+
+.iconSqlite{
+    background-image: url("/icons/technologies/sqlite.svg");
+}
+.iconSqlite::after{
+    content: 'Sqlite';
 }
 
 @media(min-width: 1080px){

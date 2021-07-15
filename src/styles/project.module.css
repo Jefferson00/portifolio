@@ -178,8 +178,15 @@
 .iconSql{
     background-image: url("/icons/technologies/sql.svg");
 }
-
-
+.iconPostgres{
+    background-image: url("/icons/technologies/postgresql.svg");
+}
+.iconMySql{
+    background-image: url("/icons/technologies/mysql.svg");
+}
+.iconSqlite{
+    background-image: url("/icons/technologies/sqlite.svg");
+}
 
 .galleryContainer{
     display: flex;

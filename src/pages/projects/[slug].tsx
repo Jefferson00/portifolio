@@ -41,28 +41,24 @@ export default function Project({ project }: ProjectProps) {
         switch (techClass) {
             case "iconReact":
                 return styles.iconReact
-                break;
             case "iconNode":
                 return styles.iconNode
-                break;
             case "iconJavascript":
                 return styles.iconJavascript
-                break;
             case "iconTypescript":
                 return styles.iconTypescript
-                break;
             case "iconCss":
                 return styles.iconCss
-                break;
             case "iconHtml":
                 return styles.iconHtml
-                break;
             case "iconNext":
                 return styles.iconNext
-                break;
             case "iconSql":
                 return styles.iconSql
-                break;
+            case "iconPostgres":
+                return styles.iconPostgres
+            case "iconSqlite":
+                return styles.iconSqlite
             default:
                 break;
         }
