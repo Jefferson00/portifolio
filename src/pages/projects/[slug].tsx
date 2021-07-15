@@ -108,10 +108,12 @@ export default function Project({ project }: ProjectProps) {
 
                     <div className={styles.linksContainer}>
                         <a href={project.link} target="_blank" rel="noopener noreferrer">
-                            <span className={styles.iconExternal}></span>
+                            <span className={styles.iconExternal} />
+                            <p>Preview/Demo</p>
                         </a>
                         <a href={project.repository} target="_blank" rel="noopener noreferrer">
-                            <span className={styles.iconGithub}></span>
+                            <span className={styles.iconGithub} />
+                            <p>Repositório</p>
                         </a>
                     </div>
 
@@ -154,10 +156,12 @@ export default function Project({ project }: ProjectProps) {
                     </div>
                     <div className={styles.linksContainer} style={{ flexDirection: 'row' }}>
                         <a href={project.link} target="_blank" rel="noopener noreferrer" style={{ marginRight: 16 }}>
-                            <span className={styles.iconExternal}></span>
+                            <span className={styles.iconExternal} />
+                            <p>Preview/Demo</p>
                         </a>
                         <a href={project.repository} target="_blank" rel="noopener noreferrer">
-                            <span className={styles.iconGithub}></span>
+                            <span className={styles.iconGithub} />
+                            <p>Repositório</p>
                         </a>
                     </div>
                 </div>
