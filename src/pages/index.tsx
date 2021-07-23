@@ -17,6 +17,7 @@ interface ProjectData {
   repository: string;
   link: string;
   thumbnail: string;
+  thumbnail_small: string;
 }
 
 interface HomeProps {
@@ -57,6 +58,6 @@ export const getStaticProps: GetStaticProps = async () => {
     props: {
       projects: JSON.parse(JSON.stringify(projects))
     },
-    revalidate: 60 * 60 * 8,
+    revalidate: 60,
   }
 }
