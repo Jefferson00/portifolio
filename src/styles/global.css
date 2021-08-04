@@ -13,6 +13,10 @@
     --box-background: #273036;
 }
 
+html{
+    scroll-behavior: smooth;
+}
+
 body{
     background: var(--background);
     color:var(--light-gray);

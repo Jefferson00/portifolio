@@ -62,41 +62,21 @@
 .iconGithub{
     background-image: url("/icons/github_white.svg");
 }
-.iconGithubHidden{
-    display: none !important;
-    background-image: url("/icons/github_orange.svg");
-}
 
 .iconGmail{
     background-image: url("/icons/gmail_white.svg");
-}
-.iconGmailHidden{
-    display: none !important;
-    background-image: url("/icons/gmail_orange.svg");
 }
 
 .iconInstagram{
     background-image: url("/icons/instagram_white.svg");
 }
-.iconInstagramHidden{
-    display: none !important;
-    background-image: url("/icons/instagram_orange.svg");
-}
 
 .iconWhatsapp{
     background-image: url("/icons/whatsApp_white.svg");
 }
-.iconWhatsappHidden{
-    display: none !important;
-    background-image: url("/icons/whatsapp_orange.svg");
-}
 
 .iconLinkedin{
     background-image: url("/icons/linkedin_white.svg");
-}
-.iconLinkedinHidden{
-    display: none !important;
-    background-image: url("/icons/linkedin_orange.svg");
 }
 
 .iconGithub:hover,
