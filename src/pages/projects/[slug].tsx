@@ -24,6 +24,7 @@ interface Project {
     thumbnail: string;
     gallery: GalleryData[];
     useCase: string;
+    resume: string;
 }
 
 interface ProjectProps {
@@ -146,8 +147,8 @@ export default function Project({ project }: ProjectProps) {
                 </div>
 
 
-                <div className={styles.descriptionContainer}>
-                    <p>Caso de estudo</p>
+                <div className={styles.descriptionContainer} id="funcionalidades">
+                    <p>Funcionalidades</p>
                     <div className={styles.descriptionBox} dangerouslySetInnerHTML={{ __html: project.useCase }}>
                     </div>
                     <div className={styles.linksContainer} style={{ flexDirection: 'row' }}>

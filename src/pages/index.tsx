@@ -18,6 +18,7 @@ interface ProjectData {
   link: string;
   thumbnail: string;
   thumbnail_small: string;
+  resume: string;
 }
 
 interface HomeProps {

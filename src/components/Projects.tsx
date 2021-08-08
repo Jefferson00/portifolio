@@ -18,6 +18,7 @@ interface ProjectData {
     link: string;
     thumbnail: string;
     thumbnail_small: string;
+    resume: string;
 }
 
 interface HomeProps {
@@ -57,7 +58,7 @@ export function Projects({ projects }: HomeProps) {
                                     <div className={styles.titleContainer}>
                                         <p>{project.title}</p>
                                     </div>
-                                    <div className={styles.descriptionContainer} dangerouslySetInnerHTML={{ __html: project.description }}>
+                                    <div className={styles.descriptionContainer} dangerouslySetInnerHTML={{ __html: project.resume }}>
                                     </div>
                                 </div>
                             )
