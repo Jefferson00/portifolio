@@ -37,7 +37,7 @@ export function Socials() {
                 </a>
             </div>
             <div className={styles.resumeContainer}>
-                <a href="/curriculo.pdf" target="_blank">
+                <a href="/curriculo-jefferson-c-silva.pdf" target="_blank">
                     <p>Currículo</p>
                 </a>
                 <Link href="/#projects">
