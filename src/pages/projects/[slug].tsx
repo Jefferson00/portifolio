@@ -3,6 +3,7 @@ import { useContext, useEffect, useRef, useState } from "react";
 import { ProjectsContext } from "../../contexts/ProjectsContext";
 import styles from '../../styles/project.module.css'
 import { connectToDatabase } from "../../utils/mongodb";
+import { setIconClass } from "../../utils/setIconClass";
 
 
 interface TechnologiesData {
@@ -36,34 +37,6 @@ export default function Project({ project }: ProjectProps) {
     const { updateButtonClicked, loadedProject } = useContext(ProjectsContext)
     const fullscreenContainerRef = useRef<HTMLDivElement>(null)
     const [selectedImage, setSelectedImage] = useState('/projects/lovepets/mobile/preview-1.jpg')
-    const [fullScreenVisible, setFullScreenVisible] = useState(false)
-
-    function setIconClass(techClass: string) {
-        switch (techClass) {
-            case "iconReact":
-                return styles.iconReact
-            case "iconNode":
-                return styles.iconNode
-            case "iconJavascript":
-                return styles.iconJavascript
-            case "iconTypescript":
-                return styles.iconTypescript
-            case "iconCss":
-                return styles.iconCss
-            case "iconHtml":
-                return styles.iconHtml
-            case "iconNext":
-                return styles.iconNext
-            case "iconSql":
-                return styles.iconSql
-            case "iconPostgres":
-                return styles.iconPostgres
-            case "iconSqlite":
-                return styles.iconSqlite
-            default:
-                break;
-        }
-    }
 
     const handleWheel = (event) => {
         if (event.deltaY > 0) {

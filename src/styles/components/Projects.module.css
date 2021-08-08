@@ -36,6 +36,7 @@
     justify-content: center;
     margin-top: 4.62rem;
     margin-bottom: 4.62rem;
+    gap: 8.25rem;
 }
 
 .projectItem{
@@ -47,8 +48,7 @@
         ;
     align-items: center;
     gap: 2rem;
-    margin-top: 3.25rem;
- 
+    position: relative;
 }
 
 .titleContainer{
@@ -83,6 +83,59 @@
 .descriptionContainer a:hover,
 .descriptionContainer a:focus{
     opacity: 0.8;
+}
+
+.iconsContainer {
+    margin-top: 0.75rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    transform: translateY(50%);
+    z-index: 999;
+}
+
+.iconsContainer span{
+    display: inline-block;
+    width: 1.85rem;
+    height: 1.85rem;
+    background-size: cover;
+    transition: all 0.4s; 
+    margin-right: 0.75rem;
+    margin-top: 0.5rem; 
+    transition: opacity 0.4s;  
+    position: relative;  
+}
+
+.iconsContainer span:hover{
+    opacity: 1;
+}
+
+.iconsLegend{
+    position: absolute;
+    height: 2.35rem;
+    border: 1px solid var(--light-gray);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 1.75rem;
+    top: 2.75rem;
+    right: calc(100% - 4.36rem);
+    background-color: var(--background);
+    z-index: 5;
+    visibility: hidden;
+}
+
+.iconsContainer span:hover .iconsLegend{
+    visibility: visible;
+}
+
+.iconsLegendMobile{
+    position: relative;
+    visibility: hidden;
 }
 
 .projectItem:nth-child(2n) .descriptionContainer{

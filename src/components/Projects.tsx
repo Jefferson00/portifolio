@@ -2,6 +2,7 @@ import { useContext } from 'react';
 import { ProjectsContext } from '../contexts/ProjectsContext';
 import styles from '../styles/components/Projects.module.css';
 import Link from 'next/link';
+import { setIconClass } from '../utils/setIconClass';
 
 
 interface TechnologiesData {
@@ -59,6 +60,20 @@ export function Projects({ projects }: HomeProps) {
                                         <p>{project.title}</p>
                                     </div>
                                     <div className={styles.descriptionContainer} dangerouslySetInnerHTML={{ __html: project.resume }}>
+                                    </div>
+                                    <div className={styles.iconsContainer}>
+                                        {project.technologies.map((tech: TechnologiesData, index: number) => {
+                                            return (
+                                                <span className={setIconClass(tech.class)} key={index}>
+                                                    <div className={styles.iconsLegend}>
+                                                        {tech.title}
+                                                    </div>
+                                                    <div className={styles.iconsLegendMobile}>
+                                                        <p>{tech.title}</p>
+                                                    </div>
+                                                </span>
+                                            )
+                                        })}
                                     </div>
                                 </div>
                             )
