@@ -169,31 +169,13 @@
 
 .imageContainer img{
     max-width: 100%;
+    transition: all 0.4s;
 }
 
 .imageContainer img:hover{
     cursor: pointer;
-}
-
-.imageContainer span{
-    height: 100%;
-    width: 100%;
-    top: 0;
-    left: 0;
-    right: 0;
-    background-color: var(--background);
-    position: absolute;
-    opacity: 0;
-    transition: opacity 0.4s;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.imageContainer span:hover,
-.imageContainer span:focus
-{
-    opacity: 0.5;
+    transform: scale(1.04);
+    filter: brightness(0.7) sepia(0.5);
 }
 
 

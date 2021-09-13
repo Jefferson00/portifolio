@@ -66,17 +66,14 @@ export function Projects({ projects }: HomeProps) {
                                                 className={styles.imageContainer}
                                             >
                                                 <Link href={`/projects/${project.id}#project`}>
-                                                    <a>
-                                                        <span onClick={clickedInProject}>
-                                                            <img src="/icons/eye.svg" alt="ver" />
-                                                        </span>
+                                                    <a onClick={clickedInProject}>
+                                                        {project.thumbnail_small ?
+                                                            <img src={project.thumbnail_small} alt={project.title} />
+                                                            :
+                                                            <img src={project.thumbnail} alt={project.title} />
+                                                        }
                                                     </a>
                                                 </Link>
-                                                {project.thumbnail_small ?
-                                                    <img src={project.thumbnail_small} alt={project.title} />
-                                                    :
-                                                    <img src={project.thumbnail} alt={project.title} />
-                                                }
                                             </motion.div>
                                             <div className={styles.titleContainer}>
                                                 <p>{project.title}</p>
