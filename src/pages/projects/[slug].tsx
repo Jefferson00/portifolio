@@ -72,7 +72,7 @@ export default function Project({ project }: ProjectProps) {
                 <div className={styles.detailsContainer}>
                     <div className={styles.descriptionContainer}>
                         <p>{project.title}</p>
-                        <div className={styles.descriptionBox} dangerouslySetInnerHTML={{ __html: project.description }}>
+                        <div className={styles.descriptionBox} dangerouslySetInnerHTML={{ __html: project.resume }}>
                         </div>
                     </div>
 
@@ -86,7 +86,6 @@ export default function Project({ project }: ProjectProps) {
                             <p>Repositório</p>
                         </a>
                     </div>
-
                 </div>
 
                 <div className={styles.thumbContainer}>
@@ -107,6 +106,25 @@ export default function Project({ project }: ProjectProps) {
                         )
                     })}
                 </div>
+
+                <div className={styles.detailsContainer}>
+                    <div className={styles.descriptionContainer}>
+                        <div className={styles.descriptionBox} dangerouslySetInnerHTML={{ __html: project.description }}>
+                        </div>
+                    </div>
+
+                    <div className={styles.linksContainer}>
+                        <a href={project.link} target="_blank" rel="noopener noreferrer">
+                            <span className={styles.iconExternal} />
+                            <p>Preview/Demo</p>
+                        </a>
+                        <a href={project.repository} target="_blank" rel="noopener noreferrer">
+                            <span className={styles.iconGithub} />
+                            <p>Repositório</p>
+                        </a>
+                    </div>
+                </div>
+
 
                 <div className={styles.galleryContainer} onWheel={e => handleWheel(e)}>
                     {project.gallery.map((image, index) => {

@@ -81,7 +81,7 @@
     justify-content: center;
     padding: 2rem;
     border-radius: 5px;
-    text-align: center;
+    text-align: left;
     line-height: 1.75rem;
     font-weight: 300;
 }
@@ -263,12 +263,8 @@
     }
 
     .descriptionContainer{
-        width: 50%;
+        /*width: 50%;*/
         align-items: flex-start;
-    }
-    
-    .descriptionBox{
-        text-align: left;
     }
 
     .linksContainer{
