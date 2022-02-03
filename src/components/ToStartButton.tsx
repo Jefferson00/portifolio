@@ -1,7 +1,5 @@
 import styles from '../styles/components/ToStartButton.module.css';
 
-import { motion } from 'framer-motion';
-import { easing } from '../styles/animations';
 import { useEffect, useRef, useState } from 'react';
 
 export function ToStartButton() {

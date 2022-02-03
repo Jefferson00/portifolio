@@ -1,6 +1,23 @@
 import styles from '../styles/components/About.module.css'
+import { Tooltip } from './Tooltip'
 
 export function About() {
+    const tooltipContent = () => (
+        <div className={styles.tooltip}>
+            <div>
+                <img src="icons/advanced.svg" alt="Avançado" />
+                <p>Avançado</p>
+            </div>
+            <div>
+                <img src="icons/intermediate.svg" alt="Intermediario" />
+                <p>Intermediario</p>
+            </div>
+            <div>
+                <img src="icons/basic.svg" alt="Básico" />
+                <p>Básico</p>
+            </div>
+        </div>
+    )
 
     return (
         <div className={`${styles.aboutContainer} ${styles.gridTemplateArea}`} id="about">
@@ -24,7 +41,9 @@ export function About() {
                 </p>
             </div>
             <div className={styles.skillsContainer}>
-                <p>SKILLS</p>
+                <Tooltip content={tooltipContent}>
+                    <p className={styles.shine}>SKILLS</p>
+                </Tooltip>
                 <div className={styles.iconsContainer}>
                     <span className={styles.iconReact} />
                     <span className={styles.iconReactNative} />

@@ -1,0 +1,14 @@
+.tooltipContainer {
+  position: relative;
+}
+
+.tooltipContent {
+  visibility: hidden;
+  position: absolute;
+  z-index: 1;
+  transform: translate(-120%, -100%);
+}
+
+.tooltipContainer:hover .tooltipContent {
+  visibility: visible;
+}
