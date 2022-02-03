@@ -78,6 +78,7 @@
   grid-area: iconsContainer;
   margin-top: 1.81rem;
   display: flex;
+  gap: 1rem;
   flex-wrap: wrap;
   justify-content: center;
   margin-bottom: 2.87rem;
@@ -103,6 +104,37 @@
   position: relative;
   bottom: -2.45rem;
   font-weight: 300;
+}
+
+.skill {
+  width: 3.18rem;
+  height: 3.18rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.skill::after {
+  content: "";
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  z-index: 1;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.skillAdvanced::after {
+  background-image: url("/icons/advanced.svg");
+}
+.skillIntermediary::after {
+  background-image: url("/icons/intermediary.svg");
+}
+.skillBasic::after {
+  background-image: url("/icons/basic.svg");
 }
 
 .iconReact {

@@ -9,8 +9,8 @@ export function About() {
                 <p>Avançado</p>
             </div>
             <div>
-                <img src="icons/intermediate.svg" alt="Intermediario" />
-                <p>Intermediario</p>
+                <img src="icons/intermediary.svg" alt="Intermediário" />
+                <p>Intermediário</p>
             </div>
             <div>
                 <img src="icons/basic.svg" alt="Básico" />
@@ -45,17 +45,39 @@ export function About() {
                     <p className={styles.shine}>SKILLS</p>
                 </Tooltip>
                 <div className={styles.iconsContainer}>
-                    <span className={styles.iconReact} />
-                    <span className={styles.iconReactNative} />
-                    <span className={styles.iconNode} />
-                    <span className={styles.iconJavascript} />
-                    <span className={styles.iconTypescript} />
-                    <span className={styles.iconCss} />
-                    <span className={styles.iconHtml} />
-                    <span className={styles.iconNext} />
-                    <span className={styles.iconPostgres} />
-                    <span className={styles.iconMySql} />
-                    <span className={styles.iconSqlite} />
+                    <div className={`${styles.skill} ${styles.skillIntermediary}`}>
+                        <span className={styles.iconReact} />
+                    </div>
+                    <div className={`${styles.skill} ${styles.skillIntermediary}`}>
+                        <span className={styles.iconReactNative} />
+                    </div>
+                    <div className={`${styles.skill} ${styles.skillIntermediary}`}>
+                        <span className={styles.iconNode} />
+                    </div>
+                    <div className={`${styles.skill} ${styles.skillIntermediary}`}>
+                        <span className={styles.iconJavascript} />
+                    </div>
+                    <div className={`${styles.skill} ${styles.skillIntermediary}`}>
+                        <span className={styles.iconTypescript} />
+                    </div>
+                    <div className={`${styles.skill} ${styles.skillIntermediary}`}>
+                        <span className={styles.iconNext} />
+                    </div>
+                    <div className={`${styles.skill} ${styles.skillIntermediary}`}>
+                        <span className={styles.iconSqlite} />
+                    </div>
+                    <div className={`${styles.skill} ${styles.skillIntermediary}`}>
+                        <span className={styles.iconPostgres} />
+                    </div>
+                    <div className={`${styles.skill} ${styles.skillIntermediary}`}>
+                        <span className={styles.iconMySql} />
+                    </div>
+                    <div className={`${styles.skill} ${styles.skillAdvanced}`}>
+                        <span className={styles.iconHtml} />
+                    </div>
+                    <div className={`${styles.skill} ${styles.skillAdvanced}`}>
+                        <span className={styles.iconCss} />
+                    </div>
                 </div>
             </div>
         </div>
