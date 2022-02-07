@@ -32,7 +32,7 @@ export function Header() {
             >
                 <p>Meu nome é <a href="#about">Jefferson</a>,</p>
                 <p>sou {" "}
-                    <strong>Desenvolvedor Full-Stack.</strong>
+                    <strong>Desenvolvedor Javascript Full-Stack.</strong>
                 </p>
             </motion.div>
         </div>

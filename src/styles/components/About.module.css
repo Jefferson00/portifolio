@@ -1,7 +1,8 @@
 .aboutContainer {
   display: grid;
   justify-content: center;
-  margin-top: 14rem;
+  height: 100vh;
+  padding-top: 2.3rem;
 }
 
 .gridTemplateArea {
@@ -94,9 +95,6 @@
 
   position: relative;
   text-align: center;
-
-  margin-right: 1.75rem;
-  margin-top: 2rem;
 }
 
 .iconsContainer span::after {
@@ -305,6 +303,9 @@
 }
 
 @media (min-width: 1080px) {
+  .aboutContainer {
+    padding-top: 7.3rem;
+  }
   .gridTemplateArea {
     grid-template-columns: 60% 20%;
 
