@@ -1,103 +1,104 @@
-.socialsContainer{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-top: 7.55rem;
+.socialsContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 7.55rem;
+  z-index: 10;
 }
 
-.socialsContainer p{
-   font-size: 1.5rem; 
-   font-weight: bold;
+.socialsContainer p {
+  font-size: 1.5rem;
+  font-weight: bold;
 }
 
-.resumeContainer{
-    display: flex;
-    margin-top: 0.75rem;
+.resumeContainer {
+  display: flex;
+  margin-top: 0.75rem;
 }
 
-.resumeContainer a{
-    transition: all 0.2s;
-    padding: 0 1rem;
+.resumeContainer a {
+  transition: all 0.2s;
+  padding: 0 1rem;
 }
 
-.resumeContainer a:last-child{
-    border-left: 1px solid rgba(255, 255, 255, 0.6);
+.resumeContainer a:last-child {
+  border-left: 1px solid rgba(255, 255, 255, 0.6);
 }
 
-.resumeContainer a:hover{
-    text-decoration: underline;
-    color: var(--orange);
+.resumeContainer a:hover {
+  text-decoration: underline;
+  color: var(--orange);
 }
 
-.resumeContainer p{
-    font-size: 1.25rem;
-    font-weight: 400;
+.resumeContainer p {
+  font-size: 1.25rem;
+  font-weight: 400;
 }
 
-.icons{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-top: 1rem;
+.icons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 1rem;
 }
 
-.icons a{
-    margin-right: 1.37rem;
-    z-index: 5;
+.icons a {
+  margin-right: 1.37rem;
+  z-index: 5;
 
-    transition: all 0.1s;
+  transition: all 0.1s;
 }
 
-.icons a:last-child{
-    margin-right: 0;
+.icons a:last-child {
+  margin-right: 0;
 }
 
-.icons a span{
-    display: inline-block;
-    width: 38px;
-    height: 38px;
-    background-size: cover;
-    transition: all 0.4s;
+.icons a span {
+  display: inline-block;
+  width: 38px;
+  height: 38px;
+  background-size: cover;
+  transition: all 0.4s;
 }
 
-.iconGithub{
-    background-image: url("/icons/github_white.svg");
+.iconGithub {
+  background-image: url("/icons/github_white.svg");
 }
 
-.iconGmail{
-    background-image: url("/icons/gmail_white.svg");
+.iconGmail {
+  background-image: url("/icons/gmail_white.svg");
 }
 
-.iconInstagram{
-    background-image: url("/icons/instagram_white.svg");
+.iconInstagram {
+  background-image: url("/icons/instagram_white.svg");
 }
 
-.iconWhatsapp{
-    background-image: url("/icons/whatsApp_white.svg");
+.iconWhatsapp {
+  background-image: url("/icons/whatsApp_white.svg");
 }
 
-.iconLinkedin{
-    background-image: url("/icons/linkedin_white.svg");
+.iconLinkedin {
+  background-image: url("/icons/linkedin_white.svg");
 }
 
 .iconGithub:hover,
-.iconGithub:focus{
-    background-image: url("/icons/github_orange.svg");
+.iconGithub:focus {
+  background-image: url("/icons/github_orange.svg");
 }
 .iconGmail:hover,
-.iconGmail:focus{
-    background-image: url("/icons/gmail_orange.svg");
+.iconGmail:focus {
+  background-image: url("/icons/gmail_orange.svg");
 }
 .iconInstagram:hover,
-.iconInstagram:focus{
-    background-image: url("/icons/instagram_orange.svg");
+.iconInstagram:focus {
+  background-image: url("/icons/instagram_orange.svg");
 }
 .iconWhatsapp:hover,
-.iconWhatsapp:focus{
-    background-image: url("/icons/whatsapp_orange.svg");
+.iconWhatsapp:focus {
+  background-image: url("/icons/whatsapp_orange.svg");
 }
 .iconLinkedin:hover,
-.iconLinkedin:focus{
-    background-image: url("/icons/linkedin_orange.svg");
+.iconLinkedin:focus {
+  background-image: url("/icons/linkedin_orange.svg");
 }

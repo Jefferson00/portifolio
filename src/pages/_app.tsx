@@ -9,6 +9,7 @@ import Router from 'next/router';
 import Head from 'next/head';
 import { Contact } from '../components/Contact'
 import { ToStartButton } from '../components/ToStartButton'
+import { Background } from '../components/Background'
 
 function MyApp({ Component, pageProps }) {
 
@@ -69,14 +70,7 @@ function MyApp({ Component, pageProps }) {
       <span itemProp="image" itemScope itemType="image/png">
         <link itemProp="url" href="thumb.png" />
       </span>
-      <div className="headerWrapper">
-        <Header />
-        <Socials />
-        <Technologies />
-      </div>
       <Component {...pageProps} />
-      <Contact />
-      <About />
       <ToStartButton />
     </ProjectsProvider>
   )

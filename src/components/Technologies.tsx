@@ -28,6 +28,9 @@ export function Technologies(){
             <div className={styles.splitUpSql}>
                 <span className={`${styles.iconSql} ${styles.movingSql}`}/>
             </div>
+            <div className={styles.splitUpNest}>
+                <span className={`${styles.iconNest} ${styles.movingNest}`}/>
+            </div>
         </div>
     )
 }

@@ -1,10 +1,14 @@
-import {createContext, ReactNode, useEffect, useState } from 'react'
+import {createContext, Dispatch, ReactNode, SetStateAction, useEffect, useState } from 'react'
 
 interface ProjectsContextData{
     isButtonClicked:boolean;
     isModalOpen:boolean;
     clickInProject:boolean;
     selectedProject:ProjectData;
+    positionX:number;
+    positionY:number;
+    setPositionX: Dispatch<SetStateAction<number>>;
+    setPositionY: Dispatch<SetStateAction<number>>;
     clickedInProject: () => void;
     loadedProject: () => void;
     updateButtonClicked: () => void;
@@ -43,6 +47,9 @@ export function ProjectsProvider({children}:ProjectsProviderProps){
     const [selectedProject, setSelectedProject] = useState<ProjectData>()
     const [clickInProject, setClickInProject] = useState(false)
 
+    const [positionX, setPositionX] = useState<number>();
+    const [positionY, setPositionY] = useState<number>();
+
     function clickedInProject(){
         setClickInProject(true)
     }
@@ -75,6 +82,10 @@ export function ProjectsProvider({children}:ProjectsProviderProps){
             isModalOpen,
             clickInProject,
             selectedProject,
+            positionX,
+            positionY,
+            setPositionX,
+            setPositionY,
             updateButtonClicked,
             loadedProject,
             clickedInProject,

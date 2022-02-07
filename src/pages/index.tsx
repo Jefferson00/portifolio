@@ -1,6 +1,11 @@
 import { GetStaticProps } from 'next'
-import { useContext } from 'react'
+import styles from '../styles/components/Background.module.css'
+import { useContext, useRef, useEffect, useState } from 'react'
+import { About } from '../components/About';
+import { Contact } from '../components/Contact';
+import { Header } from '../components/Header';
 import { Projects } from '../components/Projects'
+import { Socials } from '../components/Socials';
 import { ProjectsContext } from '../contexts/ProjectsContext';
 import { connectToDatabase } from '../utils/mongodb';
 
@@ -27,6 +32,19 @@ interface HomeProps {
 
 export default function Home({ projects }: HomeProps) {
   const { clickInProject } = useContext(ProjectsContext);
+  const [positionX, setPositionX] = useState<number>();
+  const [positionY, setPositionY] = useState<number>();
+  const hiddenRef = useRef<HTMLDivElement>(null);
+  const repeat = 5;
+  let timeout
+
+  useEffect(() => {
+    hiddenRef.current.addEventListener('mousemove', (event) => {
+      if(timeout) clearTimeout(timeout);
+      setPositionX(event.clientX + 751)
+      setPositionY(event.clientY + 379)
+    })
+  },[])
 
   return (
     <>
@@ -36,7 +54,23 @@ export default function Home({ projects }: HomeProps) {
         </div>
       ) : (
         <>
+        <div className="headerWrapper" ref={hiddenRef}>
+          <Header />
+          <Socials />
+          <div className={styles.hiddenContainer} ref={hiddenRef} />
+          <div 
+        className={styles.backgroundContainer} 
+        style={{
+          WebkitMaskPositionX: `${positionX}px`,
+          WebkitMaskPositionY: `${positionY}px`,
+        }}  
+      >
+      
+    </div>
+        </div>
           <Projects projects={projects} />
+          <Contact />
+          <About />
         </>
       )}
     </>

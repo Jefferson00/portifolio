@@ -1,408 +1,454 @@
-.techContainer{
-    position: absolute;
-    top: 0;
-    right: 0;
+.techContainer {
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 
-.techContainer span{
-    display: inline-block;
-    width: 6.25rem;
-    height: 6.25rem;
-    background-size: cover;
-    transition: all 0.4s;
-    position: absolute;
-    top: 0;
-    right: 0;
+.techContainer span {
+  display: inline-block;
+  width: 6.25rem;
+  height: 6.25rem;
+  background-size: cover;
+  transition: all 0.4s;
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 
-.iconReact{
-    background-image: url("/icons/technologies/react.svg");
+.iconReact {
+  background-image: url("/icons/technologies/react.svg");
 }
-.iconNode{
-    background-image: url("/icons/technologies/nodejs.svg");
+.iconNode {
+  background-image: url("/icons/technologies/nodejs.svg");
 }
-.iconJavascript{
-    background-image: url("/icons/technologies/javascript.svg");
+.iconJavascript {
+  background-image: url("/icons/technologies/javascript.svg");
 }
-.iconTypescript{
-    background-image: url("/icons/technologies/typescript.svg");
+.iconTypescript {
+  background-image: url("/icons/technologies/typescript.svg");
 }
-.iconCss{
-    background-image: url("/icons/technologies/css3.svg");
+.iconCss {
+  background-image: url("/icons/technologies/css3.svg");
 }
-.iconHtml{
-    background-image: url("/icons/technologies/html5.svg");
+.iconHtml {
+  background-image: url("/icons/technologies/html5.svg");
 }
-.iconNext{
-    background-image: url("/icons/technologies/next.svg");
+.iconNext {
+  background-image: url("/icons/technologies/next.svg");
 }
-.iconSql{
-    background-image: url("/icons/technologies/sql.svg");
+.iconSql {
+  background-image: url("/icons/technologies/sql.svg");
+}
+.iconNest {
+  background-image: url("/icons/technologies/nest.svg");
 }
 
-.showUpAnimation{
-    animation-name: showUp;
-    animation-duration: 3s;
-    animation-delay: 0.5s;
-    animation-timing-function: ease;
-    animation-fill-mode: forwards ;
-    opacity: 0;
+.techContainer span:hover {
+  transition: filter 1.5s;
+  filter: drop-shadow(0px 0px 32px #ffffff);
+}
+
+.showUpAnimation {
+  animation-name: showUp;
+  animation-duration: 3s;
+  animation-delay: 0.5s;
+  animation-timing-function: ease;
+  animation-fill-mode: forwards;
+  opacity: 0;
 }
 
 @keyframes showUp {
-    0% {opacity: 0;}
-    100% {opacity: 0.4;}
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0.4;
+  }
 }
 
-.splitUpReact{
-    animation-name: splitUpReact;
-    animation-duration: 3s;
-    animation-delay: 0.5s;
-    animation-timing-function: ease;
-    animation-fill-mode: forwards ;
+.splitUpReact {
+  animation-name: splitUpReact;
+  animation-duration: 3s;
+  animation-delay: 0.5s;
+  animation-timing-function: ease;
+  animation-fill-mode: forwards;
 }
 
 @keyframes splitUpReact {
-    0% {
-        transform:translate(0, 0);
-    }
-    100% {
-        transform:translate(-10.68rem, 18.25rem);
-    }
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(-10.68rem, 18.25rem);
+  }
 }
 
-.splitUpNode{
-    animation-name: splitUpNode;
-    animation-duration: 3s;
-    animation-delay: 0.5s;
-    animation-timing-function: ease;
-    animation-fill-mode: forwards ;
+.splitUpNode {
+  animation-name: splitUpNode;
+  animation-duration: 3s;
+  animation-delay: 0.5s;
+  animation-timing-function: ease;
+  animation-fill-mode: forwards;
 }
 
 @keyframes splitUpNode {
-    0% {
-        transform:translate(0, 0);
-    }
-    100% {
-        transform:translate(-3rem, 13.25rem);
-    }
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(-3rem, 13.25rem);
+  }
 }
 
-.splitUpJavascript{
-    animation-name: splitUpJavascript;
-    animation-duration: 3s;
-    animation-delay: 0.5s;
-    animation-timing-function: ease;
-    animation-fill-mode: forwards ;
+.splitUpJavascript {
+  animation-name: splitUpJavascript;
+  animation-duration: 3s;
+  animation-delay: 0.5s;
+  animation-timing-function: ease;
+  animation-fill-mode: forwards;
 }
 
 @keyframes splitUpJavascript {
-    0% {
-        transform:translate(0, 0);
-    }
-    100% {
-        transform:translate(-21.87rem, 11.25rem);
-    }
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(-21.87rem, 11.25rem);
+  }
 }
 
-.splitUpTypescript{
-    animation-name: splitUpTypescript;
-    animation-duration: 3s;
-    animation-delay: 0.5s;
-    animation-timing-function: ease;
-    animation-fill-mode: forwards ;
+.splitUpTypescript {
+  animation-name: splitUpTypescript;
+  animation-duration: 3s;
+  animation-delay: 0.5s;
+  animation-timing-function: ease;
+  animation-fill-mode: forwards;
 }
 
 @keyframes splitUpTypescript {
-    0% {
-        transform:translate(0, 0);
-    }
-    100% {
-        transform:translate(-8rem, 3rem);
-    }
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(-8rem, 3rem);
+  }
 }
 
-.splitUpCss{
-    animation-name: splitUpCss;
-    animation-duration: 3s;
-    animation-delay: 0.5s;
-    animation-timing-function: ease;
-    animation-fill-mode: forwards ;
+.splitUpCss {
+  animation-name: splitUpCss;
+  animation-duration: 3s;
+  animation-delay: 0.5s;
+  animation-timing-function: ease;
+  animation-fill-mode: forwards;
 }
 
 @keyframes splitUpCss {
-    0% {
-        transform:translate(0, 0);
-    }
-    100% {
-        transform:translate(-18.87rem, 2.25rem);
-    }
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(-18.87rem, 2.25rem);
+  }
 }
 
-.splitUpHtml{
-    animation-name: splitUpHtml;
-    animation-duration: 3s;
-    animation-delay: 0.5s;
-    animation-timing-function: ease;
-    animation-fill-mode: forwards ;
+.splitUpHtml {
+  animation-name: splitUpHtml;
+  animation-duration: 3s;
+  animation-delay: 0.5s;
+  animation-timing-function: ease;
+  animation-fill-mode: forwards;
 }
 
 @keyframes splitUpHtml {
-    0% {
-        transform:translate(0, 0);
-    }
-    100% {
-        transform:translate(-21.87rem, 23.25rem);
-    }
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(-21.87rem, 23.25rem);
+  }
 }
 
-.splitUpNext{
-    animation-name: splitUpNext;
-    animation-duration: 3s;
-    animation-delay: 0.5s;
-    animation-timing-function: ease;
-    animation-fill-mode: forwards ;
+.splitUpNext {
+  animation-name: splitUpNext;
+  animation-duration: 3s;
+  animation-delay: 0.5s;
+  animation-timing-function: ease;
+  animation-fill-mode: forwards;
 }
 
 @keyframes splitUpNext {
-    0% {
-        transform:translate(0, 0);
-    }
-    100% {
-        transform:translate(-2.68rem, 21.25rem);
-    }
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(-2.68rem, 21.25rem);
+  }
 }
 
-.splitUpSql{
-    animation-name: splitUpSql;
-    animation-duration: 3s;
-    animation-delay: 0.5s;
-    animation-timing-function: ease;
-    animation-fill-mode: forwards ;
+.splitUpSql {
+  animation-name: splitUpSql;
+  animation-duration: 3s;
+  animation-delay: 0.5s;
+  animation-timing-function: ease;
+  animation-fill-mode: forwards;
 }
 
 @keyframes splitUpSql {
-    0% {
-        transform:translate(0, 0);
-    }
-    100% {
-        transform:translate(-10.87rem, 30.25rem);
-    }
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(-10.87rem, 30.25rem);
+  }
 }
 
+.splitUpNest {
+  animation-name: splitUpNest;
+  animation-duration: 3s;
+  animation-delay: 0.5s;
+  animation-timing-function: ease;
+  animation-fill-mode: forwards;
+}
 
-.movingSql{
-    animation-name: movingSql;
-    animation-duration: 10s;
-    animation-delay: 4s;
-    animation-timing-function: ease-in-out;
-    animation-iteration-count: infinite;
+@keyframes splitUpNest {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(-2.87rem, 33.25rem);
+  }
+}
+
+.movingSql {
+  animation-name: movingSql;
+  animation-duration: 10s;
+  animation-delay: 4s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
 }
 
 @keyframes movingSql {
-    0% {
-        transform:translate(0, 0);
-       
-    }
-    25%{
-        transform:translate(-1rem, 2rem);
-    }
-    50%{
-        transform:translate(-2.87rem, 3rem);
-    }
-    75%{
-        transform:translate(-2rem, 4rem);
-    }
-    100% {
-        transform:translate(0, 0);
-    }
+  0% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(-1rem, 2rem);
+  }
+  50% {
+    transform: translate(-2.87rem, 3rem);
+  }
+  75% {
+    transform: translate(-2rem, 4rem);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
 }
 
-.movingReact{
-    animation-name: movingReact;
-    animation-duration: 10s;
-    animation-delay: 4s;
-    animation-timing-function: ease-in-out;
-    animation-iteration-count: infinite;
+.movingReact {
+  animation-name: movingReact;
+  animation-duration: 10s;
+  animation-delay: 4s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
 }
 
 @keyframes movingReact {
-    0% {
-        transform:translate(0, 0);
-       
-    }
-    15%{
-        transform:translate(-3rem, 1rem);
-    }
-    50%{
-        transform:translate(-1.75rem, -2rem);
-    }
-    85%{
-        transform:translate(-2rem, 2rem);
-    }
-    100% {
-        transform:translate(0, 0);
-    }
+  0% {
+    transform: translate(0, 0);
+  }
+  15% {
+    transform: translate(-3rem, 1rem) rotateZ(180deg);
+  }
+  50% {
+    transform: translate(-1.75rem, -2rem);
+  }
+  85% {
+    transform: translate(-2rem, 2rem);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
 }
 
-.movingNode{
-    animation-name: movingNode;
-    animation-duration: 10s;
-    animation-delay: 4s;
-    animation-timing-function: ease-in-out;
-    animation-iteration-count: infinite;
+.movingNode {
+  animation-name: movingNode;
+  animation-duration: 10s;
+  animation-delay: 4s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
 }
 
 @keyframes movingNode {
-    0% {
-        transform:translate(0, 0);
-       
-    }
-    30%{
-        transform:translate(1rem, -1rem);
-    }
-    55%{
-        transform:translate(2.87rem, -2rem);
-    }
-    80%{
-        transform:translate(-2rem, 2rem);
-    }
-    100% {
-        transform:translate(0, 0);
-    }
+  0% {
+    transform: translate(0, 0);
+  }
+  30% {
+    transform: translate(1rem, -1rem);
+  }
+  55% {
+    transform: translate(2.87rem, -2rem);
+  }
+  80% {
+    transform: translate(-2rem, 2rem);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
 }
 
-.movingJavascript{
-    animation-name: movingJavascript;
-    animation-duration: 10s;
-    animation-delay: 4s;
-    animation-timing-function: ease-in-out;
-    animation-iteration-count: infinite;
+.movingJavascript {
+  animation-name: movingJavascript;
+  animation-duration: 10s;
+  animation-delay: 4s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
 }
 
 @keyframes movingJavascript {
-    0% {
-        transform:translate(0, 0);
-       
-    }
-    10%{
-        transform:translate(-3rem, 1.75rem);
-    }
-    25%{
-        transform:translate(-1rem, 4.65rem);
-    }
-    60%{
-        transform:translate(-3.35rem, 3rem);
-    }
-    100% {
-        transform:translate(0, 0);
-    }
+  0% {
+    transform: translate(0, 0);
+  }
+  10% {
+    transform: translate(-3rem, 1.75rem) scale(0.9);
+  }
+  25% {
+    transform: translate(-1rem, 4.65rem);
+  }
+  60% {
+    transform: translate(-3.35rem, 3rem) scale(1.1);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
 }
 
-.movingTypescript{
-    animation-name: movingTypescript;
-    animation-duration: 10s;
-    animation-delay: 4s;
-    animation-timing-function: ease-in-out;
-    animation-iteration-count: infinite;
+.movingTypescript {
+  animation-name: movingTypescript;
+  animation-duration: 10s;
+  animation-delay: 4s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
 }
 
 @keyframes movingTypescript {
-    0% {
-        transform:translate(0, 0);
-       
-    }
-    30%{
-        transform:translate(2rem, -2rem);
-    }
-    50%{
-        transform:translate(-4rem, 1rem);
-    }
-    70%{
-        transform:translate(-3.45rem, 2.25rem);
-    }
-    100% {
-        transform:translate(0, 0);
-    }
+  0% {
+    transform: translate(0, 0);
+  }
+  30% {
+    transform: translate(2rem, -2rem) scale(1.1);
+  }
+  50% {
+    transform: translate(-4rem, 1rem) scale(1.2);
+  }
+  70% {
+    transform: translate(-3.45rem, 2.25rem) scale(0.9);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
 }
 
-.movingCss{
-    animation-name: movingCss;
-    animation-duration: 10s;
-    animation-delay: 4s;
-    animation-timing-function: ease-in-out;
-    animation-iteration-count: infinite;
+.movingCss {
+  animation-name: movingCss;
+  animation-duration: 10s;
+  animation-delay: 4s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
 }
 
 @keyframes movingCss {
-    0% {
-        transform:translate(0, 0);
-       
-    }
-    25%{
-        transform:translate(-2rem, 0);
-    }
-    40%{
-        transform:translate(-4.87rem, -1rem);
-    }
-    60%{
-        transform:translate(0, 2rem);
-    }
-    100% {
-        transform:translate(0, 0);
-    }
+  0% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(-2rem, 0);
+  }
+  40% {
+    transform: translate(-4.87rem, -1rem);
+  }
+  60% {
+    transform: translate(0, 2rem) scale(0.8);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
 }
 
-.movingHtml{
-    animation-name: movingHtml;
-    animation-duration: 10s;
-    animation-delay: 4s;
-    animation-timing-function: ease-in-out;
-    animation-iteration-count: infinite;
+.movingHtml {
+  animation-name: movingHtml;
+  animation-duration: 10s;
+  animation-delay: 4s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
 }
 
 @keyframes movingHtml {
-    0% {
-        transform:translate(0, 0);
-       
-    }
-    25%{
-        transform:translate(-1rem, 2rem);
-    }
-    50%{
-        transform:translate(-2.87rem, 3rem);
-    }
-    75%{
-        transform:translate(-2rem, 4rem);
-    }
-    100% {
-        transform:translate(0, 0);
-    }
+  0% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(-1rem, 2rem);
+  }
+  50% {
+    transform: translate(-2.87rem, 3rem) scale(1.1);
+  }
+  75% {
+    transform: translate(-2rem, 4rem) scale(0.8);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
 }
 
-.movingNext{
-    animation-name: movingNext;
-    animation-duration: 10s;
-    animation-delay: 4s;
-    animation-timing-function: ease-in-out;
-    animation-iteration-count: infinite;
+.movingNext {
+  animation-name: movingNext;
+  animation-duration: 10s;
+  animation-delay: 4s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
 }
 
 @keyframes movingNext {
-    0% {
-        transform:translate(0, 0);
-       
-    }
-    25%{
-        transform:translate(-1rem, 2rem);
-    }
-    50%{
-        transform:translate(-2.87rem, 3rem);
-    }
-    75%{
-        transform:translate(-2rem, 4rem);
-    }
-    100% {
-        transform:translate(0, 0);
-    }
+  0% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(-1rem, 2rem);
+  }
+  50% {
+    transform: translate(-2.87rem, 3rem);
+  }
+  75% {
+    transform: translate(-2rem, 4rem);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+.movingNest {
+  animation-name: movingNest;
+  animation-duration: 10s;
+  animation-delay: 4s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+@keyframes movingNest {
+  0% {
+    transform: translate(0, 0);
+  }
+  30% {
+    transform: translate(2rem, -2rem) rotateZ(10deg);
+  }
+  50% {
+    transform: translate(0, 1rem);
+  }
+  70% {
+    transform: rotateZ(-10deg) translate(-1.45rem, 2.25rem);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
 }
