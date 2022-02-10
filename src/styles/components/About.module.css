@@ -294,12 +294,13 @@
 .tooltip::after {
   content: "";
   border-top: solid 32px transparent;
-  border-left: solid 32px var(--box-background);
+  border-left: solid 32px transparent;
   border-right: solid 32px transparent;
   border-bottom: solid 32px var(--box-background);
   position: absolute;
   bottom: 0;
-  right: -10%;
+  right: 65%;
+  z-index: -1;
 }
 
 @media (min-width: 1080px) {
@@ -341,5 +342,16 @@
   }
   .iconsContainer span:last-child {
     margin-right: 0;
+  }
+
+  .tooltip::after {
+    content: "";
+    border-top: solid 32px transparent;
+    border-left: solid 32px var(--box-background);
+    border-right: solid 32px transparent;
+    border-bottom: solid 32px var(--box-background);
+    position: absolute;
+    bottom: 0;
+    right: -10%;
   }
 }
