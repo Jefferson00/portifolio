@@ -1,61 +1,62 @@
-.contactContainer{
-    background-color: var(--box-background);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    position: fixed;
-    top: 50%;
-    left: 0;
-    padding: 1.25rem;
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
-    transform: translateY(-50%);
-    width: 4rem;
-    opacity: 0;
-    transition: opacity 0.4s;
+.contactContainer {
+  background-color: var(--box-background);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: fixed;
+  top: 80%;
+  z-index: 1;
+  left: 0;
+  padding: 1.25rem;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  transform: translateY(-50%);
+  width: 4rem;
+  opacity: 0;
+  transition: opacity 0.4s;
 }
 
-.contactContainer p{
-    font-weight: 500;
-    font-size: 0.75rem;
-    text-align: center;
+.contactContainer p {
+  font-weight: 500;
+  font-size: 0.75rem;
+  text-align: center;
 }
 
-.icons{
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    margin-top: 1rem;
+.icons {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: 1rem;
 }
 
-.icons a{
-    margin-top: 0.25rem;
+.icons a {
+  margin-top: 0.25rem;
 }
 
-.icons a span{
-    display: inline-block;
-    width: 28px;
-    height: 28px;
-    background-size: cover;
-    transition: all 0.4s;
+.icons a span {
+  display: inline-block;
+  width: 28px;
+  height: 28px;
+  background-size: cover;
+  transition: all 0.4s;
 }
 
-.iconGmail{
-    background-image: url("/icons/gmail_white.svg");
+.iconGmail {
+  background-image: url("/icons/gmail_white.svg");
 }
 
-.iconWhatsapp{
-    background-image: url("/icons/whatsApp_white.svg");
+.iconWhatsapp {
+  background-image: url("/icons/whatsApp_white.svg");
 }
 
 .iconGmail:hover,
-.iconGmail:focus{
-    background-image: url("/icons/gmail_orange.svg");
+.iconGmail:focus {
+  background-image: url("/icons/gmail_orange.svg");
 }
 .iconWhatsapp:hover,
-.iconWhatsapp:focus{
-    background-image: url("/icons/whatsapp_orange.svg");
+.iconWhatsapp:focus {
+  background-image: url("/icons/whatsapp_orange.svg");
 }

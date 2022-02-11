@@ -4,6 +4,7 @@ import { ProjectsContext } from "../../contexts/ProjectsContext";
 import styles from '../../styles/project.module.css'
 import { connectToDatabase } from "../../utils/mongodb";
 import { setIconClass } from "../../utils/setIconClass";
+import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 
 
 interface TechnologiesData {
@@ -37,6 +38,10 @@ export default function Project({ project }: ProjectProps) {
     const { updateButtonClicked, loadedProject } = useContext(ProjectsContext)
     const fullscreenContainerRef = useRef<HTMLDivElement>(null)
     const [selectedImage, setSelectedImage] = useState('/projects/lovepets/mobile/preview-1.jpg')
+    const [galleryState, setGalleryState] = useState(project.gallery);
+    const [slideValue, setSlideValue] = useState(0);
+    const [galleryIndex, setGalleryIndex] = useState(0);
+    const sliderRef = useRef<HTMLDivElement>(null);
 
     const handleWheel = (event) => {
         if (event.deltaY > 0) {
@@ -59,6 +64,30 @@ export default function Project({ project }: ProjectProps) {
 
         fullscreenContainerRef.current.style.opacity = '0'
         fullscreenContainerRef.current.style.visibility = 'hidden'
+    }
+
+    const handleNextSlide = () => {
+        const galleryItems = sliderRef.current.childNodes as NodeListOf<HTMLDivElement>
+        if (galleryIndex + 1 > galleryItems.length) {
+            setGalleryIndex(0)
+            setSlideValue(0)
+            sliderRef.current.style.transform = `translateX(0)`
+        }else{
+            const valueToTranslate = galleryItems[galleryIndex].offsetWidth + 48
+            sliderRef.current.style.transform = `translateX(-${slideValue + valueToTranslate}px)`
+            setSlideValue(slideValue+valueToTranslate)
+            setGalleryIndex(galleryIndex + 1)
+        }
+    }
+
+    const handlePrevSlide = () => {
+        const galleryItems = sliderRef.current.childNodes as NodeListOf<HTMLDivElement>
+        if (galleryIndex - 1 >= 0) {
+            const valueToTranslate = galleryItems[galleryIndex -1].offsetWidth + 48
+            sliderRef.current.style.transform = `translateX(-${slideValue - valueToTranslate}px)`
+            setSlideValue(slideValue-valueToTranslate)
+            setGalleryIndex(galleryIndex - 1)
+        }
     }
 
     useEffect(() => {
@@ -127,7 +156,11 @@ export default function Project({ project }: ProjectProps) {
 
 
                 <div className={styles.galleryContainer} onWheel={e => handleWheel(e)}>
-                    {project.gallery.map((image, index) => {
+                    <button className={styles.prevButton} onClick={handlePrevSlide}>
+                        <FiChevronLeft size={24}/>
+                    </button>
+                    <div className={styles.gallerySlider} ref={sliderRef}>
+                    {galleryState.map((image, index) => {
                         return (
                             <div className={styles.galleryItem} key={index}>
                                 <img src={image.image} alt={`preview - ${index}`}
@@ -135,6 +168,10 @@ export default function Project({ project }: ProjectProps) {
                             </div>
                         )
                     })}
+                    </div>
+                    <button className={styles.nextButton} onClick={handleNextSlide}>
+                        <FiChevronRight size={24}/>
+                    </button>
                 </div>
 
 

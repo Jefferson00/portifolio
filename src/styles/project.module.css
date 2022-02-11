@@ -1,294 +1,323 @@
-.projectContainer{
-    display: flex;
-    flex-direction: column;
-    padding: 2rem;
-    gap: 3.25rem;
-    margin-top: 3.25rem;
+.projectContainer {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  gap: 3.25rem;
+  margin-top: 3.25rem;
 }
 
-.detailsContainer{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.detailsContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.detailsContainer a{
-    margin-top: 3rem;
+.detailsContainer a {
+  margin-top: 3rem;
 }
 
-.linksContainer{
-    display: flex;
-    gap: 2rem;
+.linksContainer {
+  display: flex;
+  gap: 2rem;
 }
 
-.linksContainer a span{
-    display: inline-block;
-    width: 38px;
-    height: 38px;
-    background-size: cover;
-    transition: all 0.4s;
+.linksContainer a span {
+  display: inline-block;
+  width: 38px;
+  height: 38px;
+  background-size: cover;
+  transition: all 0.4s;
 }
 
 .linksContainer a {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
-.linksContainer a p{
-    transition: all 0.4s;
+.linksContainer a p {
+  transition: all 0.4s;
 }
 
-.linksContainer a:hover p{
-    color:var(--orange);
+.linksContainer a:hover p {
+  color: var(--orange);
 }
 
-.iconGithub{
-    background-image: url("/icons/github_white.svg");
+.iconGithub {
+  background-image: url("/icons/github_white.svg");
 }
 
 .iconGithub:hover,
-.iconGithub:focus{
-    background-image: url("/icons/github_orange.svg");
+.iconGithub:focus {
+  background-image: url("/icons/github_orange.svg");
 }
 
-.iconExternal{
-    background-image: url("/icons/external.svg");
+.iconExternal {
+  background-image: url("/icons/external.svg");
 }
 
 .iconExternal:hover,
-.iconExternal:focus{
-    background-image: url("/icons/external-orange.svg");
+.iconExternal:focus {
+  background-image: url("/icons/external-orange.svg");
 }
 
-.descriptionContainer{
-    display: flex;
-    flex-direction: column;
-    gap: 1.75rem;
-    text-align: center;
+.descriptionContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+  text-align: center;
 }
 
-.descriptionContainer > p{
-    font-size: 2rem;
-    font-weight: 600;
+.descriptionContainer > p {
+  font-size: 2rem;
+  font-weight: 600;
 }
 
-.descriptionBox{
-    background-color: var(--box-background);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 2rem;
-    border-radius: 5px;
-    text-align: left;
-    line-height: 1.75rem;
-    font-weight: 300;
+.descriptionBox {
+  background-color: var(--box-background);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2rem;
+  border-radius: 5px;
+  text-align: left;
+  line-height: 1.75rem;
+  font-weight: 300;
 }
 
-.descriptionBox a{
-    color: var(--orange);
-    transition: opacity 0.2s;
+.descriptionBox a {
+  color: var(--orange);
+  transition: opacity 0.2s;
 }
 
 .descriptionBox a:hover,
-.descriptionBox a:focus{
-    opacity: 0.8;
+.descriptionBox a:focus {
+  opacity: 0.8;
 }
 
-.descriptionBox p{
-    font-size: 1.125rem;
-    line-height: 1.75rem;
+.descriptionBox p {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
 }
 
-.thumbContainer img{
-    max-width: 100%;
+.thumbContainer img {
+  max-width: 100%;
 }
 
 .iconsContainer {
-    margin-top: 0.75rem;
+  margin-top: 0.75rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.iconsContainer span {
+  display: inline-block;
+  width: 2.18rem;
+  height: 2.18rem;
+  background-size: cover;
+  transition: all 0.4s;
+  margin-right: 0.75rem;
+  margin-top: 0.5rem;
+  transition: opacity 0.4s;
+  position: relative;
+}
+
+.iconsContainer span:hover {
+  opacity: 1;
+}
+
+.iconsLegend {
+  position: absolute;
+  height: 2.35rem;
+  border: 1px solid var(--light-gray);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 1.75rem;
+  top: 2.75rem;
+  right: calc(100% - 4.36rem);
+  background-color: var(--background);
+  z-index: 5;
+  visibility: hidden;
+}
+
+.iconsContainer span:hover .iconsLegend {
+  visibility: visible;
+}
+
+.iconsLegendMobile {
+  position: relative;
+  visibility: hidden;
+}
+
+.iconReact {
+  background-image: url("/icons/technologies/react.svg");
+}
+.iconNode {
+  background-image: url("/icons/technologies/nodejs.svg");
+}
+.iconJavascript {
+  background-image: url("/icons/technologies/javascript.svg");
+}
+.iconTypescript {
+  background-image: url("/icons/technologies/typescript.svg");
+}
+.iconCss {
+  background-image: url("/icons/technologies/css3.svg");
+}
+.iconHtml {
+  background-image: url("/icons/technologies/html5.svg");
+}
+.iconNext {
+  background-image: url("/icons/technologies/next.svg");
+}
+.iconSql {
+  background-image: url("/icons/technologies/sql.svg");
+}
+.iconPostgres {
+  background-image: url("/icons/technologies/postgresql.svg");
+}
+.iconMySql {
+  background-image: url("/icons/technologies/mysql.svg");
+}
+.iconSqlite {
+  background-image: url("/icons/technologies/sqlite.svg");
+}
+
+.galleryContainer {
+  position: relative;
+  overflow: hidden;
+  white-space: nowrap;
+  margin: 5rem 0;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+}
+
+.gallerySlider {
+  display: flex;
+  transition: all 0.4s;
+}
+
+.prevButton,
+.nextButton {
+  position: absolute;
+  top: 50%;
+  width: 2.5rem;
+  height: 2.5em;
+  border-radius: 50%;
+  border: 1px solid var(--background);
+  backdrop-filter: blur(4px);
+  background: rgba(17, 21, 24, 0.5);
+  box-shadow: inset 0 0 2px 2px #fff;
+  color: var(--orange);
+  z-index: 1;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.prevButton {
+  left: 0.5rem;
+}
+
+.nextButton {
+  right: 0.5rem;
+}
+
+.galleryContainer::-webkit-scrollbar {
+  width: 0;
+  height: 10px;
+  background: transparent;
+}
+.galleryContainer::-webkit-scrollbar-thumb {
+  background: var(--orange);
+  border-radius: 10px;
+}
+
+.galleryItem {
+  height: 32rem;
+  margin-right: 3rem;
+
+  pointer-events: none;
+}
+
+.galleryItem img {
+  height: 100%;
+  pointer-events: all;
+  cursor: pointer;
+  object-fit: contain;
+  max-width: 100vw;
+}
+
+.fullScreenImage {
+  cursor: pointer;
+  position: fixed;
+  visibility: hidden;
+  opacity: 0;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100%;
+  z-index: 10;
+  background: var(--background);
+  transition: all 0.4s;
+}
+
+.fullScreenImage img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+@media (min-width: 1080px) {
+  .projectContainer {
+    padding: 2rem 4rem;
+  }
+
+  .detailsContainer {
+    flex-direction: row;
+    gap: 2rem;
+    align-items: flex-end;
+  }
+
+  .detailsContainer a {
+    margin-top: 1rem;
+  }
+
+  .descriptionContainer {
+    /*width: 50%;*/
+    align-items: flex-start;
+  }
+
+  .linksContainer {
+    gap: 0;
+    flex: 1;
+    flex-direction: column;
+  }
+
+  .linksContainer a {
+    display: block;
+  }
+
+  .thumbContainer {
+    margin-top: 8rem;
     display: flex;
-    flex-wrap: wrap;
     justify-content: center;
-    align-items: center;
-    width: 100%;
-}
+  }
 
-.iconsContainer span{
-    display: inline-block;
-    width: 2.18rem;
-    height: 2.18rem;
-    background-size: cover;
-    transition: all 0.4s; 
-    margin-right: 0.75rem;
-    margin-top: 0.5rem; 
-    transition: opacity 0.4s;  
-    position: relative;  
-}
+  .thumbContainer img {
+    height: 38.125rem;
+  }
 
-.iconsContainer span:hover{
-    opacity: 1;
-}
-
-.iconsLegend{
-    position: absolute;
-    height: 2.35rem;
-    border: 1px solid var(--light-gray);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0 1.75rem;
-    top: 2.75rem;
-    right: calc(100% - 4.36rem);
-    background-color: var(--background);
-    z-index: 5;
-    visibility: hidden;
-}
-
-.iconsContainer span:hover .iconsLegend{
-    visibility: visible;
-}
-
-.iconsLegendMobile{
-    position: relative;
-    visibility: hidden;
-}
-
-.iconReact{
-    background-image: url("/icons/technologies/react.svg");
-}
-.iconNode{
-    background-image: url("/icons/technologies/nodejs.svg");
-}
-.iconJavascript{
-    background-image: url("/icons/technologies/javascript.svg");
-}
-.iconTypescript{
-    background-image: url("/icons/technologies/typescript.svg");
-}
-.iconCss{
-    background-image: url("/icons/technologies/css3.svg");
-}
-.iconHtml{
-    background-image: url("/icons/technologies/html5.svg");
-}
-.iconNext{
-    background-image: url("/icons/technologies/next.svg");
-}
-.iconSql{
-    background-image: url("/icons/technologies/sql.svg");
-}
-.iconPostgres{
-    background-image: url("/icons/technologies/postgresql.svg");
-}
-.iconMySql{
-    background-image: url("/icons/technologies/mysql.svg");
-}
-.iconSqlite{
-    background-image: url("/icons/technologies/sqlite.svg");
-}
-
-.galleryContainer{
-    display: flex;
-    overflow-x: scroll;
-    overflow-y: hidden;
-    white-space: nowrap;
-    margin: 5rem 0;
-    -webkit-overflow-scrolling: touch;
-    scroll-behavior: smooth;
-}
-
-.galleryContainer::-webkit-scrollbar{
-    width: 0;
-    height: 10px;
-    background: transparent;
-}
-.galleryContainer::-webkit-scrollbar-thumb{
-    background: var(--orange);
-    border-radius: 10px;
-    
-}
-
-.galleryItem{
-    height: 32rem;
-    margin-right: 3rem;
-
-    pointer-events: none;
-}
-
-.galleryItem img{
-    height: 100%;
-    pointer-events: all;
-    cursor: pointer;
-}
-
-.fullScreenImage{
-    cursor: pointer;
-    position: fixed;
-    visibility: hidden;
-    opacity: 0;
-    top: 0;
-    left: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100vw;
-    height: 100vh;
-    z-index: 10;
-    background: var(--background);
-    transition: all 0.4s;
-}
-
-.fullScreenImage img{
-    max-width: 100%;
-    max-height: 100%;
-}
-
-
-
-
-@media(min-width: 1080px){
-    .projectContainer{
-        padding: 2rem 4rem;
-    }
-
-    .detailsContainer{
-        flex-direction: row;
-        gap: 2rem;
-        align-items: flex-end;
-    }
-
-    .detailsContainer a {
-        margin-top: 1rem;
-    }
-
-    .descriptionContainer{
-        /*width: 50%;*/
-        align-items: flex-start;
-    }
-
-    .linksContainer{
-        gap: 0;
-        flex: 1;
-        flex-direction: column;
-    }
-
-    .linksContainer a {
-        display: block;
-    }
-
-    .thumbContainer{
-        margin-top: 8rem;
-        display: flex;
-        justify-content: center;
-    }
-
-    .thumbContainer img{
-        height: 38.125rem;
-    }
-
-    .projectContainer .descriptionContainer:last-child{
-        align-items: flex-end;
-        margin-left: 50%;
-    }
+  .projectContainer .descriptionContainer:last-child {
+    align-items: flex-end;
+    margin-left: 50%;
+  }
 }
