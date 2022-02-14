@@ -5,15 +5,15 @@ export function About() {
     const tooltipContent = () => (
         <div className={styles.tooltip}>
             <div>
-                <img src="icons/advanced.svg" alt="Avançado" />
+                <img src="/icons/advanced.svg" alt="Avançado" />
                 <p>Avançado</p>
             </div>
             <div>
-                <img src="icons/intermediary.svg" alt="Intermediário" />
+                <img src="/icons/intermediary.svg" alt="Intermediário" />
                 <p>Intermediário</p>
             </div>
             <div>
-                <img src="icons/basic.svg" alt="Básico" />
+                <img src="/icons/basic.svg" alt="Básico" />
                 <p>Básico</p>
             </div>
         </div>

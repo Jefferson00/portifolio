@@ -42,6 +42,7 @@ export default function Project({ project }: ProjectProps) {
     const [slideValue, setSlideValue] = useState(0);
     const [galleryIndex, setGalleryIndex] = useState(0);
     const sliderRef = useRef<HTMLDivElement>(null);
+    const galleryItems = sliderRef.current?.childNodes as NodeListOf<HTMLDivElement>;
 
     const handleWheel = (event) => {
         if (event.deltaY > 0) {
@@ -67,8 +68,7 @@ export default function Project({ project }: ProjectProps) {
     }
 
     const handleNextSlide = () => {
-        const galleryItems = sliderRef.current.childNodes as NodeListOf<HTMLDivElement>
-        if (galleryIndex + 1 > galleryItems.length) {
+        if (galleryIndex + 1 > galleryItems.length - 1) {
             setGalleryIndex(0)
             setSlideValue(0)
             sliderRef.current.style.transform = `translateX(0)`
@@ -81,7 +81,6 @@ export default function Project({ project }: ProjectProps) {
     }
 
     const handlePrevSlide = () => {
-        const galleryItems = sliderRef.current.childNodes as NodeListOf<HTMLDivElement>
         if (galleryIndex - 1 >= 0) {
             const valueToTranslate = galleryItems[galleryIndex -1].offsetWidth + 48
             sliderRef.current.style.transform = `translateX(-${slideValue - valueToTranslate}px)`
