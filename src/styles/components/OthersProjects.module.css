@@ -1,0 +1,190 @@
+.sectionTitleContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.sectionTitleContainer > button {
+  width: 90%;
+  background-color: transparent;
+  margin-top: 6.5rem;
+  text-align: center;
+  padding-bottom: 1.25rem;
+  cursor: initial;
+  border-image: linear-gradient(
+    to right,
+    var(--orange) 25%,
+    var(--light-gray) 50%,
+    var(--orange) 100%
+  );
+  border-image-slice: 1;
+  border-image-width: 0px 0px 2px 0px;
+  outline: none;
+}
+
+.sectionTitleContainer > button strong {
+  color: var(--light-gray);
+  font-size: 1.12rem;
+  transition: color 0.4s;
+}
+
+.links {
+  grid-area: links;
+  display: flex;
+  gap: 1rem;
+  justify-self: center;
+}
+
+.links a span {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  background-size: cover;
+  transition: all 0.4s;
+}
+
+.links a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.links a p {
+  transition: all 0.4s;
+  margin-top: 0.3rem;
+  font-size: 0.75rem;
+}
+
+.links a:hover p {
+  color: var(--orange);
+}
+
+.projectList {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+  width: 90%;
+  margin: 3.5rem auto;
+}
+
+.projectItem {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  position: relative;
+}
+
+.projectItem header,
+.projectItem main,
+.projectItem footer {
+  display: flex;
+}
+
+.projectItem header {
+  justify-content: space-between;
+}
+
+.projectItem header p {
+  font-size: 1.125rem;
+}
+
+.projectItem main img {
+  position: relative;
+  left: 5%;
+  z-index: 10;
+  width: 8.1rem;
+  height: 5.3rem;
+  object-fit: contain;
+  aspect-ratio: 16 / 9;
+}
+
+.projectItem footer {
+  margin-top: 0.75rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+
+  position: absolute;
+  bottom: -32%;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid;
+}
+
+.projectItem footer span {
+  display: inline-block;
+  width: 1.85rem;
+  height: 1.85rem;
+  background-size: cover;
+  transition: all 0.4s;
+  margin-right: 0.75rem;
+  margin-top: 0.5rem;
+  transition: opacity 0.4s;
+  position: relative;
+}
+
+.projectItem footer span:hover {
+  opacity: 1;
+}
+
+.iconsLegend {
+  position: absolute;
+  height: 2.35rem;
+  border: 1px solid var(--light-gray);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 1.75rem;
+  top: 2.75rem;
+  right: calc(100% - 4.36rem);
+  background-color: var(--background);
+  z-index: 5;
+  visibility: hidden;
+}
+
+.iconsContainer span:hover .iconsLegend {
+  visibility: visible;
+}
+
+.iconsLegendMobile {
+  position: relative;
+  visibility: hidden;
+}
+
+.iconGithub {
+  background-image: url("/icons/github_white.svg");
+}
+
+.iconGithub:hover,
+.iconGithub:focus {
+  background-image: url("/icons/github_orange.svg");
+}
+
+.iconExternal {
+  background-image: url("/icons/external.svg");
+}
+
+.iconExternal:hover,
+.iconExternal:focus {
+  background-image: url("/icons/external-orange.svg");
+}
+
+.descriptionContainer {
+  background-color: var(--box-background);
+  position: relative;
+  width: 100%;
+  padding: 0.5rem;
+  padding-left: 10%;
+  align-self: flex-start;
+  border-radius: 10px;
+}
+
+.descriptionContainer p {
+  font-size: 0.875rem;
+}
+
+.waves {
+  overflow: hidden;
+}

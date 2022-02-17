@@ -1,5 +1,6 @@
 import { GetStaticProps } from 'next'
 import { useContext } from 'react'
+import { OthersProjects } from '../components/OthersProjects';
 import { Projects } from '../components/Projects'
 import { ProjectsContext } from '../contexts/ProjectsContext';
 import { connectToDatabase } from '../utils/mongodb';
@@ -23,9 +24,10 @@ interface ProjectData {
 
 interface HomeProps {
   projects: ProjectData[];
+  secondaryProjects: ProjectData[];
 }
 
-export default function Home({ projects }: HomeProps) {
+export default function Home({ projects, secondaryProjects }: HomeProps) {
   const { clickInProject } = useContext(ProjectsContext);
 
   return (
@@ -37,6 +39,7 @@ export default function Home({ projects }: HomeProps) {
       ) : (
         <>
           <Projects projects={projects} />
+          <OthersProjects projects={secondaryProjects}/>
         </>
       )}
     </>
@@ -55,9 +58,13 @@ export const getStaticProps: GetStaticProps = async () => {
     .sort({ order: 1 })
     .toArray();
 
+  const primaryProjects = projects.filter(proj => proj.type === "primary");
+  const secondaryProjects = projects.filter(proj => proj.type === "secondary");
+
   return {
     props: {
-      projects: JSON.parse(JSON.stringify(projects))
+      projects: JSON.parse(JSON.stringify(primaryProjects)),
+      secondaryProjects: JSON.parse(JSON.stringify(secondaryProjects))
     },
     revalidate: 60,
   }
