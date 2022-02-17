@@ -1,7 +1,10 @@
 import styles from "../styles/components/OthersProjects.module.css";
+import Link from "next/link";
 import { setIconClass } from "../utils/setIconClass";
 import { useSpring, animated, config, easings } from "react-spring";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { ProjectsContext } from "../contexts/ProjectsContext";
+import { Waves } from "./Waves";
 
 interface TechnologiesData {
   title: string;
@@ -25,17 +28,7 @@ interface ProjectsProps {
 }
 
 export function OthersProjects({ projects }: ProjectsProps) {
-  const [active, setActive] = useState(false);
-  const { x } = useSpring({
-    config: { duration: 4000, easing: easings.easeInOutCirc },
-    loop: { reverse: true },
-    from: {
-      x: 0,
-    },
-    to: {
-      x: 1,
-    },
-  });
+  const { clickedInProject } = useContext(ProjectsContext);
 
   return (
     <div>
@@ -63,19 +56,23 @@ export function OthersProjects({ projects }: ProjectsProps) {
                 </a>
               </div>
             </header>
-            <main>
-              {proj.thumbnail_small ? (
-                <img src={proj.thumbnail_small} alt={proj.title} />
-              ) : (
-                <img src={proj.thumbnail} alt={proj.title} />
-              )}
-              <div
-                className={styles.descriptionContainer}
-                dangerouslySetInnerHTML={{
-                  __html: `${proj.resume.substring(0, 240)}...`,
-                }}
-              />
-            </main>
+            <Link href={`/projects/${proj.id}#project`}>
+              <a onClick={clickedInProject}>
+                <main>
+                  {proj.thumbnail_small ? (
+                    <img src={proj.thumbnail_small} alt={proj.title} />
+                  ) : (
+                    <img src={proj.thumbnail} alt={proj.title} />
+                  )}
+                  <div
+                    className={styles.descriptionContainer}
+                    dangerouslySetInnerHTML={{
+                      __html: `${proj.resume.substring(0, 240)}...`,
+                    }}
+                  />
+                </main>
+              </a>
+            </Link>
             <footer>
               {proj.technologies.map(
                 (tech: TechnologiesData, index: number) => {
@@ -94,7 +91,7 @@ export function OthersProjects({ projects }: ProjectsProps) {
         ))}
       </div>
 
-      <div className={styles.waves}>
+      {/* <div className={styles.waves}>
         <svg
           id="visual"
           viewBox="0 0 1800 250"
@@ -160,41 +157,7 @@ export function OthersProjects({ projects }: ProjectsProps) {
             fill="#111518"
           />
         </svg>
-      </div>
+      </div> */}
     </div>
   );
-}
-
-{
-  /* <svg
-  id="visual"
-  viewBox="0 0 1800 250"
-  width="1800"
-  height="250"
-  xmlns="http://www.w3.org/2000/svg"
-  xmlns:xlink="http://www.w3.org/1999/xlink"
-  version="1.1"
->
-  <path
-    d="M0 133L42.8 135.3C85.7 137.7 171.3 142.3 257 139.5C342.7 136.7 428.3 126.3 514 118.3C599.7 110.3 685.3 104.7 771.2 106.2C857 107.7 943 116.3 1028.8 125.8C1114.7 135.3 1200.3 145.7 1286 141.5C1371.7 137.3 1457.3 118.7 1543 107C1628.7 95.3 1714.3 90.7 1757.2 88.3L1800 86L1800 251L1757.2 251C1714.3 251 1628.7 251 1543 251C1457.3 251 1371.7 251 1286 251C1200.3 251 1114.7 251 1028.8 251C943 251 857 251 771.2 251C685.3 251 599.7 251 514 251C428.3 251 342.7 251 257 251C171.3 251 85.7 251 42.8 251L0 251Z"
-    fill="#273036"
-  ></path>
-  <path
-    d="M0 139L42.8 144.5C85.7 150 171.3 161 257 158.8C342.7 156.7 428.3 141.3 514 134.7C599.7 128 685.3 130 771.2 128.3C857 126.7 943 121.3 1028.8 126.5C1114.7 131.7 1200.3 147.3 1286 148.5C1371.7 149.7 1457.3 136.3 1543 131.3C1628.7 126.3 1714.3 129.7 1757.2 131.3L1800 133L1800 251L1757.2 251C1714.3 251 1628.7 251 1543 251C1457.3 251 1371.7 251 1286 251C1200.3 251 1114.7 251 1028.8 251C943 251 857 251 771.2 251C685.3 251 599.7 251 514 251C428.3 251 342.7 251 257 251C171.3 251 85.7 251 42.8 251L0 251Z"
-    fill="#21292e"
-  ></path>
-  <path
-    d="M0 144L42.8 143.5C85.7 143 171.3 142 257 139.8C342.7 137.7 428.3 134.3 514 137.5C599.7 140.7 685.3 150.3 771.2 160.7C857 171 943 182 1028.8 188.2C1114.7 194.3 1200.3 195.7 1286 193.5C1371.7 191.3 1457.3 185.7 1543 183.3C1628.7 181 1714.3 182 1757.2 182.5L1800 183L1800 251L1757.2 251C1714.3 251 1628.7 251 1543 251C1457.3 251 1371.7 251 1286 251C1200.3 251 1114.7 251 1028.8 251C943 251 857 251 771.2 251C685.3 251 599.7 251 514 251C428.3 251 342.7 251 257 251C171.3 251 85.7 251 42.8 251L0 251Z"
-    fill="#1c2227"
-  ></path>
-  <path
-    d="M0 198L42.8 199.8C85.7 201.7 171.3 205.3 257 201.5C342.7 197.7 428.3 186.3 514 180.3C599.7 174.3 685.3 173.7 771.2 173.3C857 173 943 173 1028.8 180C1114.7 187 1200.3 201 1286 207.7C1371.7 214.3 1457.3 213.7 1543 209.2C1628.7 204.7 1714.3 196.3 1757.2 192.2L1800 188L1800 251L1757.2 251C1714.3 251 1628.7 251 1543 251C1457.3 251 1371.7 251 1286 251C1200.3 251 1114.7 251 1028.8 251C943 251 857 251 771.2 251C685.3 251 599.7 251 514 251C428.3 251 342.7 251 257 251C171.3 251 85.7 251 42.8 251L0 251Z"
-    fill="#171b1f"
-  ></path>
-  <path
-    d="M0 220L42.8 218.8C85.7 217.7 171.3 215.3 257 212C342.7 208.7 428.3 204.3 514 204.5C599.7 204.7 685.3 209.3 771.2 215C857 220.7 943 227.3 1028.8 225.2C1114.7 223 1200.3 212 1286 205.5C1371.7 199 1457.3 197 1543 197.8C1628.7 198.7 1714.3 202.3 1757.2 204.2L1800 206L1800 251L1757.2 251C1714.3 251 1628.7 251 1543 251C1457.3 251 1371.7 251 1286 251C1200.3 251 1114.7 251 1028.8 251C943 251 857 251 771.2 251C685.3 251 599.7 251 514 251C428.3 251 342.7 251 257 251C171.3 251 85.7 251 42.8 251L0 251Z"
-    fill="#111518"
-  ></path>
-</svg>;
- */
 }

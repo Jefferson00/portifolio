@@ -185,6 +185,56 @@
   font-size: 0.875rem;
 }
 
-.waves {
+@media (min-width: 1024px) {
+  .projectList {
+    max-width: 61rem;
+    flex-direction: row;
+  }
+
+  .projectItem footer {
+    justify-content: flex-end;
+  }
+
+  .projectItem main img {
+    width: 11.1rem;
+    aspect-ratio: auto;
+  }
+
+  .projectItem:nth-child(2n)::before {
+    content: "";
+    height: 100%;
+    width: 1px;
+    background: #fff;
+    position: absolute;
+    left: -2rem;
+  }
+}
+.dividerWrapper {
+  position: relative;
+  height: 16rem;
   overflow: hidden;
+}
+.forward {
+  position: absolute;
+  top: 0;
+  height: 16rem;
+}
+
+.gradientDivider {
+  background: linear-gradient(-45deg, #181d21, #35424b, #1e252a, #73777a);
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+  height: 25rem;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
