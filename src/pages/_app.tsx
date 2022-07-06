@@ -10,6 +10,12 @@ import Head from "next/head";
 import { Contact } from "../components/Contact";
 import { ToStartButton } from "../components/ToStartButton";
 import { HeaderBackground } from "../components/HeaderBackground";
+// import { Image3D } from "../components/Image3D";
+import dynamic from "next/dynamic";
+
+const Image3D = dynamic(() => import("../components/Image3D"), {
+  ssr: false,
+});
 
 function MyApp({ Component, pageProps }) {
   useEffect(() => {
@@ -94,6 +100,7 @@ function MyApp({ Component, pageProps }) {
       <Component {...pageProps} />
       <Contact />
       <About />
+      <Image3D />
       <ToStartButton />
     </ProjectsProvider>
   );
