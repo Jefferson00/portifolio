@@ -92,14 +92,8 @@ function MyApp({ Component, pageProps }) {
       <span itemProp="image" itemScope itemType="image/png">
         <link itemProp="url" href="thumb.png" />
       </span>
-      <div className="headerWrapper">
-        <HeaderBackground />
-        <Header />
-        <Socials />
-      </div>
+
       <Component {...pageProps} />
-      <Contact />
-      <About />
       <ToStartButton />
     </ProjectsProvider>
   );

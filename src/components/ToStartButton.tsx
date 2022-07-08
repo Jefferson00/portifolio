@@ -1,32 +1,28 @@
-import styles from '../styles/components/ToStartButton.module.css';
+import styles from "../styles/components/ToStartButton.module.css";
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from "react";
 
 export function ToStartButton() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [currentScrollPos, setCurrentScrollPos] = useState(0);
 
   useEffect(() => {
-    if (typeof window !== undefined) {
-
-      window.addEventListener('scroll', () => {
+    if (typeof window !== undefined && !!containerRef.current.style) {
+      window.addEventListener("scroll", () => {
         setCurrentScrollPos(window.pageYOffset);
 
-        if (currentScrollPos > (window.innerHeight / 2)) {
-          containerRef.current.style.opacity = '1'
-
+        if (currentScrollPos > window.innerHeight / 2) {
+          containerRef.current.style.opacity = "1";
         } else {
-
-          containerRef.current.style.opacity = '0'
+          containerRef.current.style.opacity = "0";
         }
-
       });
     }
   }, [currentScrollPos]);
 
   function handleToTop() {
     if (typeof window !== undefined) {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }
   }
 
@@ -36,5 +32,5 @@ export function ToStartButton() {
         <img src="/icons/up.svg" alt="ir para o topo" />
       </button>
     </div>
-  )
+  );
 }
