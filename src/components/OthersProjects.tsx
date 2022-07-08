@@ -1,10 +1,12 @@
 import styles from "../styles/components/OthersProjects.module.css";
 import Link from "next/link";
 import { setIconClass } from "../utils/setIconClass";
-import { useSpring, animated, config, easings } from "react-spring";
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { ProjectsContext } from "../contexts/ProjectsContext";
-import { Waves } from "./Waves";
+
+import { InView } from "react-intersection-observer";
+import { motion } from "framer-motion";
+import { fadeInUp, fadeInLeft, fadeInRight } from "../styles/animations";
 
 interface TechnologiesData {
   title: string;
@@ -31,133 +33,79 @@ export function OthersProjects({ projects }: ProjectsProps) {
   const { clickedInProject } = useContext(ProjectsContext);
 
   return (
-    <div>
+    <div id="others-projects">
       <div className={styles.sectionTitleContainer}>
         <button disabled>
           <strong>OUTROS PROJETOS</strong>
         </button>
       </div>
 
-      <div className={styles.projectList}>
-        {projects.slice(0, 4).map((proj) => (
-          <div className={styles.projectItem} key={proj.id}>
-            <header>
-              <p>{proj.title}</p>
-              <div className={styles.links}>
-                <a href={proj.link} target="_blank" rel="noopener noreferrer">
-                  <span className={styles.iconExternal} />
-                </a>
-                <a
-                  href={proj.repository}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <span className={styles.iconGithub} />
-                </a>
-              </div>
-            </header>
-            <Link href={`/projects/${proj.id}#project`}>
-              <a onClick={clickedInProject}>
-                <main>
-                  {proj.thumbnail_small ? (
-                    <img src={proj.thumbnail_small} alt={proj.title} />
-                  ) : (
-                    <img src={proj.thumbnail} alt={proj.title} />
+      <motion.div className={styles.projectList}>
+        {projects.slice(0, 4).map((proj, index) => (
+          <InView key={proj.id}>
+            {({ ref, inView }) => (
+              <motion.div
+                ref={ref}
+                variants={index % 2 === 0 ? fadeInLeft : fadeInRight}
+                initial="initial"
+                animate={inView ? "animate" : "initial"}
+                className={styles.projectItem}
+              >
+                <header>
+                  <p>{proj.title}</p>
+                  <div className={styles.links}>
+                    <a
+                      href={proj.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <span className={styles.iconExternal} />
+                    </a>
+                    <a
+                      href={proj.repository}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <span className={styles.iconGithub} />
+                    </a>
+                  </div>
+                </header>
+                <Link href={`/projects/${proj.id}#project`}>
+                  <a onClick={clickedInProject}>
+                    <main>
+                      {proj.thumbnail_small ? (
+                        <img src={proj.thumbnail_small} alt={proj.title} />
+                      ) : (
+                        <img src={proj.thumbnail} alt={proj.title} />
+                      )}
+                      <div
+                        className={styles.descriptionContainer}
+                        dangerouslySetInnerHTML={{
+                          __html: `${proj.resume.substring(0, 240)}...`,
+                        }}
+                      />
+                    </main>
+                  </a>
+                </Link>
+                <footer>
+                  {proj.technologies.map(
+                    (tech: TechnologiesData, index: number) => {
+                      return (
+                        <span className={setIconClass(tech.class)} key={index}>
+                          <div className={styles.iconsLegend}>{tech.title}</div>
+                          <div className={styles.iconsLegendMobile}>
+                            <p>{tech.title}</p>
+                          </div>
+                        </span>
+                      );
+                    }
                   )}
-                  <div
-                    className={styles.descriptionContainer}
-                    dangerouslySetInnerHTML={{
-                      __html: `${proj.resume.substring(0, 240)}...`,
-                    }}
-                  />
-                </main>
-              </a>
-            </Link>
-            <footer>
-              {proj.technologies.map(
-                (tech: TechnologiesData, index: number) => {
-                  return (
-                    <span className={setIconClass(tech.class)} key={index}>
-                      <div className={styles.iconsLegend}>{tech.title}</div>
-                      <div className={styles.iconsLegendMobile}>
-                        <p>{tech.title}</p>
-                      </div>
-                    </span>
-                  );
-                }
-              )}
-            </footer>
-          </div>
+                </footer>
+              </motion.div>
+            )}
+          </InView>
         ))}
-      </div>
-
-      {/* <div className={styles.waves}>
-        <svg
-          id="visual"
-          viewBox="0 0 1800 250"
-          width="1800"
-          height="250"
-          xmlns="http://www.w3.org/2000/svg"
-          xmlnsXlink="http://www.w3.org/1999/xlink"
-          version="1.1"
-          onClick={() => setActive(!active)}
-        >
-          <animated.path
-            d={x.to({
-              range: [0, 1],
-              output: [
-                "M0 129L42.8 121.5C85.7 114 171.3 99 257 91.3C342.7 83.7 428.3 83.3 514 81C599.7 78.7 685.3 74.3 771.2 86.7C857 99 943 128 1028.8 130.7C1114.7 133.3 1200.3 109.7 1286 100.5C1371.7 91.3 1457.3 96.7 1543 97C1628.7 97.3 1714.3 92.7 1757.2 90.3L1800 88L1800 251L1757.2 251C1714.3 251 1628.7 251 1543 251C1457.3 251 1371.7 251 1286 251C1200.3 251 1114.7 251 1028.8 251C943 251 857 251 771.2 251C685.3 251 599.7 251 514 251C428.3 251 342.7 251 257 251C171.3 251 85.7 251 42.8 251L0 251Z",
-                "M0 155L42.8 154.8C85.7 154.7 171.3 154.3 257 151.7C342.7 149 428.3 144 514 135C599.7 126 685.3 113 771.2 102.2C857 91.3 943 82.7 1028.8 92.8C1114.7 103 1200.3 132 1286 131.8C1371.7 131.7 1457.3 102.3 1543 93C1628.7 83.7 1714.3 94.3 1757.2 99.7L1800 105L1800 251L1757.2 251C1714.3 251 1628.7 251 1543 251C1457.3 251 1371.7 251 1286 251C1200.3 251 1114.7 251 1028.8 251C943 251 857 251 771.2 251C685.3 251 599.7 251 514 251C428.3 251 342.7 251 257 251C171.3 251 85.7 251 42.8 251L0 251Z",
-              ],
-            })}
-            fill="#273036"
-          />
-          <animated.path
-            d={x.to({
-              range: [0, 0.5, 1],
-              output: [
-                "M0 125L42.8 124.2C85.7 123.3 171.3 121.7 257 127C342.7 132.3 428.3 144.7 514 152C599.7 159.3 685.3 161.7 771.2 155C857 148.3 943 132.7 1028.8 128.5C1114.7 124.3 1200.3 131.7 1286 132.3C1371.7 133 1457.3 127 1543 125.3C1628.7 123.7 1714.3 126.3 1757.2 127.7L1800 129L1800 251L1757.2 251C1714.3 251 1628.7 251 1543 251C1457.3 251 1371.7 251 1286 251C1200.3 251 1114.7 251 1028.8 251C943 251 857 251 771.2 251C685.3 251 599.7 251 514 251C428.3 251 342.7 251 257 251C171.3 251 85.7 251 42.8 251L0 251Z",
-                "M0 155L42.8 154.8C85.7 154.7 171.3 154.3 257 151.7C342.7 149 428.3 144 514 135C599.7 126 685.3 113 771.2 102.2C857 91.3 943 82.7 1028.8 92.8C1114.7 103 1200.3 132 1286 131.8C1371.7 131.7 1457.3 102.3 1543 93C1628.7 83.7 1714.3 94.3 1757.2 99.7L1800 105L1800 251L1757.2 251C1714.3 251 1628.7 251 1543 251C1457.3 251 1371.7 251 1286 251C1200.3 251 1114.7 251 1028.8 251C943 251 857 251 771.2 251C685.3 251 599.7 251 514 251C428.3 251 342.7 251 257 251C171.3 251 85.7 251 42.8 251L0 251Z",
-                "M0 125L42.8 124.2C85.7 123.3 171.3 121.7 257 127C342.7 132.3 428.3 144.7 514 152C599.7 159.3 685.3 161.7 771.2 155C857 148.3 943 132.7 1028.8 128.5C1114.7 124.3 1200.3 131.7 1286 132.3C1371.7 133 1457.3 127 1543 125.3C1628.7 123.7 1714.3 126.3 1757.2 127.7L1800 129L1800 251L1757.2 251C1714.3 251 1628.7 251 1543 251C1457.3 251 1371.7 251 1286 251C1200.3 251 1114.7 251 1028.8 251C943 251 857 251 771.2 251C685.3 251 599.7 251 514 251C428.3 251 342.7 251 257 251C171.3 251 85.7 251 42.8 251L0 251Z",
-              ],
-            })}
-            fill="#21292e"
-          />
-          <animated.path
-            d={x.to({
-              range: [0, 1],
-              output: [
-                "M0 141L42.8 150.3C85.7 159.7 171.3 178.3 257 180C342.7 181.7 428.3 166.3 514 164.8C599.7 163.3 685.3 175.7 771.2 177.5C857 179.3 943 170.7 1028.8 167.7C1114.7 164.7 1200.3 167.3 1286 169.8C1371.7 172.3 1457.3 174.7 1543 173.5C1628.7 172.3 1714.3 167.7 1757.2 165.3L1800 163L1800 251L1757.2 251C1714.3 251 1628.7 251 1543 251C1457.3 251 1371.7 251 1286 251C1200.3 251 1114.7 251 1028.8 251C943 251 857 251 771.2 251C685.3 251 599.7 251 514 251C428.3 251 342.7 251 257 251C171.3 251 85.7 251 42.8 251L0 251Z",
-                "M0 123L42.8 124.3C85.7 125.7 171.3 128.3 257 124.8C342.7 121.3 428.3 111.7 514 106.7C599.7 101.7 685.3 101.3 771.2 113.7C857 126 943 151 1028.8 156.8C1114.7 162.7 1200.3 149.3 1286 139.3C1371.7 129.3 1457.3 122.7 1543 119C1628.7 115.3 1714.3 114.7 1757.2 114.3L1800 114L1800 251L1757.2 251C1714.3 251 1628.7 251 1543 251C1457.3 251 1371.7 251 1286 251C1200.3 251 1114.7 251 1028.8 251C943 251 857 251 771.2 251C685.3 251 599.7 251 514 251C428.3 251 342.7 251 257 251C171.3 251 85.7 251 42.8 251L0 251Z",
-              ],
-            })}
-            fill="#1c2227"
-          />
-          <animated.path
-            d={x.to({
-              range: [0, 0.5, 1],
-              output: [
-                "M0 167L42.8 170.2C85.7 173.3 171.3 179.7 257 184.8C342.7 190 428.3 194 514 192.3C599.7 190.7 685.3 183.3 771.2 181.3C857 179.3 943 182.7 1028.8 189.3C1114.7 196 1200.3 206 1286 206.7C1371.7 207.3 1457.3 198.7 1543 192.3C1628.7 186 1714.3 182 1757.2 180L1800 178L1800 251L1757.2 251C1714.3 251 1628.7 251 1543 251C1457.3 251 1371.7 251 1286 251C1200.3 251 1114.7 251 1028.8 251C943 251 857 251 771.2 251C685.3 251 599.7 251 514 251C428.3 251 342.7 251 257 251C171.3 251 85.7 251 42.8 251L0 251Z",
-                "M0 168L42.8 162.5C85.7 157 171.3 146 257 145.5C342.7 145 428.3 155 514 163.8C599.7 172.7 685.3 180.3 771.2 183.2C857 186 943 184 1028.8 181.8C1114.7 179.7 1200.3 177.3 1286 173.3C1371.7 169.3 1457.3 163.7 1543 164C1628.7 164.3 1714.3 170.7 1757.2 173.8L1800 177L1800 251L1757.2 251C1714.3 251 1628.7 251 1543 251C1457.3 251 1371.7 251 1286 251C1200.3 251 1114.7 251 1028.8 251C943 251 857 251 771.2 251C685.3 251 599.7 251 514 251C428.3 251 342.7 251 257 251C171.3 251 85.7 251 42.8 251L0 251Z",
-                "M0 167L42.8 170.2C85.7 173.3 171.3 179.7 257 184.8C342.7 190 428.3 194 514 192.3C599.7 190.7 685.3 183.3 771.2 181.3C857 179.3 943 182.7 1028.8 189.3C1114.7 196 1200.3 206 1286 206.7C1371.7 207.3 1457.3 198.7 1543 192.3C1628.7 186 1714.3 182 1757.2 180L1800 178L1800 251L1757.2 251C1714.3 251 1628.7 251 1543 251C1457.3 251 1371.7 251 1286 251C1200.3 251 1114.7 251 1028.8 251C943 251 857 251 771.2 251C685.3 251 599.7 251 514 251C428.3 251 342.7 251 257 251C171.3 251 85.7 251 42.8 251L0 251Z",
-              ],
-            })}
-            fill="#171b1f"
-          />
-
-          <animated.path
-            d={x.to({
-              range: [0, 0.5, 1],
-              output: [
-                "M0 232L42.8 227.2C85.7 222.3 171.3 212.7 257 207C342.7 201.3 428.3 199.7 514 204C599.7 208.3 685.3 218.7 771.2 224.2C857 229.7 943 230.3 1028.8 230C1114.7 229.7 1200.3 228.3 1286 225C1371.7 221.7 1457.3 216.3 1543 212C1628.7 207.7 1714.3 204.3 1757.2 202.7L1800 201L1800 251L1757.2 251C1714.3 251 1628.7 251 1543 251C1457.3 251 1371.7 251 1286 251C1200.3 251 1114.7 251 1028.8 251C943 251 857 251 771.2 251C685.3 251 599.7 251 514 251C428.3 251 342.7 251 257 251C171.3 251 85.7 251 42.8 251L0 251Z",
-                "M0 193L42.8 188.7C85.7 184.3 171.3 175.7 257 176.3C342.7 177 428.3 187 514 188.7C599.7 190.3 685.3 183.7 771.2 178.8C857 174 943 171 1028.8 177.7C1114.7 184.3 1200.3 200.7 1286 200.3C1371.7 200 1457.3 183 1543 174C1628.7 165 1714.3 164 1757.2 163.5L1800 163L1800 251L1757.2 251C1714.3 251 1628.7 251 1543 251C1457.3 251 1371.7 251 1286 251C1200.3 251 1114.7 251 1028.8 251C943 251 857 251 771.2 251C685.3 251 599.7 251 514 251C428.3 251 342.7 251 257 251C171.3 251 85.7 251 42.8 251L0 251Z",
-                "M0 232L42.8 227.2C85.7 222.3 171.3 212.7 257 207C342.7 201.3 428.3 199.7 514 204C599.7 208.3 685.3 218.7 771.2 224.2C857 229.7 943 230.3 1028.8 230C1114.7 229.7 1200.3 228.3 1286 225C1371.7 221.7 1457.3 216.3 1543 212C1628.7 207.7 1714.3 204.3 1757.2 202.7L1800 201L1800 251L1757.2 251C1714.3 251 1628.7 251 1543 251C1457.3 251 1371.7 251 1286 251C1200.3 251 1114.7 251 1028.8 251C943 251 857 251 771.2 251C685.3 251 599.7 251 514 251C428.3 251 342.7 251 257 251C171.3 251 85.7 251 42.8 251L0 251Z",
-              ],
-            })}
-            fill="#111518"
-          />
-        </svg>
-      </div> */}
+      </motion.div>
     </div>
   );
 }

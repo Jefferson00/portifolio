@@ -100,7 +100,6 @@ function MyApp({ Component, pageProps }) {
       <Component {...pageProps} />
       <Contact />
       <About />
-      <Image3D />
       <ToStartButton />
     </ProjectsProvider>
   );
