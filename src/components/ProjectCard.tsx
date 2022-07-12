@@ -1,5 +1,5 @@
 import styles from "../styles/components/ProjectCard.module.css";
-import { FiEdit, FiArchive, FiSave } from "react-icons/fi";
+import { FiEdit, FiArchive, FiSave, FiTrash, FiEye } from "react-icons/fi";
 import { ChangeEvent, useEffect, useState } from "react";
 import { Icons, IconNames } from "./Icons";
 import { technologiesList } from "../utils/technologiesList";
@@ -7,8 +7,16 @@ import { technologiesList } from "../utils/technologiesList";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
-import { connectToDatabase } from "../utils/mongodb";
 import api from "../services/api";
+import dynamic from "next/dynamic";
+import Link from "next/link";
+
+import { storage } from "../services/firebase";
+import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
+
+const TextEditor = dynamic(() => import("./TextEditor"), {
+  ssr: false,
+});
 
 interface TechnologiesData {
   title: string;
@@ -61,6 +69,13 @@ const schema = yup.object({
     .required("Campo obrigátorio")
     .min(2, "deve ter no mínimo 2 caracteres")
     .max(25, "deve ter no máximo 25 caracteres"),
+  id: yup.string().required("Campo obrigátorio"),
+  order: yup.number().required("Campo obrigátorio").min(1),
+  description: yup.string().required("Campo obrigátorio"),
+  repository: yup.string().required("Campo obrigátorio"),
+  link: yup.string().required("Campo obrigátorio"),
+  useCase: yup.string().required("Campo obrigátorio"),
+  resume: yup.string().required("Campo obrigátorio"),
 });
 
 export default function ProjectCard({ project }: ProjectCardProps) {
@@ -71,6 +86,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
   const [typeState, setTypeState] = useState(project.type);
   const [titleState, setTitleState] = useState(project.title);
   const [isArquived, setIsArquived] = useState(project.arquived);
+  const [progresspercent, setProgresspercent] = useState(0);
 
   const { control, handleSubmit, setValue } = useForm<FormData>({
     resolver: yupResolver(schema),
@@ -165,10 +181,70 @@ export default function ProjectCard({ project }: ProjectCardProps) {
     });
   }, [project]);
 
+  const validateBeforeSubmit = () => {
+    let hasThumbnail = false;
+
+    if (!project.thumbnail || project.thumbnail !== thumbnailState.preview) {
+      if (thumbnailState.raw) {
+        hasThumbnail = true;
+      } else {
+        hasThumbnail = false;
+      }
+    } else {
+      hasThumbnail = true;
+    }
+    const hasTechnologies = technologiesState.length > 0;
+    const hasGallery = galleryState.length > 0;
+    const hasType = typeState === "primary" || typeState === "secondary";
+
+    return hasThumbnail && hasTechnologies && hasGallery && hasType;
+  };
+
+  const uploadImage = async (path: string) => {
+    const storageRef = ref(
+      storage,
+      `projects/${path}/${thumbnailState.raw.name}`
+    );
+    const uploadTask = uploadBytesResumable(storageRef, thumbnailState.raw);
+    let uploadedPath = null;
+
+    uploadTask.on(
+      "state_changed",
+      (snapshot) => {
+        const progress = Math.round(
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+        );
+        setProgresspercent(progress);
+      },
+      (error) => {
+        alert(error);
+      },
+      async () => {
+        const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
+        uploadedPath = downloadURL;
+        setThumbnailState({
+          preview: downloadURL,
+          raw: null,
+        });
+      }
+    );
+
+    return uploadedPath;
+  };
+
   const onSubmit: SubmitHandler<FormData> = async (data) => {
+    if (!validateBeforeSubmit()) {
+      alert("Verifique os campos");
+      return;
+    }
+    let thumbnailUploaded = null;
     if (project._id) {
+      if (project.thumbnail !== thumbnailState.preview) {
+        thumbnailUploaded = await uploadImage(data.id);
+      }
       const input = {
         _id: project._id,
+        thumbnail: thumbnailUploaded ? thumbnailUploaded : project.thumbnail,
         ...data,
       };
 
@@ -183,6 +259,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
         alert("Erro ao atualizar");
         console.log(error);
       }
+    } else {
     }
   };
 
@@ -203,6 +280,16 @@ export default function ProjectCard({ project }: ProjectCardProps) {
     }
   };
 
+  const handleDeleteFromGallery = (image: string) => {
+    setGalleryState((prevState) =>
+      prevState.filter((img) => img.preview !== image)
+    );
+  };
+
+  /*  useEffect(() => {
+    console.log("thumb", thumbnailState?.preview);
+  }, [thumbnailState]);
+ */
   return (
     <div
       className={styles.container}
@@ -211,6 +298,11 @@ export default function ProjectCard({ project }: ProjectCardProps) {
       <header>
         <span>{titleState}</span>
         <div className={styles.buttonContainer}>
+          <Link href={`/projects/${project.id}#project`}>
+            <a target="_blank">
+              <FiEye color="#FFF" size={24} />
+            </a>
+          </Link>
           <button>
             <FiEdit color="#F59D19" size={24} onClick={handleClickEdit} />
           </button>
@@ -294,8 +386,9 @@ export default function ProjectCard({ project }: ProjectCardProps) {
               <input
                 type="radio"
                 name="type"
-                value="primary"
+                value={typeState}
                 checked={typeState === "primary"}
+                onChange={() => setTypeState("primary")}
               />{" "}
               <label>Primary</label>
             </div>
@@ -303,8 +396,9 @@ export default function ProjectCard({ project }: ProjectCardProps) {
               <input
                 type="radio"
                 name="type"
-                value="secondary"
+                value={typeState}
                 checked={typeState === "secondary"}
+                onChange={() => setTypeState("secondary")}
               />{" "}
               <label>Secondary</label>
             </div>
@@ -319,13 +413,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
               name="description"
               control={control}
               render={({ field, fieldState }) => (
-                <textarea
-                  required
-                  name="description"
-                  rows={5}
-                  onChange={field.onChange}
-                  value={field.value}
-                />
+                <TextEditor name="description" field={field} />
               )}
             />
           </div>
@@ -398,15 +486,14 @@ export default function ProjectCard({ project }: ProjectCardProps) {
             <label htmlFor="thumbnail" className={styles.required}>
               Thumbnail
             </label>
-            {thumbnailState?.preview ? (
-              <img src={thumbnailState.preview} />
-            ) : (
-              <input
-                type="file"
-                name="thumbnail"
-                onChange={handleChangeThumbnailState}
-              />
+            {thumbnailState?.preview && (
+              <img src={thumbnailState.preview} className={styles.thumbnail} />
             )}
+            <input
+              type="file"
+              name="thumbnail"
+              onChange={handleChangeThumbnailState}
+            />
           </div>
 
           <div className={styles.formGroup}>
@@ -414,10 +501,24 @@ export default function ProjectCard({ project }: ProjectCardProps) {
               Galeria
             </label>
             <div className={styles.galleryContainer}>
-              {galleryState?.length > 0 &&
-                galleryState.map((gallery) => {
-                  if (gallery?.preview) return <img src={gallery.preview} />;
-                })}
+              <div className={styles.gallerySlider}>
+                {galleryState?.length > 0 &&
+                  galleryState.map((gallery) => {
+                    if (gallery?.preview)
+                      return (
+                        <div key={Math.random()} className={styles.galleryItem}>
+                          <img src={gallery.preview} />
+                          <span
+                            onClick={() =>
+                              handleDeleteFromGallery(gallery.preview)
+                            }
+                          >
+                            <FiTrash />
+                          </span>
+                        </div>
+                      );
+                  })}
+              </div>
             </div>
             <input
               type="file"
@@ -434,13 +535,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
               name="useCase"
               control={control}
               render={({ field, fieldState }) => (
-                <textarea
-                  required
-                  name="useCase"
-                  rows={5}
-                  onChange={field.onChange}
-                  value={field.value}
-                />
+                <TextEditor name="useCase" field={field} />
               )}
             />
           </div>
@@ -453,13 +548,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
               name="resume"
               control={control}
               render={({ field, fieldState }) => (
-                <textarea
-                  required
-                  name="resume"
-                  rows={5}
-                  onChange={field.onChange}
-                  value={field.value}
-                />
+                <TextEditor name="resume" field={field} />
               )}
             />
           </div>

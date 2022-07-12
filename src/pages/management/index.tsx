@@ -7,6 +7,7 @@ import ProjectCard from "../../components/ProjectCard";
 import { GetStaticProps } from "next";
 import { connectToDatabase } from "../../utils/mongodb";
 import { useEffect, useState } from "react";
+import { FiPlus } from "react-icons/fi";
 
 interface TechnologiesData {
   title: string;
@@ -14,7 +15,7 @@ interface TechnologiesData {
 }
 
 interface ProjectData {
-  _id: string;
+  _id?: string;
   id: string;
   title: string;
   description: string;
@@ -40,9 +41,32 @@ interface ProjectsProps {
 export default function ProjectsManagement({ projects }: ProjectsProps) {
   const [projectsState, setProjectsSate] = useState(projects);
 
-  useEffect(() => {
+  const createNewProject = () => {
+    setProjectsSate([
+      {
+        id: "",
+        title: "",
+        description: "",
+        technologies: [],
+        repository: "",
+        link: "",
+        thumbnail: "",
+        thumbnail_small: "",
+        resume: "",
+        useCase: "",
+        order: 1,
+        type: "",
+        arquived: true,
+        gallery: [],
+      },
+      ...projectsState,
+    ]);
+  };
+
+  /*   useEffect(() => {
     console.log(projects);
-  }, [projects]);
+  }, [projects]); */
+
   return (
     <>
       <header className={styles.header}>
@@ -68,6 +92,15 @@ export default function ProjectsManagement({ projects }: ProjectsProps) {
       </div>
 
       <main className={styles.main}>
+        <button
+          type="button"
+          className={styles.newButton}
+          onClick={createNewProject}
+        >
+          Criar novo projeto
+          <FiPlus size={32} />
+        </button>
+
         {projectsState.map((project) => (
           <ProjectCard project={project} key={project.id} />
         ))}

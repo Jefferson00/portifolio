@@ -55,4 +55,20 @@ export const technologiesList = [
     title: "MongoDB",
     class: "iconMongoDB",
   },
+  {
+    title: "Git",
+    class: "iconGit",
+  },
+  {
+    title: "Firebase",
+    class: "iconFirebase",
+  },
+  {
+    title: "SCSS",
+    class: "iconSaas",
+  },
+  {
+    title: "Styled Components",
+    class: "iconStyled",
+  },
 ];
