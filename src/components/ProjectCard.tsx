@@ -12,7 +12,7 @@ import dynamic from "next/dynamic";
 import Link from "next/link";
 
 import { storage } from "../services/firebase";
-import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
+import { ref, getDownloadURL, uploadBytes } from "firebase/storage";
 
 const TextEditor = dynamic(() => import("./TextEditor"), {
   ssr: false,
@@ -86,7 +86,6 @@ export default function ProjectCard({ project }: ProjectCardProps) {
   const [typeState, setTypeState] = useState(project.type);
   const [titleState, setTitleState] = useState(project.title);
   const [isArquived, setIsArquived] = useState(project.arquived);
-  const [progresspercent, setProgresspercent] = useState(0);
 
   const { control, handleSubmit, setValue } = useForm<FormData>({
     resolver: yupResolver(schema),
@@ -97,7 +96,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
   };
 
   const hasTechnologie = (tech) => {
-    return technologiesState.find((t) => t.title === tech.title);
+    return technologiesState?.find((t) => t.title === tech.title);
   };
 
   const handleChangeThumbnailState = ({
@@ -153,6 +152,173 @@ export default function ProjectCard({ project }: ProjectCardProps) {
     }
   };
 
+  const validateBeforeSubmit = () => {
+    let hasThumbnail = false;
+
+    if (!project.thumbnail || project.thumbnail !== thumbnailState.preview) {
+      if (thumbnailState.raw) {
+        hasThumbnail = true;
+      } else {
+        hasThumbnail = false;
+      }
+    } else {
+      hasThumbnail = true;
+    }
+    const hasTechnologies = technologiesState.length > 0;
+    const hasGallery = galleryState.length > 0;
+    const hasType = typeState === "primary" || typeState === "secondary";
+
+    return hasThumbnail && hasTechnologies && hasGallery && hasType;
+  };
+
+  const uploadImage = async (path: string, file: File) => {
+    const storageRef = ref(
+      storage,
+      `projects/${path}/${file.name}-${new Date().getMilliseconds()}`
+    );
+
+    const res = await uploadBytes(storageRef, file);
+
+    const urlUploaded = await getDownloadURL(res.ref);
+
+    return urlUploaded;
+  };
+
+  const getGalleryDifference = () => {
+    return galleryState.filter((gallery) => {
+      return !project.gallery.some((gallery2) => {
+        return gallery.preview === gallery2.image;
+      });
+    });
+  };
+
+  const handleCreate = async (data: FormData) => {
+    const thumbnailUploaded = await uploadImage(data.id, thumbnailState.raw);
+    let galleryCreated = [];
+
+    await Promise.all(
+      galleryState.map(async (gallery) => {
+        const imageUploaded = await uploadImage(data.id, gallery.raw);
+        galleryCreated.push({
+          image: imageUploaded,
+        });
+      })
+    );
+
+    const input = {
+      _id: project._id,
+      thumbnail: thumbnailUploaded,
+      gallery: galleryCreated,
+      type: typeState,
+      technologies: technologiesState,
+      ...data,
+    };
+
+    try {
+      const res = await api.post("/projects", input);
+      if (res.data.modifiedCount > 0) {
+        setTitleState(data.title);
+        setEditHasClicked(false);
+        alert("Projeto criado com sucesso!");
+      }
+    } catch (error) {
+      alert("Erro ao criar");
+      console.log(error);
+    }
+  };
+
+  const handleUpdate = async (data: FormData) => {
+    let thumbnailUploaded = null;
+    if (project.thumbnail !== thumbnailState.preview) {
+      thumbnailUploaded = await uploadImage(data.id, thumbnailState.raw);
+    }
+
+    const galleryDifference = getGalleryDifference();
+
+    let newGalleryUploaded = [];
+
+    if (galleryDifference.length > 0) {
+      await Promise.all(
+        galleryDifference.map(async (gallery) => {
+          const imageUploaded = await uploadImage(data.id, gallery.raw);
+          newGalleryUploaded.push({
+            image: imageUploaded,
+          });
+        })
+      );
+    }
+
+    const galleryStateFiltered = galleryState.filter((gallery) => {
+      return !galleryDifference.some((gallery2) => {
+        return gallery.preview === gallery2.preview;
+      });
+    });
+
+    let galleryUpdated = [];
+
+    galleryStateFiltered.map((gallery) => {
+      galleryUpdated.push({
+        image: gallery.preview,
+      });
+    });
+
+    const input = {
+      _id: project._id,
+      thumbnail: thumbnailUploaded ? thumbnailUploaded : project.thumbnail,
+      gallery: [...galleryUpdated, ...newGalleryUploaded],
+      type: typeState,
+      technologies: technologiesState,
+      ...data,
+    };
+
+    try {
+      const res = await api.put("/projects", input);
+      if (res.data.modifiedCount > 0) {
+        setTitleState(data.title);
+        setEditHasClicked(false);
+        alert("Projeto atualizado com sucesso!");
+      }
+    } catch (error) {
+      alert("Erro ao atualizar");
+      console.log(error);
+    }
+  };
+
+  const handleChangeArquivedStatus = async () => {
+    const input = {
+      _id: project._id,
+      arquived: !project.arquived,
+    };
+
+    try {
+      const res = await api.put("/projects", input);
+      if (res.data.modifiedCount > 0) {
+        setIsArquived(!project.arquived);
+      }
+      console.log(res.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleDeleteFromGallery = (image: string) => {
+    setGalleryState((prevState) =>
+      prevState.filter((img) => img.preview !== image)
+    );
+  };
+
+  const onSubmit: SubmitHandler<FormData> = async (data) => {
+    if (!validateBeforeSubmit()) {
+      alert("Verifique os campos");
+      return;
+    }
+    if (project._id) {
+      await handleUpdate(data);
+    } else {
+      await handleCreate(data);
+    }
+  };
+
   useEffect(() => {
     setValue("title", project.title);
     setValue("description", project.description);
@@ -181,115 +347,6 @@ export default function ProjectCard({ project }: ProjectCardProps) {
     });
   }, [project]);
 
-  const validateBeforeSubmit = () => {
-    let hasThumbnail = false;
-
-    if (!project.thumbnail || project.thumbnail !== thumbnailState.preview) {
-      if (thumbnailState.raw) {
-        hasThumbnail = true;
-      } else {
-        hasThumbnail = false;
-      }
-    } else {
-      hasThumbnail = true;
-    }
-    const hasTechnologies = technologiesState.length > 0;
-    const hasGallery = galleryState.length > 0;
-    const hasType = typeState === "primary" || typeState === "secondary";
-
-    return hasThumbnail && hasTechnologies && hasGallery && hasType;
-  };
-
-  const uploadImage = async (path: string) => {
-    const storageRef = ref(
-      storage,
-      `projects/${path}/${thumbnailState.raw.name}`
-    );
-    const uploadTask = uploadBytesResumable(storageRef, thumbnailState.raw);
-    let uploadedPath = null;
-
-    uploadTask.on(
-      "state_changed",
-      (snapshot) => {
-        const progress = Math.round(
-          (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-        );
-        setProgresspercent(progress);
-      },
-      (error) => {
-        alert(error);
-      },
-      async () => {
-        const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
-        uploadedPath = downloadURL;
-        setThumbnailState({
-          preview: downloadURL,
-          raw: null,
-        });
-      }
-    );
-
-    return uploadedPath;
-  };
-
-  const onSubmit: SubmitHandler<FormData> = async (data) => {
-    if (!validateBeforeSubmit()) {
-      alert("Verifique os campos");
-      return;
-    }
-    let thumbnailUploaded = null;
-    if (project._id) {
-      if (project.thumbnail !== thumbnailState.preview) {
-        thumbnailUploaded = await uploadImage(data.id);
-      }
-      const input = {
-        _id: project._id,
-        thumbnail: thumbnailUploaded ? thumbnailUploaded : project.thumbnail,
-        ...data,
-      };
-
-      try {
-        const res = await api.put("/projects", input);
-        if (res.data.modifiedCount > 0) {
-          setTitleState(data.title);
-          setEditHasClicked(false);
-          alert("Atualizado com sucesso");
-        }
-      } catch (error) {
-        alert("Erro ao atualizar");
-        console.log(error);
-      }
-    } else {
-    }
-  };
-
-  const handleChangeArquivedStatus = async () => {
-    const input = {
-      _id: project._id,
-      arquived: !project.arquived,
-    };
-
-    try {
-      const res = await api.put("/projects", input);
-      if (res.data.modifiedCount > 0) {
-        setIsArquived(!project.arquived);
-      }
-      console.log(res.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const handleDeleteFromGallery = (image: string) => {
-    setGalleryState((prevState) =>
-      prevState.filter((img) => img.preview !== image)
-    );
-  };
-
-  /*  useEffect(() => {
-    console.log("thumb", thumbnailState?.preview);
-  }, [thumbnailState]);
- */
   return (
     <div
       className={styles.container}
@@ -327,6 +384,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
             <Controller
               name="id"
               control={control}
+              defaultValue=""
               render={({ field, fieldState }) => (
                 <input
                   required
@@ -346,6 +404,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
             </label>
             <Controller
               name="title"
+              defaultValue=""
               control={control}
               render={({ field, fieldState }) => (
                 <input
@@ -366,6 +425,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
             </label>
             <Controller
               name="order"
+              defaultValue={1}
               control={control}
               render={({ field, fieldState }) => (
                 <input
@@ -411,6 +471,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
 
             <Controller
               name="description"
+              defaultValue=""
               control={control}
               render={({ field, fieldState }) => (
                 <TextEditor name="description" field={field} />
@@ -448,6 +509,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
             </label>
             <Controller
               name="repository"
+              defaultValue=""
               control={control}
               render={({ field, fieldState }) => (
                 <input
@@ -468,6 +530,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
             </label>
             <Controller
               name="link"
+              defaultValue=""
               control={control}
               render={({ field, fieldState }) => (
                 <input
@@ -533,6 +596,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
             </label>
             <Controller
               name="useCase"
+              defaultValue=""
               control={control}
               render={({ field, fieldState }) => (
                 <TextEditor name="useCase" field={field} />
@@ -546,6 +610,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
             </label>
             <Controller
               name="resume"
+              defaultValue=""
               control={control}
               render={({ field, fieldState }) => (
                 <TextEditor name="resume" field={field} />

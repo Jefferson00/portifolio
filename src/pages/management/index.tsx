@@ -4,10 +4,12 @@ import { easing } from "../../styles/animations";
 
 import styles from "../../styles/management.module.css";
 import ProjectCard from "../../components/ProjectCard";
-import { GetStaticProps } from "next";
+import { GetServerSideProps, GetStaticProps } from "next";
 import { connectToDatabase } from "../../utils/mongodb";
 import { useEffect, useState } from "react";
 import { FiPlus } from "react-icons/fi";
+
+import { parseCookies } from "nookies";
 
 interface TechnologiesData {
   title: string;
@@ -109,7 +111,18 @@ export default function ProjectsManagement({ projects }: ProjectsProps) {
   );
 }
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
+  const { ["@JeffersonDev:token"]: token } = parseCookies(ctx);
+
+  if (!token || token !== process.env.TOKEN) {
+    return {
+      redirect: {
+        destination: "/management/login",
+        permanent: false,
+      },
+    };
+  }
+
   const db = await connectToDatabase(process.env.MONGODB_URI);
 
   const projects = await db
@@ -122,6 +135,5 @@ export const getStaticProps: GetStaticProps = async () => {
     props: {
       projects: JSON.parse(JSON.stringify(projects)),
     },
-    revalidate: 60,
   };
 };
