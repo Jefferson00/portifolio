@@ -9,7 +9,7 @@ import { connectToDatabase } from "../../utils/mongodb";
 import { useEffect, useState } from "react";
 import { FiPlus } from "react-icons/fi";
 
-import { parseCookies } from "nookies";
+import { parseCookies, destroyCookie } from "nookies";
 
 interface TechnologiesData {
   title: string;
@@ -65,10 +65,14 @@ export default function ProjectsManagement({ projects }: ProjectsProps) {
     ]);
   };
 
-  /*   useEffect(() => {
-    console.log(projects);
-  }, [projects]); */
-
+  /* useEffect(() => {
+    if (typeof window !== undefined) {
+      window.onbeforeunload = () => {
+        destroyCookie(undefined, "@JeffersonDev:token");
+      };
+    }
+  });
+ */
   return (
     <>
       <header className={styles.header}>

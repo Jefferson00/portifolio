@@ -2,6 +2,7 @@ import { GetStaticProps } from "next";
 import { useContext } from "react";
 import { About } from "../components/About";
 import { Contact } from "../components/Contact";
+import Divider from "../components/Divider";
 import { Header } from "../components/Header";
 import { HeaderBackground } from "../components/HeaderBackground";
 import { OthersProjects } from "../components/OthersProjects";
@@ -65,6 +66,7 @@ export default function Home({ projects, secondaryProjects }: HomeProps) {
           <OthersProjects projects={secondaryProjects} />
         </>
       )}
+      <Divider />
       <Contact />
       <About />
     </>

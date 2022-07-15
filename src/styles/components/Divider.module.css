@@ -1,0 +1,72 @@
+.divider{
+  width: 80%;
+  margin: 15rem auto 7rem;
+  position: relative;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 2px;
+
+  border-radius: 8px;
+
+  background: linear-gradient(-45deg, var(--orange), transparent, var(--orange), transparent);
+	background-size: 400% 400%;
+	animation: gradient 8s ease infinite;
+}
+
+@keyframes gradient {
+  0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+.divider svg{
+  position: absolute;
+  top: -3rem;
+  width: 8rem;
+  height: 8rem;
+}
+
+.code {
+  display: inline-block;
+  background-size: cover;
+  transition: all 0.4s;
+  position: absolute;
+}
+
+.one{
+  width: 8rem;
+  height: 6rem;
+  top: -30%;
+  left: 0;
+  background-image: url("/svgs/code-1.svg");
+}
+.two{
+  width: 15rem;
+  height: 5rem;
+  top: -20%;
+  left: 20%;
+  background-image: url("/svgs/code-2.svg");
+}
+.three{
+  width: 13rem;
+  height: 5rem;
+  top: -10%;
+  left: 90%;
+  background-image: url("/svgs/code-3.svg");
+}
+.four{
+  width: 13rem;
+  height: 5rem;
+  top: 20%;
+  left: 60%;
+  background-image: url("/svgs/code-4.svg");
+}

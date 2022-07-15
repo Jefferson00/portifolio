@@ -14,7 +14,12 @@ import Link from "next/link";
 import { storage } from "../services/firebase";
 import { ref, getDownloadURL, uploadBytes } from "firebase/storage";
 
+import "@uiw/react-textarea-code-editor/dist.css";
+
 const TextEditor = dynamic(() => import("./TextEditor"), {
+  ssr: false,
+});
+const CodeEditor = dynamic(() => import("./CodeEditor"), {
   ssr: false,
 });
 
@@ -71,7 +76,6 @@ const schema = yup.object({
     .max(25, "deve ter no máximo 25 caracteres"),
   id: yup.string().required("Campo obrigátorio"),
   order: yup.number().required("Campo obrigátorio").min(1),
-  description: yup.string().required("Campo obrigátorio"),
   repository: yup.string().required("Campo obrigátorio"),
   link: yup.string().required("Campo obrigátorio"),
   useCase: yup.string().required("Campo obrigátorio"),
@@ -308,6 +312,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
   };
 
   const onSubmit: SubmitHandler<FormData> = async (data) => {
+    console.log(data.description);
     if (!validateBeforeSubmit()) {
       alert("Verifique os campos");
       return;
@@ -469,12 +474,20 @@ export default function ProjectCard({ project }: ProjectCardProps) {
               Descrição
             </label>
 
-            <Controller
+            {/*  <Controller
               name="description"
               defaultValue=""
               control={control}
               render={({ field, fieldState }) => (
                 <TextEditor name="description" field={field} />
+              )}
+            /> */}
+            <Controller
+              name="description"
+              defaultValue=""
+              control={control}
+              render={({ field, fieldState }) => (
+                <CodeEditor name="description" field={field} />
               )}
             />
           </div>
@@ -599,7 +612,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
               defaultValue=""
               control={control}
               render={({ field, fieldState }) => (
-                <TextEditor name="useCase" field={field} />
+                <CodeEditor name="useCase" field={field} />
               )}
             />
           </div>

@@ -1,12 +1,15 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { ControllerRenderProps } from "react-hook-form";
 import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
+import Link from "@tiptap/extension-link";
 import {
   FiArrowLeft,
   FiArrowRight,
   FiBold,
   FiItalic,
+  FiLink,
+  FiLink2,
   FiList,
 } from "react-icons/fi";
 
@@ -15,24 +18,44 @@ interface TextEditorProps {
   name: string;
 }
 
+const buttonStyle = {
+  background: "#D1D1D1",
+  width: 24,
+  height: 24,
+  borderRadius: 3,
+};
+
+const rowStyle = {
+  display: "flex",
+  flexWrap: "wrap",
+  gap: 16,
+  alignItems: "center",
+};
+
 const MenuBar = ({ editor }) => {
+  const setLink = useCallback(() => {
+    const previousUrl = editor.getAttributes("link").href;
+    const url = window.prompt("URL", previousUrl);
+
+    // cancelled
+    if (url === null) {
+      return;
+    }
+
+    // empty
+    if (url === "") {
+      editor.chain().focus().extendMarkRange("link").unsetLink().run();
+
+      return;
+    }
+
+    // update link
+    editor.chain().focus().extendMarkRange("link").setLink({ href: url }).run();
+  }, [editor]);
+
   if (!editor) {
     return null;
   }
-
-  const buttonStyle = {
-    background: "#D1D1D1",
-    width: 24,
-    height: 24,
-    borderRadius: 3,
-  };
-
-  const rowStyle = {
-    display: "flex",
-    flexWrap: "wrap",
-    gap: 16,
-    alignItems: "center",
-  };
 
   return (
     <div
@@ -60,33 +83,6 @@ const MenuBar = ({ editor }) => {
       >
         <FiItalic color="#111518" />
       </button>
-      {/* <button
-        style={buttonStyle}
-        type="button"
-        onClick={() => editor.chain().focus().toggleStrike().run()}
-        className={editor.isActive("strike") ? "is-active" : ""}
-      >
-         
-      </button> */}
-      {/*  <button
-        type="button"
-        onClick={() => editor.chain().focus().toggleCode().run()}
-        className={editor.isActive("code") ? "is-active" : ""}
-      >
-        code
-      </button> */}
-      {/* <button
-        type="button"
-        onClick={() => editor.chain().focus().unsetAllMarks().run()}
-      >
-        clear marks
-      </button> */}
-      {/* <button
-        type="button"
-        onClick={() => editor.chain().focus().clearNodes().run()}
-      >
-        clear nodes
-      </button> */}
       <button
         style={buttonStyle}
         type="button"
@@ -95,48 +91,6 @@ const MenuBar = ({ editor }) => {
       >
         P
       </button>
-      {/*  <button
-        type="button"
-        onClick={() => editor.chain().focus().toggleHeading({ level: 1 }).run()}
-        className={editor.isActive("heading", { level: 1 }) ? "is-active" : ""}
-      >
-        h1
-      </button> */}
-      {/* <button
-        type="button"
-        onClick={() => editor.chain().focus().toggleHeading({ level: 2 }).run()}
-        className={editor.isActive("heading", { level: 2 }) ? "is-active" : ""}
-      >
-        h2
-      </button>
-      <button
-        type="button"
-        onClick={() => editor.chain().focus().toggleHeading({ level: 3 }).run()}
-        className={editor.isActive("heading", { level: 3 }) ? "is-active" : ""}
-      >
-        h3
-      </button>
-      <button
-        type="button"
-        onClick={() => editor.chain().focus().toggleHeading({ level: 4 }).run()}
-        className={editor.isActive("heading", { level: 4 }) ? "is-active" : ""}
-      >
-        h4
-      </button>
-      <button
-        type="button"
-        onClick={() => editor.chain().focus().toggleHeading({ level: 5 }).run()}
-        className={editor.isActive("heading", { level: 5 }) ? "is-active" : ""}
-      >
-        h5
-      </button>
-      <button
-        type="button"
-        onClick={() => editor.chain().focus().toggleHeading({ level: 6 }).run()}
-        className={editor.isActive("heading", { level: 6 }) ? "is-active" : ""}
-      >
-        h6
-      </button> */}
       <button
         style={buttonStyle}
         type="button"
@@ -153,32 +107,6 @@ const MenuBar = ({ editor }) => {
       >
         <FiList color="#111518" />
       </button>
-      {/* <button
-        type="button"
-        onClick={() => editor.chain().focus().toggleCodeBlock().run()}
-        className={editor.isActive("codeBlock") ? "is-active" : ""}
-      >
-        code block
-      </button> */}
-      {/* <button
-        type="button"
-        onClick={() => editor.chain().focus().toggleBlockquote().run()}
-        className={editor.isActive("blockquote") ? "is-active" : ""}
-      >
-        blockquote
-      </button> */}
-      {/* <button
-        type="button"
-        onClick={() => editor.chain().focus().setHorizontalRule().run()}
-      >
-        horizontal rule
-      </button>
-      <button
-        type="button"
-        onClick={() => editor.chain().focus().setHardBreak().run()}
-      >
-        hard break
-      </button> */}
       <button
         style={buttonStyle}
         type="button"
@@ -193,13 +121,32 @@ const MenuBar = ({ editor }) => {
       >
         <FiArrowRight color="#111518" />
       </button>
+      <button
+        style={buttonStyle}
+        onClick={setLink}
+        className={editor.isActive("link") ? "is-active" : ""}
+      >
+        <FiLink color="#111518" />
+      </button>
+      <button
+        style={buttonStyle}
+        onClick={() => editor.chain().focus().unsetLink().run()}
+        disabled={!editor.isActive("link")}
+      >
+        <FiLink2 color="#111518" />
+      </button>
     </div>
   );
 };
 
 export default function TextEditor({ field, name }: TextEditorProps) {
   const editor = useEditor({
-    extensions: [StarterKit],
+    extensions: [
+      StarterKit,
+      Link.configure({
+        openOnClick: false,
+      }),
+    ],
     content: field.value,
   });
 
