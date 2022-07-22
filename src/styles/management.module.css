@@ -1,0 +1,71 @@
+.header{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+}
+
+.sectionTitleContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.sectionTitleContainer > button {
+  width: 90%;
+  background-color: transparent;
+  margin-top: 1.5rem;
+  text-align: center;
+  padding-bottom: 1.25rem;
+  cursor: initial;
+  border-image: linear-gradient(
+    to right,
+    var(--orange) 25%,
+    var(--light-gray) 50%,
+    var(--orange) 100%
+  );
+  border-image-slice: 1;
+  border-image-width: 0px 0px 2px 0px;
+  outline: none;
+}
+
+.sectionTitleContainer > button strong {
+  color: var(--light-gray);
+  font-size: 1.12rem;
+  transition: color 0.4s;
+}
+
+.main{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  
+  padding: 3.4rem 2rem;
+}
+
+.newButton {
+  display: flex;
+
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+
+  background: var(--orange) !important;
+  color: #fff;
+
+  position: relative;
+  border: none;
+  border-radius: 8px;
+
+  height: 3.4rem;
+  max-width: 311px;
+
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+
+.newButton svg {
+  position: absolute;
+  right: 1rem;
+}

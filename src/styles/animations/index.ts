@@ -12,9 +12,9 @@ export const fadeInUp = {
       delay: 0.2,
       duration: 0.6,
       ease: easing,
-    }
+    },
   },
-}
+};
 
 export const fadeInLeft = {
   initial: {
@@ -28,9 +28,25 @@ export const fadeInLeft = {
       delay: 0.2,
       duration: 0.6,
       ease: easing,
-    }
+    },
   },
-}
+};
+
+export const fadeInRight = {
+  initial: {
+    x: 120,
+    opacity: 0,
+  },
+  animate: {
+    x: 0,
+    opacity: 1,
+    transition: {
+      delay: 0.2,
+      duration: 0.6,
+      ease: easing,
+    },
+  },
+};
 
 export const stagger = {
   initial: {
@@ -50,6 +66,6 @@ export const stagger = {
       duration: 0.6,
       ease: easing,
       when: "afterChildren",
-    }
+    },
   },
 };

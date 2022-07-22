@@ -1,4 +1,4 @@
-.container{
+.container {
   position: fixed;
   bottom: 2rem;
   right: 2rem;
@@ -6,26 +6,26 @@
   transition: opacity 0.4s;
 }
 
-.container button{
-  background: transparent;
+.container button {
+  background: var(--background);
   border: 1px solid #fff;
   width: 2.375rem;
-  height:  2.375rem;
+  height: 2.375rem;
   transition: all 0.4s;
   font-size: 0;
 }
 
-.container button img{
-  width:  2rem;
+.container button img {
+  width: 2rem;
   height: 2rem;
 }
 
-.container button:hover{
+.container button:hover {
   background: var(--orange);
   border: none;
 }
 
-.container button:hover img{
-  width:  2rem;
+.container button:hover img {
+  width: 2rem;
   height: 2rem;
 }

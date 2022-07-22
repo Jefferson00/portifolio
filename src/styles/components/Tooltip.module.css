@@ -1,0 +1,20 @@
+.tooltipContainer {
+  position: relative;
+}
+
+.tooltipContent {
+  visibility: hidden;
+  position: absolute;
+  z-index: 1;
+  transform: translate(30%, -100%);
+}
+
+.tooltipContainer:hover .tooltipContent {
+  visibility: visible;
+}
+
+@media (min-width: 1080px) {
+  .tooltipContent {
+    transform: translate(-120%, -100%);
+  }
+}

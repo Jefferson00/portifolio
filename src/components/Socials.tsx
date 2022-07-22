@@ -97,11 +97,21 @@ export function Socials() {
                 <Link href="/#projects">
                     <motion.a
                         whileHover={{
-                            x: 5,
+                            y: 1,
                             scale: 1.03,
                         }}
                     >
                         <p>Projetos</p>
+                    </motion.a>
+                </Link>
+                <Link href="/#about">
+                    <motion.a
+                        whileHover={{
+                            x: 5,
+                            scale: 1.03,
+                        }}
+                    >
+                        <p>Sobre mim</p>
                     </motion.a>
                 </Link>
             </div>

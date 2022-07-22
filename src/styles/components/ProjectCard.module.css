@@ -1,0 +1,219 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  max-width: 1205px;
+
+  background-color: var(--box-background);
+
+  padding: 0.8rem 1.5rem;
+
+  border-radius: 10px;
+
+  transition: all 0.4s;
+
+  overflow: hidden;
+}
+
+.container header {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+
+}
+
+.container span{
+  font-size: 1.125rem;
+}
+
+.container button {
+  background: transparent;
+  border: none;
+}
+
+.buttonContainer{
+  display: flex;
+  gap: 1rem;
+}
+
+.buttonContainer a,
+.buttonContainer svg
+{
+  cursor: pointer;
+}
+
+.content{
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+
+  visibility: hidden;
+  opacity: 0;
+
+  transition: all 0.8s;
+}
+
+.form {
+  width: 100%;
+  margin-top: 3rem;
+}
+
+.formGroup{
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.formGroup label {
+  font-size: 1.125rem;
+  position: relative;
+}
+
+.required::after {
+  content: '*';
+  position: absolute;
+ 
+  margin-left: 0.5rem;
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  color: #CC3728;
+}
+
+.formGroup input,
+.formGroup textarea{
+  background-color: #D1D1D1;
+  border: none;
+  border-radius: 8px;
+
+  padding: 0.5rem;
+  outline: none;
+
+  margin-top: 0.5rem;
+}
+
+.formGroup input:focus,
+.formGroup input:active {
+  outline: none;
+  border: 1px solid var(--orange);
+}
+
+.saveButton {
+  display: flex;
+
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+
+  background: var(--orange) !important;
+  color: #fff;
+
+  position: relative;
+  border-radius: 8px;
+
+  height: 3.4rem;
+  max-width: 311px;
+  margin: 0 auto;
+
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+
+.saveButton svg {
+  position: absolute;
+  right: 1rem;
+}
+
+.techList {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.techButton {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  min-width: 4rem;
+}
+
+.techButton span {
+  font-size: 0.75rem;
+  color: #fff;
+}
+
+.galleryContainer {
+  overflow: hidden;
+  white-space: nowrap;
+  margin: 5rem 0;
+  overflow-x: auto;
+
+  padding: 1rem 0;
+}
+
+.gallerySlider {
+  display: flex;
+  transition: all 0.4s;
+}
+
+.galleryContainer::-webkit-scrollbar {
+  width: 0;
+  height: 10px;
+  background: transparent;
+}
+.galleryContainer::-webkit-scrollbar-thumb {
+  background: var(--orange);
+  border-radius: 10px;
+}
+
+.galleryItem {
+  height: 32rem;
+  margin-right: 3rem;
+
+  pointer-events: none;
+
+  position: relative;
+}
+
+.galleryItem img {
+  height: 100%;
+
+  object-fit: contain;
+  max-width: 100vw;
+}
+
+.galleryItem span{
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  right: 0;
+  background-color: var(--orange);
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom-left-radius: 50%;
+  z-index: 3;
+  pointer-events: all;
+
+  transition: all 0.4s;
+
+  padding: 0 0.1rem 0.1rem 0.3rem;
+}
+
+.galleryItem span:hover{
+  filter: brightness(0.9);
+}
+
+.thumbnail{
+  max-height: 25rem;
+  max-width: 100%;
+  object-fit: contain;
+}

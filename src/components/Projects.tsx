@@ -75,9 +75,21 @@ export function Projects({ projects }: HomeProps) {
                                                     </a>
                                                 </Link>
                                             </motion.div>
+                                            <div className={styles.linksContainer}>
+                                                <a href={project.link} target="_blank" rel="noopener noreferrer">
+                                                    <span className={styles.iconExternal} />
+                                                    <p>Preview/Demo</p>
+                                                </a>
+                                                <a href={project.repository} target="_blank" rel="noopener noreferrer">
+                                                    <span className={styles.iconGithub} />
+                                                    <p>Repositório</p>
+                                                </a>
+                                            </div>
+                                            
                                             <div className={styles.titleContainer}>
                                                 <p>{project.title}</p>
                                             </div>
+                                            
                                             <div
                                                 className={styles.descriptionContainer}
                                                 dangerouslySetInnerHTML={{ __html: project.resume }}
