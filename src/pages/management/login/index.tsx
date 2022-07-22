@@ -35,6 +35,7 @@ export default function Login() {
 
   const handleLogin = async () => {
     try {
+      console.log(process.env.APP_URL);
       const res = await api.post("/", { password });
 
       if (res.data) {
