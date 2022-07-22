@@ -1,6 +1,8 @@
 .divider{
   width: 80%;
-  margin: 15rem auto 7rem;
+  margin: 0 auto;
+  margin-top: 4rem;
+  padding-bottom: 8rem;
   position: relative;
 
   display: flex;
@@ -11,9 +13,9 @@
 
   border-radius: 8px;
 
-  background: linear-gradient(-45deg, var(--orange), transparent, var(--orange), transparent);
+/*   background: linear-gradient(-45deg, var(--orange), transparent, var(--orange), transparent);
 	background-size: 400% 400%;
-	animation: gradient 8s ease infinite;
+	animation: gradient 8s ease infinite; */
 }
 
 @keyframes gradient {
@@ -31,8 +33,8 @@
 .divider svg{
   position: absolute;
   top: -3rem;
-  width: 8rem;
-  height: 8rem;
+  width: 10rem;
+  height: 10rem;
 }
 
 .code {
@@ -40,33 +42,140 @@
   background-size: cover;
   transition: all 0.4s;
   position: absolute;
+  opacity: 0;
+  animation: showUp 8s ease infinite;
 }
 
 .one{
   width: 8rem;
   height: 6rem;
-  top: -30%;
-  left: 0;
+  top: 4rem;
+  left: 5%;
   background-image: url("/svgs/code-1.svg");
 }
 .two{
   width: 15rem;
   height: 5rem;
-  top: -20%;
+  top: 4rem;
   left: 20%;
   background-image: url("/svgs/code-2.svg");
+  animation-delay: 5s;
 }
 .three{
-  width: 13rem;
+  width: 16rem;
   height: 5rem;
-  top: -10%;
-  left: 90%;
-  background-image: url("/svgs/code-3.svg");
+  top: 2rem;
+  left: 80%;
+  background-image: url("/svgs/code-5.svg");
+  animation-delay: 8s;
 }
 .four{
   width: 13rem;
   height: 5rem;
-  top: 20%;
+  top: 4rem;
   left: 60%;
   background-image: url("/svgs/code-4.svg");
+  animation-delay: 3s;
+}
+
+@keyframes showUp {
+  0% {
+    top: 5rem;
+	}
+  30% {
+    opacity: 0.3;
+  }
+	100% {
+    top: -5rem;
+    opacity: 0;
+	}
+}
+
+.monitor{
+  animation: shine 5s ease infinite;
+}
+
+@keyframes shine {
+  0% {
+    filter: brightness(1.1);
+	}
+  20% {
+    filter: brightness(1);
+  }
+  30% {
+    filter: brightness(0.9);
+  }
+  60% {
+    filter: brightness(1.4);
+  }
+  80% {
+    filter: brightness(0.8);
+  }
+	100% {
+    filter: brightness(1);
+	}
+}
+
+
+.head{
+  animation: shake 2s linear infinite;
+}
+
+
+@keyframes shake {
+  0% {
+    transform: translateY(0);
+	}
+	50% {
+    transform: translateY(28px);
+	}
+	100% {
+    transform: translateY(0);
+	}
+}
+
+.armOne{
+  animation: moving 2s linear infinite;
+  animation-delay: 2s;
+}
+.armTwo{
+  animation: moving 2s linear infinite;
+}
+
+@keyframes moving {
+  0% {
+    transform: translate(0);
+	}
+  20% {
+    transform: translate(22px, 10px);
+	}
+	50% {
+    transform: translate(-20px, 0);
+	}
+  80% {
+    transform: translate(5px, -5px);
+	}
+	100% {
+    transform: translate(0);
+	}
+}
+
+.lines{
+  animation: typing 4s steps(11) infinite;
+  animation-delay: 4.5s;
+  overflow: hidden;
+  opacity: 0;
+  white-space: nowrap;
+}
+
+@keyframes typing {
+  0% {
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
 }

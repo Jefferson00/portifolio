@@ -66,7 +66,7 @@ export default function Home({ projects, secondaryProjects }: HomeProps) {
           <OthersProjects projects={secondaryProjects} />
         </>
       )}
-      <Divider />
+
       <Contact />
       <About />
     </>
