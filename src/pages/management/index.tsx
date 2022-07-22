@@ -118,7 +118,7 @@ export default function ProjectsManagement({ projects }: ProjectsProps) {
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const { ["@JeffersonDev:token"]: token } = parseCookies(ctx);
 
-  if (!token || token !== process.env.TOKEN) {
+  if (!token || token !== process.env.NEXT_PUBLIC_TOKEN) {
     return {
       redirect: {
         destination: "/management/login",
