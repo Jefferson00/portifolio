@@ -187,6 +187,12 @@
 .iconSqlite {
   background-image: url("/icons/technologies/sqlite.svg");
 }
+.iconNest {
+  background-image: url("/icons/technologies/nest.svg");
+}
+.iconPrisma {
+  background-image: url("/icons/technologies/prisma.svg");
+}
 
 .galleryContainer {
   position: relative;

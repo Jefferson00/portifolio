@@ -59,6 +59,10 @@
   color: var(--orange);
 }
 
+.projectContainer{
+  overflow: hidden;
+}
+
 .projectList {
   display: flex;
   flex-direction: column;

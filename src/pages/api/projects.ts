@@ -17,6 +17,11 @@ export default async function handler(req, res) {
         .updateOne({ _id: objectId }, { $set: bodyCopy });
       res.json(projectUpdated);
       break;
+    case "DELETE":
+      const deleteId = new ObjectID(req.query._id);
+      await db.collection("projects").deleteOne({ _id: deleteId });
+      res.json(deleteId);
+      break;
 
     default:
       break;

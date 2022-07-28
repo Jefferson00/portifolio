@@ -34,17 +34,18 @@ export function About() {
         />
       </div>
       <div className={styles.textContainer}>
-        <p>
+        {/* <p>
           Oi, meu nome é Jefferson. Sou uma pessoa de mente inquieta e criativa.
           Busco estar sempre atualizado e em constante aprendizado.
-        </p>
+        </p> */}
         <p>
-          Sou desenvolvedor FullStack em inicio de carreira, em busca de novos
-          desafios e oportunidades.
+          Desenvolvedor Javascript FullStack em inicio de carreira, sou uma
+          pessoa de mente inquieta e criativa. Busco estar sempre atualizado e
+          em constante aprendizado.
         </p>
         <br />
         <p>
-          Sou formado em Análise e Desenvolvimento de Sistemas pelo Instituto de
+          Formado em Análise e Desenvolvimento de Sistemas pelo Instituto de
           Educação Superior de Brasília (IESB), 2018.
         </p>
       </div>
@@ -62,8 +63,12 @@ export function About() {
             <span className={styles.iconNode} />
           </div>
           <div className={`${styles.skill} ${styles.skillIntermediary}`}>
-            <span className={styles.iconJavascript} />
+            <span className={styles.iconNestJs} />
           </div>
+          <div className={`${styles.skill} ${styles.skillIntermediary}`}>
+            <span className={styles.iconGraphql} />
+          </div>
+
           <div className={`${styles.skill} ${styles.skillIntermediary}`}>
             <span className={styles.iconTypescript} />
           </div>
@@ -77,7 +82,16 @@ export function About() {
             <span className={styles.iconPostgres} />
           </div>
           <div className={`${styles.skill} ${styles.skillIntermediary}`}>
+            <span className={styles.iconMongodb} />
+          </div>
+          <div className={`${styles.skill} ${styles.skillIntermediary}`}>
             <span className={styles.iconMySql} />
+          </div>
+          <div className={`${styles.skill} ${styles.skillIntermediary}`}>
+            <span className={styles.iconGit} />
+          </div>
+          <div className={`${styles.skill} ${styles.skillIntermediary}`}>
+            <span className={styles.iconJavascript} />
           </div>
           <div className={`${styles.skill} ${styles.skillAdvanced}`}>
             <span className={styles.iconHtml} />

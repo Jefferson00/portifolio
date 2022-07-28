@@ -86,6 +86,7 @@
   flex-wrap: wrap;
   justify-content: center;
   margin-bottom: 2.87rem;
+  padding: 0 3.2rem;
 }
 
 .iconsContainer span {
@@ -114,6 +115,7 @@
   justify-content: center;
   align-items: center;
   position: relative;
+  margin-bottom: 1rem;
 }
 
 .skill::after {
@@ -220,6 +222,33 @@
 }
 .iconSqlite::after {
   content: "Sqlite";
+}
+
+.iconNestJs {
+  background-image: url("/icons/technologies/nest.svg");
+}
+.iconNestJs::after {
+  content: "NestJs";
+}
+
+.iconGit {
+  background-image: url("/icons/technologies/git.svg");
+}
+.iconGit::after {
+  content: "Git";
+}
+
+.iconGraphql {
+  background-image: url("/icons/technologies/graphql.svg");
+}
+.iconGraphql::after {
+  content: "Graphql";
+}
+.iconMongodb {
+  background-image: url("/icons/technologies/mongodb.svg");
+}
+.iconMongodb::after {
+  content: "MongoDB";
 }
 
 .shine {
@@ -334,10 +363,18 @@
   .skillsContainer {
     align-items: flex-end;
     margin-top: 4.93rem;
+    max-width: 33rem;
+    justify-self: flex-end;
   }
   .iconsContainer {
     margin-top: 1.125rem;
     margin-bottom: 6.25rem;
+    justify-content: flex-end;
+    gap: 1rem;
+    padding: 0;
+  }
+  .skill{
+    margin-bottom: 1rem;
   }
   .iconsContainer span {
     margin-right: 1.875rem;

@@ -10,6 +10,7 @@ import { useEffect, useState } from "react";
 import { FiPlus } from "react-icons/fi";
 
 import { parseCookies, destroyCookie } from "nookies";
+import api from "../../services/api";
 
 interface TechnologiesData {
   title: string;
@@ -42,6 +43,26 @@ interface ProjectsProps {
 
 export default function ProjectsManagement({ projects }: ProjectsProps) {
   const [projectsState, setProjectsSate] = useState(projects);
+  const [loading, setLoading] = useState(false);
+
+  const handleDelete = async (id: string) => {
+    setLoading(true);
+    if (confirm("Deseja mesmo excluir")) {
+      try {
+        await api.delete(`/projects`, {
+          params: {
+            _id: id,
+          },
+        });
+        setProjectsSate((prevState) => prevState.filter((p) => p._id !== id));
+      } catch (error) {
+        alert("Erro ao excluir");
+        console.log(error);
+      } finally {
+        setLoading(false);
+      }
+    }
+  };
 
   const createNewProject = () => {
     setProjectsSate([
@@ -65,16 +86,13 @@ export default function ProjectsManagement({ projects }: ProjectsProps) {
     ]);
   };
 
-  /* useEffect(() => {
-    if (typeof window !== undefined) {
-      window.onbeforeunload = () => {
-        destroyCookie(undefined, "@JeffersonDev:token");
-      };
-    }
-  });
- */
   return (
     <>
+      {loading && (
+        <div className={styles.loading}>
+          <img src="/load.svg" alt="loading" />
+        </div>
+      )}
       <header className={styles.header}>
         <Link href={"/#projects"}>
           <motion.img
@@ -108,7 +126,11 @@ export default function ProjectsManagement({ projects }: ProjectsProps) {
         </button>
 
         {projectsState.map((project) => (
-          <ProjectCard project={project} key={project.id} />
+          <ProjectCard
+            project={project}
+            key={project.id}
+            handleDelete={handleDelete}
+          />
         ))}
       </main>
     </>

@@ -9,48 +9,50 @@ export function HeaderBackground() {
       rows.push(
         <div className={styles.row} key={i}>
           <div>
-            <Icons name="iconCss" size={size} />
+            <Icons name="iconFirebase" size={size} />
             <Icons name="iconHTML" size={size} />
             <Icons name="iconJavascript" size={size} />
-            <Icons name="iconMySql" size={size} />
+            <Icons name="iconMongoDB" size={size} />
             <Icons name="iconNext" size={size} />
             <Icons name="iconNode" size={size} />
             <Icons name="iconTypescript" size={size} />
             <Icons name="iconReact" size={size} />
             <Icons name="iconPostgres" size={size} />
-            <Icons name="iconSqlite" size={size} />
+            <Icons name="iconGraphql" size={size} />
             <Icons name="iconCss" size={size} />
-            <Icons name="iconHTML" size={size} />
+            <Icons name="iconGit" size={size} />
             <Icons name="iconJavascript" size={size} />
             <Icons name="iconMySql" size={size} />
-            <Icons name="iconNext" size={size} />
+            <Icons name="iconNest" size={size} />
             <Icons name="iconNode" size={size} />
             <Icons name="iconTypescript" size={size} />
             <Icons name="iconReact" size={size} />
             <Icons name="iconPostgres" size={size} />
             <Icons name="iconSqlite" size={size} />
+            <Icons name="iconReact" size={size} />
           </div>
           <div>
-            <Icons name="iconCss" size={size} />
+            <Icons name="iconFirebase" size={size} />
             <Icons name="iconHTML" size={size} />
             <Icons name="iconJavascript" size={size} />
-            <Icons name="iconMySql" size={size} />
+            <Icons name="iconMongoDB" size={size} />
             <Icons name="iconNext" size={size} />
             <Icons name="iconNode" size={size} />
             <Icons name="iconTypescript" size={size} />
             <Icons name="iconReact" size={size} />
             <Icons name="iconPostgres" size={size} />
-            <Icons name="iconSqlite" size={size} />
+            <Icons name="iconGraphql" size={size} />
             <Icons name="iconCss" size={size} />
-            <Icons name="iconHTML" size={size} />
+            <Icons name="iconGit" size={size} />
             <Icons name="iconJavascript" size={size} />
             <Icons name="iconMySql" size={size} />
-            <Icons name="iconNext" size={size} />
+            <Icons name="iconNest" size={size} />
             <Icons name="iconNode" size={size} />
             <Icons name="iconTypescript" size={size} />
             <Icons name="iconReact" size={size} />
             <Icons name="iconPostgres" size={size} />
             <Icons name="iconSqlite" size={size} />
+            <Icons name="iconReact" size={size} />
           </div>
         </div>
       );
