@@ -71,4 +71,8 @@ export const technologiesList = [
     title: "Styled Components",
     class: "iconStyled",
   },
+  {
+    title: "Prisma",
+    class: "iconPrisma",
+  },
 ];

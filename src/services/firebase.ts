@@ -2,12 +2,12 @@ import { initializeApp } from "firebase/app";
 import { getStorage } from "firebase/storage";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBCs-qgrMKNYEdggOPxWpd0iAxs4Vfy3eQ",
-  authDomain: "portifolio-65b2d.firebaseapp.com",
-  projectId: "portifolio-65b2d",
-  storageBucket: "portifolio-65b2d.appspot.com",
-  messagingSenderId: "408361701317",
-  appId: "1:408361701317:web:f5eac0befccef7d29585ac",
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
 };
 
 export const app = initializeApp(firebaseConfig);

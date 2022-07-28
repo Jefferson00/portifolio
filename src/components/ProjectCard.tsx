@@ -61,6 +61,7 @@ interface FormData {
 
 interface ProjectCardProps {
   project: ProjectData;
+  handleDelete: (id: string) => void;
 }
 
 interface ImgData {
@@ -82,7 +83,10 @@ const schema = yup.object({
   resume: yup.string().required("Campo obrigátorio"),
 });
 
-export default function ProjectCard({ project }: ProjectCardProps) {
+export default function ProjectCard({
+  project,
+  handleDelete,
+}: ProjectCardProps) {
   const [editHasClicked, setEditHasClicked] = useState(false);
   const [technologiesState, setTechnologiesState] = useState([]);
   const [thumbnailState, setThumbnailState] = useState<ImgData>(null);
@@ -90,6 +94,8 @@ export default function ProjectCard({ project }: ProjectCardProps) {
   const [typeState, setTypeState] = useState(project.type);
   const [titleState, setTitleState] = useState(project.title);
   const [isArquived, setIsArquived] = useState(project.arquived);
+
+  const [loading, setLoading] = useState(false);
 
   const { control, handleSubmit, setValue } = useForm<FormData>({
     resolver: yupResolver(schema),
@@ -215,6 +221,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
       gallery: galleryCreated,
       type: typeState,
       technologies: technologiesState,
+      arquived: true,
       ...data,
     };
 
@@ -289,6 +296,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
   };
 
   const handleChangeArquivedStatus = async () => {
+    setLoading(true);
     const input = {
       _id: project._id,
       arquived: !project.arquived,
@@ -299,9 +307,10 @@ export default function ProjectCard({ project }: ProjectCardProps) {
       if (res.data.modifiedCount > 0) {
         setIsArquived(!project.arquived);
       }
-      console.log(res.data);
     } catch (error) {
       console.log(error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -312,16 +321,17 @@ export default function ProjectCard({ project }: ProjectCardProps) {
   };
 
   const onSubmit: SubmitHandler<FormData> = async (data) => {
-    console.log(data.description);
     if (!validateBeforeSubmit()) {
       alert("Verifique os campos");
       return;
     }
+    setLoading(true);
     if (project._id) {
       await handleUpdate(data);
     } else {
       await handleCreate(data);
     }
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -353,128 +363,140 @@ export default function ProjectCard({ project }: ProjectCardProps) {
   }, [project]);
 
   return (
-    <div
-      className={styles.container}
-      style={{ height: editHasClicked ? "auto" : 50 }}
-    >
-      <header>
-        <span>{titleState}</span>
-        <div className={styles.buttonContainer}>
-          <Link href={`/projects/${project.id}#project`}>
-            <a target="_blank">
-              <FiEye color="#FFF" size={24} />
-            </a>
-          </Link>
-          <button>
-            <FiEdit color="#F59D19" size={24} onClick={handleClickEdit} />
-          </button>
-          <button onClick={handleChangeArquivedStatus}>
-            <FiArchive color={isArquived ? "#86eb57" : "#EB5757"} size={24} />
-          </button>
+    <>
+      {loading && (
+        <div className={styles.loading}>
+          <img src="/load.svg" alt="loading" />
         </div>
-      </header>
+      )}
 
       <div
-        className={styles.content}
-        style={{
-          opacity: editHasClicked ? 1 : 0,
-          visibility: editHasClicked ? "visible" : "hidden",
-        }}
+        className={styles.container}
+        style={{ height: editHasClicked ? "auto" : 50 }}
       >
-        <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
-          <div className={styles.formGroup}>
-            <label htmlFor="id" className={styles.required}>
-              ID
-            </label>
-            <Controller
-              name="id"
-              control={control}
-              defaultValue=""
-              render={({ field, fieldState }) => (
-                <input
-                  required
-                  type="text"
-                  name="id"
-                  onChange={field.onChange}
-                  value={field.value}
-                  placeholder="meu-projeto"
-                />
-              )}
-            />
+        <header>
+          <span>{titleState}</span>
+          <div className={styles.buttonContainer}>
+            <Link href={`/projects/${project.id}#project`}>
+              <a target="_blank">
+                <FiEye color="#FFF" size={24} />
+              </a>
+            </Link>
+            <button>
+              <FiEdit color="#F59D19" size={24} onClick={handleClickEdit} />
+            </button>
+            <button onClick={handleChangeArquivedStatus}>
+              <FiArchive color={isArquived ? "#86eb57" : "#EB5757"} size={24} />
+            </button>
+            {project._id && (
+              <button onClick={() => handleDelete(project._id)}>
+                <FiTrash color="#EB5757" size={24} />
+              </button>
+            )}
           </div>
+        </header>
 
-          <div className={styles.formGroup}>
-            <label htmlFor="title" className={styles.required}>
-              Título
-            </label>
-            <Controller
-              name="title"
-              defaultValue=""
-              control={control}
-              render={({ field, fieldState }) => (
-                <input
-                  required
-                  type="text"
-                  name="title"
-                  onChange={field.onChange}
-                  value={field.value}
-                  placeholder="Meu Projeto"
-                />
-              )}
-            />
-          </div>
-
-          <div className={styles.formGroup}>
-            <label htmlFor="order" className={styles.required}>
-              Ordem de visualização
-            </label>
-            <Controller
-              name="order"
-              defaultValue={1}
-              control={control}
-              render={({ field, fieldState }) => (
-                <input
-                  required
-                  type="number"
-                  name="order"
-                  placeholder="1"
-                  onChange={field.onChange}
-                  value={field.value}
-                />
-              )}
-            />
-          </div>
-
-          <div className={styles.formGroup}>
-            <label className={styles.required}>Tipo de projeto</label>
-            <div>
-              <input
-                type="radio"
-                name="type"
-                value={typeState}
-                checked={typeState === "primary"}
-                onChange={() => setTypeState("primary")}
-              />{" "}
-              <label>Primary</label>
+        <div
+          className={styles.content}
+          style={{
+            opacity: editHasClicked ? 1 : 0,
+            visibility: editHasClicked ? "visible" : "hidden",
+          }}
+        >
+          <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+            <div className={styles.formGroup}>
+              <label htmlFor="id" className={styles.required}>
+                ID
+              </label>
+              <Controller
+                name="id"
+                control={control}
+                defaultValue=""
+                render={({ field, fieldState }) => (
+                  <input
+                    required
+                    type="text"
+                    name="id"
+                    onChange={field.onChange}
+                    value={field.value}
+                    placeholder="meu-projeto"
+                  />
+                )}
+              />
             </div>
-            <div>
-              <input
-                type="radio"
-                name="type"
-                value={typeState}
-                checked={typeState === "secondary"}
-                onChange={() => setTypeState("secondary")}
-              />{" "}
-              <label>Secondary</label>
+
+            <div className={styles.formGroup}>
+              <label htmlFor="title" className={styles.required}>
+                Título
+              </label>
+              <Controller
+                name="title"
+                defaultValue=""
+                control={control}
+                render={({ field, fieldState }) => (
+                  <input
+                    required
+                    type="text"
+                    name="title"
+                    onChange={field.onChange}
+                    value={field.value}
+                    placeholder="Meu Projeto"
+                  />
+                )}
+              />
             </div>
-          </div>
 
-          <div className={styles.formGroup}>
-            <label htmlFor="description" className={styles.required}>
-              Descrição
-            </label>
+            <div className={styles.formGroup}>
+              <label htmlFor="order" className={styles.required}>
+                Ordem de visualização
+              </label>
+              <Controller
+                name="order"
+                defaultValue={1}
+                control={control}
+                render={({ field, fieldState }) => (
+                  <input
+                    required
+                    type="number"
+                    name="order"
+                    placeholder="1"
+                    onChange={field.onChange}
+                    value={field.value}
+                  />
+                )}
+              />
+            </div>
 
-            {/*  <Controller
+            <div className={styles.formGroup}>
+              <label className={styles.required}>Tipo de projeto</label>
+              <div>
+                <input
+                  type="radio"
+                  name="type"
+                  value={typeState}
+                  checked={typeState === "primary"}
+                  onChange={() => setTypeState("primary")}
+                />{" "}
+                <label>Primary</label>
+              </div>
+              <div>
+                <input
+                  type="radio"
+                  name="type"
+                  value={typeState}
+                  checked={typeState === "secondary"}
+                  onChange={() => setTypeState("secondary")}
+                />{" "}
+                <label>Secondary</label>
+              </div>
+            </div>
+
+            <div className={styles.formGroup}>
+              <label htmlFor="description" className={styles.required}>
+                Descrição
+              </label>
+
+              {/*  <Controller
               name="description"
               defaultValue=""
               control={control}
@@ -482,161 +504,168 @@ export default function ProjectCard({ project }: ProjectCardProps) {
                 <TextEditor name="description" field={field} />
               )}
             /> */}
-            <Controller
-              name="description"
-              defaultValue=""
-              control={control}
-              render={({ field, fieldState }) => (
-                <CodeEditor name="description" field={field} />
-              )}
-            />
-          </div>
-
-          <div className={styles.formGroup}>
-            <label htmlFor="technologies" className={styles.required}>
-              Tecnologias
-            </label>
-
-            <div className={styles.techList}>
-              {technologiesList.map((tech) => (
-                <button
-                  type="button"
-                  key={Math.random()}
-                  className={styles.techButton}
-                  onClick={() => toggleTechnologie(tech)}
-                >
-                  <Icons
-                    name={tech.class as IconNames}
-                    size={32}
-                    fill={hasTechnologie(tech) ? "#F59D19" : "#fff"}
-                  />
-                  <span>{tech.title}</span>
-                </button>
-              ))}
+              <Controller
+                name="description"
+                defaultValue=""
+                control={control}
+                render={({ field, fieldState }) => (
+                  <CodeEditor name="description" field={field} />
+                )}
+              />
             </div>
-          </div>
 
-          <div className={styles.formGroup}>
-            <label htmlFor="repository" className={styles.required}>
-              Repositorio
-            </label>
-            <Controller
-              name="repository"
-              defaultValue=""
-              control={control}
-              render={({ field, fieldState }) => (
-                <input
-                  required
-                  type="text"
-                  name="repository"
-                  placeholder="https://github.com/user/meu-projeto"
-                  onChange={field.onChange}
-                  value={field.value}
-                />
-              )}
-            />
-          </div>
+            <div className={styles.formGroup}>
+              <label htmlFor="technologies" className={styles.required}>
+                Tecnologias
+              </label>
 
-          <div className={styles.formGroup}>
-            <label htmlFor="link" className={styles.required}>
-              Link/ Demo
-            </label>
-            <Controller
-              name="link"
-              defaultValue=""
-              control={control}
-              render={({ field, fieldState }) => (
-                <input
-                  required
-                  type="text"
-                  name="link"
-                  placeholder="https://github.com/user/meu-projeto"
-                  onChange={field.onChange}
-                  value={field.value}
-                />
-              )}
-            />
-          </div>
-
-          <div className={styles.formGroup}>
-            <label htmlFor="thumbnail" className={styles.required}>
-              Thumbnail
-            </label>
-            {thumbnailState?.preview && (
-              <img src={thumbnailState.preview} className={styles.thumbnail} />
-            )}
-            <input
-              type="file"
-              name="thumbnail"
-              onChange={handleChangeThumbnailState}
-            />
-          </div>
-
-          <div className={styles.formGroup}>
-            <label htmlFor="gallery" className={styles.required}>
-              Galeria
-            </label>
-            <div className={styles.galleryContainer}>
-              <div className={styles.gallerySlider}>
-                {galleryState?.length > 0 &&
-                  galleryState.map((gallery) => {
-                    if (gallery?.preview)
-                      return (
-                        <div key={Math.random()} className={styles.galleryItem}>
-                          <img src={gallery.preview} />
-                          <span
-                            onClick={() =>
-                              handleDeleteFromGallery(gallery.preview)
-                            }
-                          >
-                            <FiTrash />
-                          </span>
-                        </div>
-                      );
-                  })}
+              <div className={styles.techList}>
+                {technologiesList.map((tech) => (
+                  <button
+                    type="button"
+                    key={Math.random()}
+                    className={styles.techButton}
+                    onClick={() => toggleTechnologie(tech)}
+                  >
+                    <Icons
+                      name={tech.class as IconNames}
+                      size={32}
+                      fill={hasTechnologie(tech) ? "#F59D19" : "#fff"}
+                    />
+                    <span>{tech.title}</span>
+                  </button>
+                ))}
               </div>
             </div>
-            <input
-              type="file"
-              name="gallery"
-              onChange={handleChangeGalleryState}
-            />
-          </div>
 
-          <div className={styles.formGroup}>
-            <label htmlFor="useCase" className={styles.required}>
-              Caso de uso
-            </label>
-            <Controller
-              name="useCase"
-              defaultValue=""
-              control={control}
-              render={({ field, fieldState }) => (
-                <CodeEditor name="useCase" field={field} />
+            <div className={styles.formGroup}>
+              <label htmlFor="repository" className={styles.required}>
+                Repositorio
+              </label>
+              <Controller
+                name="repository"
+                defaultValue=""
+                control={control}
+                render={({ field, fieldState }) => (
+                  <input
+                    required
+                    type="text"
+                    name="repository"
+                    placeholder="https://github.com/user/meu-projeto"
+                    onChange={field.onChange}
+                    value={field.value}
+                  />
+                )}
+              />
+            </div>
+
+            <div className={styles.formGroup}>
+              <label htmlFor="link" className={styles.required}>
+                Link/ Demo
+              </label>
+              <Controller
+                name="link"
+                defaultValue=""
+                control={control}
+                render={({ field, fieldState }) => (
+                  <input
+                    required
+                    type="text"
+                    name="link"
+                    placeholder="https://github.com/user/meu-projeto"
+                    onChange={field.onChange}
+                    value={field.value}
+                  />
+                )}
+              />
+            </div>
+
+            <div className={styles.formGroup}>
+              <label htmlFor="thumbnail" className={styles.required}>
+                Thumbnail
+              </label>
+              {thumbnailState?.preview && (
+                <img
+                  src={thumbnailState.preview}
+                  className={styles.thumbnail}
+                />
               )}
-            />
-          </div>
+              <input
+                type="file"
+                name="thumbnail"
+                onChange={handleChangeThumbnailState}
+              />
+            </div>
 
-          <div className={styles.formGroup}>
-            <label htmlFor="resume" className={styles.required}>
-              Resumo
-            </label>
-            <Controller
-              name="resume"
-              defaultValue=""
-              control={control}
-              render={({ field, fieldState }) => (
-                <TextEditor name="resume" field={field} />
-              )}
-            />
-          </div>
+            <div className={styles.formGroup}>
+              <label htmlFor="gallery" className={styles.required}>
+                Galeria
+              </label>
+              <div className={styles.galleryContainer}>
+                <div className={styles.gallerySlider}>
+                  {galleryState?.length > 0 &&
+                    galleryState.map((gallery) => {
+                      if (gallery?.preview)
+                        return (
+                          <div
+                            key={Math.random()}
+                            className={styles.galleryItem}
+                          >
+                            <img src={gallery.preview} />
+                            <span
+                              onClick={() =>
+                                handleDeleteFromGallery(gallery.preview)
+                              }
+                            >
+                              <FiTrash />
+                            </span>
+                          </div>
+                        );
+                    })}
+                </div>
+              </div>
+              <input
+                type="file"
+                name="gallery"
+                onChange={handleChangeGalleryState}
+              />
+            </div>
 
-          <button type="submit" className={styles.saveButton}>
-            Salvar
-            <FiSave size={32} />
-          </button>
-        </form>
+            <div className={styles.formGroup}>
+              <label htmlFor="useCase" className={styles.required}>
+                Caso de uso
+              </label>
+              <Controller
+                name="useCase"
+                defaultValue=""
+                control={control}
+                render={({ field, fieldState }) => (
+                  <CodeEditor name="useCase" field={field} />
+                )}
+              />
+            </div>
+
+            <div className={styles.formGroup}>
+              <label htmlFor="resume" className={styles.required}>
+                Resumo
+              </label>
+              <Controller
+                name="resume"
+                defaultValue=""
+                control={control}
+                render={({ field, fieldState }) => (
+                  <TextEditor name="resume" field={field} />
+                )}
+              />
+            </div>
+
+            <button type="submit" className={styles.saveButton}>
+              Salvar
+              <FiSave size={32} />
+            </button>
+          </form>
+        </div>
       </div>
-    </div>
+    </>
   );
 }
