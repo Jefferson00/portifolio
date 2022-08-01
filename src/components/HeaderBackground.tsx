@@ -1,13 +1,14 @@
+import { useCallback } from "react";
 import styles from "../styles/components/HeaderBackground.module.css";
 import { Icons } from "./Icons";
 
 export function HeaderBackground() {
-  const renderRows = () => {
+  const renderRows = useCallback(() => {
     let rows = [];
     const size = 80;
     for (let i = 1; i <= 20; i++) {
       rows.push(
-        <div className={styles.row} key={i}>
+        <div className={styles.row} key={i} id={String(i)}>
           <div>
             <Icons name="iconFirebase" size={size} />
             <Icons name="iconHTML" size={size} />
@@ -56,7 +57,7 @@ export function HeaderBackground() {
       );
     }
     return rows;
-  };
+  }, []);
   return (
     <section className={styles.container}>
       {renderRows()}

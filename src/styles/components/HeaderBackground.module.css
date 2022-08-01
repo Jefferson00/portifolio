@@ -49,9 +49,6 @@
 .row div {
   display: flex;
   gap: 1rem;
-}
-
-.row div {
   animation: animate1 80s linear infinite;
   animation-delay: -80s;
 }
