@@ -29,7 +29,6 @@ export function HeaderBackground() {
             <Icons name="iconReact" size={size} />
             <Icons name="iconPostgres" size={size} />
             <Icons name="iconSqlite" size={size} />
-            <Icons name="iconReact" size={size} />
           </div>
           <div>
             <Icons name="iconFirebase" size={size} />
@@ -52,7 +51,6 @@ export function HeaderBackground() {
             <Icons name="iconReact" size={size} />
             <Icons name="iconPostgres" size={size} />
             <Icons name="iconSqlite" size={size} />
-            <Icons name="iconReact" size={size} />
           </div>
         </div>
       );
