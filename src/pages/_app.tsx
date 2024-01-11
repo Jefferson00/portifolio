@@ -10,6 +10,8 @@ import Head from "next/head";
 import { Contact } from "../components/Contact";
 import { ToStartButton } from "../components/ToStartButton";
 import { HeaderBackground } from "../components/HeaderBackground";
+import { Analytics } from "@vercel/analytics/react";
+
 // import { Image3D } from "../components/Image3D";
 import dynamic from "next/dynamic";
 
@@ -93,6 +95,7 @@ function MyApp({ Component, pageProps }) {
         <link itemProp="url" href="thumb.png" />
       </span>
 
+      <Analytics />
       <Component {...pageProps} />
       <ToStartButton />
     </ProjectsProvider>
